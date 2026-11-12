@@ -1,0 +1,3588 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>暑假最難忘的回憶｜全台22縣市旅遊景點整合導覽</title>
+
+  <!-- Google Fonts: Noto Sans TC & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans TC"', '"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            ocean: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e',
+            },
+            tropical: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            },
+            sunset: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#ea580c',
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -5px rgba(2, 132, 199, 0.08)',
+            'card': '0 12px 32px -8px rgba(15, 23, 42, 0.08)',
+            'float': '0 16px 40px -8px rgba(2, 132, 199, 0.28)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* 自訂捲軸與平滑過渡樣式 */
+    body {
+      font-family: 'Noto Sans TC', 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    /* 隱藏水平捲軸但保留滑動功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* 玻璃擬態導覽列 */
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    /* 夏日漸層背景 */
+    .hero-summer-gradient {
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 38%, #0d9488 78%, #f59e0b 115%);
+    }
+
+    /* 台灣 SVG 地圖互動樣式 */
+    .taiwan-county {
+      cursor: pointer;
+      transition: all 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+      stroke: #ffffff;
+      stroke-width: 1.6;
+      stroke-linejoin: round;
+    }
+    .taiwan-county:hover,
+    .taiwan-county.active {
+      fill: #f97316 !important;
+      filter: drop-shadow(0 6px 12px rgba(249, 115, 22, 0.42));
+      transform: translateY(-2px);
+    }
+
+    .map-pill-label {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .map-pill-label:hover rect,
+    .map-pill-label.active rect {
+      fill: #ea580c;
+      stroke: #ffffff;
+    }
+    .map-pill-label:hover text,
+    .map-pill-label.active text {
+      fill: #ffffff;
+    }
+
+    /* 卡片懸浮微動畫 */
+    .attraction-card {
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+    }
+    .attraction-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 38px -12px rgba(2, 132, 199, 0.18);
+    }
+
+    /* AI 聊天打字指示器動畫 */
+    @keyframes bounceDot {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    .typing-dot {
+      animation: bounceDot 1.3s infinite ease-in-out both;
+    }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+    /* 太陽微旋轉動畫 */
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .sun-spin {
+      animation: slowSpin 24s linear infinite;
+    }
+
+    /* 視圖切換淡入 */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-view {
+      animation: fadeSlideUp 0.35s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-ocean-500 selection:text-white">
+
+  <!-- ==================== 頂部固定導覽列 ==================== -->
+  <header class="glass-nav sticky top-0 z-40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20 gap-3">
+        <!-- 品牌 Logo 與網站標題 -->
+        <button onclick="switchTab('home')" class="flex items-center gap-3 text-left group focus:outline-none shrink-0">
+          <div class="w-10 h-10 md:w-11 md:h-11 rounded-2xl bg-gradient-to-br from-sunset-400 via-sunset-500 to-ocean-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-sun text-lg md:text-xl sun-spin"></i>
+          </div>
+          <div>
+            <span class="block text-base sm:text-lg md:text-xl font-black tracking-tight bg-gradient-to-r from-ocean-700 via-tropical-600 to-sunset-600 bg-clip-text text-transparent">
+              暑假最難忘的回憶
+            </span>
+            <span class="hidden sm:block text-[11px] font-medium text-slate-500 tracking-wider">
+              TAIWAN SUMMER TRAVEL GUIDE · 全台22縣市
+            </span>
+          </div>
+        </button>
+
+        <!-- 桌面版導覽分頁 -->
+        <nav class="hidden lg:flex items-center bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/70">
+          <button data-nav="home" onclick="switchTab('home')" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2">
+            <i class="fa-solid fa-compass"></i> 首頁總覽
+          </button>
+          <button data-nav="guide" onclick="switchTab('guide')" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2">
+            <i class="fa-solid fa-map-location-dot"></i> 導覽頁・台灣地圖
+          </button>
+          <button data-nav="directory" onclick="switchTab('directory')" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2">
+            <i class="fa-solid fa-layer-group"></i> 全台景點大全
+          </button>
+          <button data-nav="wishlist" onclick="switchTab('wishlist')" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 relative">
+            <i class="fa-solid fa-heart text-rose-500"></i> 我的暑假清單
+            <span id="nav-wishlist-badge" class="ml-1 px-2 py-0.5 text-xs font-extrabold rounded-full bg-sunset-500 text-white">0</span>
+          </button>
+        </nav>
+
+        <!-- 頂部快速搜尋框 -->
+        <div class="flex items-center gap-2 flex-1 max-w-xs lg:max-w-[240px]">
+          <div class="relative w-full">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input
+              id="header-search-input"
+              type="text"
+              placeholder="搜尋縣市、景點、玩水..."
+              oninput="handleGlobalSearch(this.value, 'header')"
+              onkeydown="if(event.key==='Enter'){ switchTab('directory'); }"
+              class="w-full pl-9 pr-8 py-2 text-sm bg-slate-100/90 hover:bg-white focus:bg-white border border-slate-200 focus:border-ocean-500 rounded-xl outline-none transition-all"
+            />
+            <button id="header-search-clear" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+              <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 手機與平板版水平導覽列 -->
+      <div class="flex lg:hidden items-center gap-2 pb-3 overflow-x-auto no-scrollbar">
+        <button data-nav="home" onclick="switchTab('home')" class="nav-btn shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-compass"></i> 首頁總覽
+        </button>
+        <button data-nav="guide" onclick="switchTab('guide')" class="nav-btn shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-map-location-dot"></i> 導覽頁・台灣地圖
+        </button>
+        <button data-nav="directory" onclick="switchTab('directory')" class="nav-btn shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-layer-group"></i> 全台景點大全
+        </button>
+        <button data-nav="wishlist" onclick="switchTab('wishlist')" class="nav-btn shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-heart text-rose-500"></i> 暑假清單
+          <span id="mobile-wishlist-badge" class="px-1.5 py-0.2 text-[11px] font-extrabold rounded-full bg-sunset-500 text-white">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 主內容區域 ==================== -->
+  <main class="min-h-screen pb-24">
+
+    <!-- ========================================================= -->
+    <!-- VIEW 1: 首頁總覽 (HOME VIEW)                              -->
+    <!-- ========================================================= -->
+    <section id="view-home" class="animate-view">
+      <!-- 夏日主視覺 Hero Banner -->
+      <div class="hero-summer-gradient relative overflow-hidden text-white pt-12 pb-24 md:pt-20 md:pb-32">
+        <!-- 裝飾性光暈圓圈 -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-10 w-72 h-72 bg-sunset-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="max-w-3xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold mb-6">
+              <i class="fa-solid fa-umbrella-beach text-sunset-400"></i>
+              <span>2026 盛夏出遊全攻略・全台 22 縣市深度景點導覽</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-5 drop-shadow-sm">
+              暑假最難忘的回憶
+            </h1>
+
+            <p class="text-base sm:text-lg md:text-xl text-white/90 font-medium leading-relaxed mb-8">
+              探索台灣 22 縣市絕美秘境、海灘玩水、文化老街與親子樂園，點擊互動台灣地圖，打造專屬於你的夏日冒險藍圖！
+            </p>
+
+            <!-- Hero 大型搜尋欄 -->
+            <div class="bg-white p-2 rounded-2xl sm:rounded-3xl shadow-2xl max-w-2xl mx-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div class="flex items-center flex-1 px-3 py-2">
+                <i class="fa-solid fa-magnifying-glass text-ocean-600 text-lg mr-3"></i>
+                <input
+                  id="hero-search-input"
+                  type="text"
+                  placeholder="輸入縣市、景點或關鍵字（如：澎湖、日月潭、玩水、夜市）"
+                  oninput="handleGlobalSearch(this.value, 'hero')"
+                  onkeydown="if(event.key==='Enter'){ switchTab('directory'); }"
+                  class="w-full text-slate-800 placeholder-slate-400 text-sm sm:text-base font-medium outline-none bg-transparent"
+                />
+              </div>
+              <button
+                onclick="switchTab('directory')"
+                class="px-6 py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-sunset-500 to-sunset-600 hover:from-sunset-600 hover:to-orange-700 text-white font-bold text-sm sm:text-base shadow-md transition-all flex items-center justify-center gap-2 shrink-0"
+              >
+                <i class="fa-solid fa-compass"></i> 立即搜尋景點
+              </button>
+            </div>
+
+            <!-- 熱門關鍵字標籤 -->
+            <div class="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
+              <span class="text-white/80 font-medium">熱門搜尋：</span>
+              <button onclick="quickSearchKeyword('玩水')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm transition">🌊 海灘玩水</button>
+              <button onclick="quickSearchKeyword('親子')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm transition">🎡 親子樂園</button>
+              <button onclick="quickSearchKeyword('避暑')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm transition">🌲 山林避暑</button>
+              <button onclick="quickSearchKeyword('夜市')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm transition">🍢 在地夜市</button>
+              <button onclick="openCountyGuide('penghu')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm transition">🏝️ 澎湖跳島</button>
+              <button onclick="openCountyGuide('taitung')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm transition">🎈 台東熱氣球</button>
+            </div>
+          </div>
+
+          <!-- 數據亮點卡片 -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-4xl mx-auto mt-12">
+            <div onclick="switchTab('guide')" class="cursor-pointer bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center transition">
+              <div class="text-2xl sm:text-3xl font-black text-sunset-400">22 縣市</div>
+              <div class="text-xs sm:text-sm text-white/90 font-medium mt-1">全台本島與離島全收錄</div>
+            </div>
+            <div onclick="switchTab('directory')" class="cursor-pointer bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center transition">
+              <div id="stat-total-attractions" class="text-2xl sm:text-3xl font-black text-white">76+ 景點</div>
+              <div class="text-xs sm:text-sm text-white/90 font-medium mt-1">完整開放時間與交通攻略</div>
+            </div>
+            <div onclick="switchTab('guide')" class="cursor-pointer bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center transition">
+              <div class="text-2xl sm:text-3xl font-black text-teal-200">互動地圖</div>
+              <div class="text-xs sm:text-sm text-white/90 font-medium mt-1">點擊台灣縣市一鍵導覽</div>
+            </div>
+            <div onclick="toggleAIChat(true)" class="cursor-pointer bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center transition">
+              <div class="text-2xl sm:text-3xl font-black text-amber-200">AI 客服</div>
+              <div class="text-xs sm:text-sm text-white/90 font-medium mt-1">24H 智慧暑假行程規劃</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部波浪分隔 SVG -->
+        <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none">
+          <svg class="relative block w-full h-10 sm:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.86,192.4,101.66,236.4,88.66,277.31,64.61,321.39,56.44Z" fill="#f8fafc"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 互動台灣地圖快速入口橫幅 -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 mb-14">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100 flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div class="flex items-start sm:items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-ocean-50 text-ocean-600 flex items-center justify-center text-2xl shrink-0">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div>
+              <span class="inline-block px-2.5 py-0.5 rounded-md bg-sunset-100 text-sunset-600 text-xs font-bold mb-1">推薦功能</span>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">不知道暑假去哪玩？點擊台灣互動地圖探索！</h2>
+              <p class="text-sm text-slate-500 mt-1">支援北、中、南、東與離島 22 縣市直接點選，立即查看各縣市必去景點、在地美食與交通指南。</p>
+            </div>
+          </div>
+          <button
+            onclick="switchTab('guide')"
+            class="w-full lg:w-auto px-7 py-3.5 rounded-2xl bg-ocean-600 hover:bg-ocean-700 text-white font-bold text-sm sm:text-base shadow-soft transition-all flex items-center justify-center gap-2 shrink-0"
+          >
+            <span>開啟台灣地圖導覽頁</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 五大夏日主題精選 -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-ocean-600">SUMMER THEMES</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">五大暑假必玩主題推薦</h2>
+          </div>
+          <button onclick="switchTab('directory')" class="text-sm font-bold text-ocean-600 hover:text-ocean-700 flex items-center gap-1.5">
+            瀏覽全部景點 <i class="fa-solid fa-chevron-right text-xs"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <button onclick="filterByCategoryAndGo('海灘玩水')" class="group text-left bg-gradient-to-br from-sky-500 to-cyan-600 text-white p-6 rounded-3xl shadow-soft hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-water"></i>
+            </div>
+            <h3 class="text-lg font-extrabold">海灘玩水消暑</h3>
+            <p class="text-xs text-white/85 mt-1.5 leading-relaxed">墾丁白沙灣、福隆沙雕、小琉球浮潛與澎湖跳島</p>
+          </button>
+
+          <button onclick="filterByCategoryAndGo('自然秘境')" class="group text-left bg-gradient-to-br from-teal-500 to-emerald-600 text-white p-6 rounded-3xl shadow-soft hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-mountain-sun"></i>
+            </div>
+            <h3 class="text-lg font-extrabold">山林避暑秘境</h3>
+            <p class="text-xs text-white/85 mt-1.5 leading-relaxed">阿里山雲海、清境草原、溪頭森林與司馬庫斯神木</p>
+          </button>
+
+          <button onclick="filterByCategoryAndGo('親子樂園')" class="group text-left bg-gradient-to-br from-amber-500 to-orange-500 text-white p-6 rounded-3xl shadow-soft hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-ferris-wheel"></i>
+            </div>
+            <h3 class="text-lg font-extrabold">親子放電樂園</h3>
+            <p class="text-xs text-white/85 mt-1.5 leading-relaxed">六福村、麗寶樂園、屏東海生館與遠雄海洋公園</p>
+          </button>
+
+          <button onclick="filterByCategoryAndGo('文化古蹟')" class="group text-left bg-gradient-to-br from-indigo-500 to-blue-600 text-white p-6 rounded-3xl shadow-soft hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-landmark"></i>
+            </div>
+            <h3 class="text-lg font-extrabold">文化古蹟漫遊</h3>
+            <p class="text-xs text-white/85 mt-1.5 leading-relaxed">九份山城、鹿港老街、台南安平古堡與馬祖芹壁</p>
+          </button>
+
+          <button onclick="filterByCategoryAndGo('在地夜市')" class="group text-left bg-gradient-to-br from-rose-500 to-pink-600 text-white p-6 rounded-3xl shadow-soft hover:shadow-lg transition-all hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h3 class="text-lg font-extrabold">在地夜市美食</h3>
+            <p class="text-xs text-white/85 mt-1.5 leading-relaxed">基隆廟口、逢甲夜市、台南花園夜市與花蓮東大門</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- 依地區快速瀏覽全台 22 縣市 -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="mb-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-tropical-600">EXPLORE BY REGION</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">全台五大區域・22 縣市直達車</h2>
+          <p class="text-sm text-slate-500 mt-1">點選任一縣市卡片，立即進入該縣市專屬景點導覽頁</p>
+        </div>
+
+        <div id="home-region-counties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 由 JavaScript 動態渲染五大區域與 22 縣市按鈕 -->
+        </div>
+      </div>
+
+      <!-- 本季人氣精選景點 -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-sunset-600">TOP PICKS FOR SUMMER</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">暑假必訪人氣景點精選</h2>
+          </div>
+          <button onclick="switchTab('directory')" class="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:border-ocean-500 text-sm font-bold text-slate-700 hover:text-ocean-600 transition">
+            查看全部 <span id="home-more-count">76</span> 個景點 →
+          </button>
+        </div>
+
+        <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 由 JavaScript 動態渲染精選卡片 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 2: 導覽頁・台灣互動地圖與縣市專屬導覽 (GUIDE VIEW)   -->
+    <!-- ========================================================= -->
+    <section id="view-guide" class="hidden animate-view pt-8 pb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- 子模式 A：全台互動地圖導覽總覽 -->
+        <div id="guide-map-mode">
+          <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-ocean-100 text-ocean-700 text-xs font-bold mb-3">
+              <i class="fa-solid fa-hand-pointer"></i> 互動式全台旅遊導覽圖
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-black text-slate-900">點擊台灣地圖，探索 22 縣市景點導覽頁</h1>
+            <p class="text-sm sm:text-base text-slate-600 mt-2">
+              將滑鼠移至或直接點擊下方台灣地圖上的任一縣市（含金門、馬祖、澎湖離島），即可立即進入該縣市的專屬旅遊景點與美食導覽頁面。
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- 左側：台灣互動 SVG 地圖卡片 -->
+            <div class="lg:col-span-6 bg-white rounded-3xl p-5 sm:p-8 shadow-card border border-slate-100 relative">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-ocean-500"></span>
+                  <span class="text-sm font-bold text-slate-700">台灣全島與離島互動地圖</span>
+                </div>
+                <span class="text-xs font-medium text-slate-400">點擊縣市區塊進入導覽</span>
+              </div>
+
+              <!-- 懸浮提示框 (Tooltip) -->
+              <div id="map-tooltip" class="hidden fixed z-50 pointer-events-none bg-slate-900/95 text-white px-3.5 py-2.5 rounded-xl shadow-xl text-xs backdrop-blur-md border border-white/10">
+                <div class="font-extrabold text-sm text-sunset-400" id="tooltip-county-name">台北市</div>
+                <div class="text-slate-300 mt-0.5" id="tooltip-county-info">北部地區 · 4 個精選景點</div>
+              </div>
+
+              <!-- 台灣 22 縣市互動 SVG 地圖 -->
+              <div class="relative w-full max-w-[460px] mx-auto bg-gradient-to-b from-sky-50/80 via-cyan-50/50 to-teal-50/70 rounded-2xl p-3 border border-sky-100">
+                <svg id="taiwan-interactive-svg" viewBox="0 0 520 680" class="w-full h-auto select-none">
+                  <defs>
+                    <pattern id="oceanGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+                      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#bae6fd" stroke-width="0.5" opacity="0.5"/>
+                    </pattern>
+                  </defs>
+                  <rect width="520" height="680" rx="16" fill="url(#oceanGrid)" />
+
+                  <!-- 海域標示文字 -->
+                  <text x="65" y="420" fill="#7dd3fc" font-size="13" font-weight="700" letter-spacing="3">台灣海峽</text>
+                  <text x="415" y="340" fill="#7dd3fc" font-size="13" font-weight="700" letter-spacing="3">太平洋</text>
+
+                  <!-- ===== 離島圖框：連江縣 (馬祖) ===== -->
+                  <g class="map-inset-box">
+                    <rect x="18" y="18" width="118" height="72" rx="10" fill="#ffffff" fill-opacity="0.82" stroke="#93c5fd" stroke-dasharray="4 3" />
+                    <text x="28" y="36" fill="#0369a1" font-size="11" font-weight="800">連江縣 (馬祖)</text>
+                    <path data-county="lienchiang" class="taiwan-county" fill="#0e7490"
+                      d="M42,52 L54,48 L60,55 L50,62 Z M72,46 L86,44 L89,52 L75,55 Z M96,62 L110,58 L114,68 L100,72 Z M52,70 L66,68 L68,77 L54,79 Z" />
+                  </g>
+
+                  <!-- ===== 離島圖框：金門縣 ===== -->
+                  <g class="map-inset-box">
+                    <rect x="18" y="102" width="118" height="74" rx="10" fill="#ffffff" fill-opacity="0.82" stroke="#93c5fd" stroke-dasharray="4 3" />
+                    <text x="28" y="120" fill="#0369a1" font-size="11" font-weight="800">金門縣</text>
+                    <path data-county="kinmen" class="taiwan-county" fill="#0891b2"
+                      d="M42,140 Q58,130 74,136 Q88,131 104,138 L106,154 Q88,158 74,151 Q56,160 40,152 Z M32,158 L41,156 L42,165 L33,166 Z" />
+                  </g>
+
+                  <!-- ===== 離島圖框：澎湖縣 ===== -->
+                  <g class="map-inset-box">
+                    <rect x="18" y="255" width="112" height="106" rx="10" fill="#ffffff" fill-opacity="0.82" stroke="#93c5fd" stroke-dasharray="4 3" />
+                    <text x="28" y="274" fill="#0369a1" font-size="11" font-weight="800">澎湖縣</text>
+                    <path data-county="penghu" class="taiwan-county" fill="#06b6d4"
+                      d="M66,288 L78,285 L82,298 L70,302 Z M54,306 L68,304 L71,318 L56,320 Z M82,308 L92,306 L94,317 L83,319 Z M64,328 L75,326 L77,338 L65,340 Z M52,344 L62,343 L63,352 L53,353 Z" />
+                  </g>
+
+                  <!-- ===== 台灣本島 19 縣市地理板塊 ===== -->
+                  <!-- 1. 新北市 (New Taipei) -->
+                  <path data-county="new-taipei" class="taiwan-county" fill="#0ea5e9"
+                    d="M342,42 L372,36 L402,52 L422,68 L412,92 L386,104 L362,114 L334,106 L316,86 L324,58 Z" />
+
+                  <!-- 2. 基隆市 (Keelung) -->
+                  <path data-county="keelung" class="taiwan-county" fill="#0369a1"
+                    d="M386,44 L402,48 L398,62 L382,60 Z" />
+
+                  <!-- 3. 台北市 (Taipei) -->
+                  <path data-county="taipei" class="taiwan-county" fill="#0284c7"
+                    d="M354,56 L374,55 L378,76 L356,79 Z" />
+
+                  <!-- 4. 桃園市 (Taoyuan) -->
+                  <path data-county="taoyuan" class="taiwan-county" fill="#38bdf8"
+                    d="M300,72 L324,58 L334,106 L346,124 L318,136 L296,112 L288,92 Z" />
+
+                  <!-- 5. 新竹縣 (Hsinchu County) -->
+                  <path data-county="hsinchu-county" class="taiwan-county" fill="#0284c7"
+                    d="M276,104 L296,112 L318,136 L332,158 L296,168 L272,146 L266,122 Z" />
+
+                  <!-- 6. 新竹市 (Hsinchu City) -->
+                  <path data-county="hsinchu-city" class="taiwan-county" fill="#7dd3fc"
+                    d="M262,110 L278,112 L276,128 L260,126 Z" />
+
+                  <!-- 7. 苗栗縣 (Miaoli) -->
+                  <path data-county="miaoli" class="taiwan-county" fill="#0ea5e9"
+                    d="M250,134 L272,146 L296,168 L306,192 L262,202 L232,184 L238,156 Z" />
+
+                  <!-- 8. 台中市 (Taichung) -->
+                  <path data-county="taichung" class="taiwan-county" fill="#0d9488"
+                    d="M220,188 L262,202 L306,192 L338,204 L328,236 L272,242 L212,234 L206,210 Z" />
+
+                  <!-- 9. 彰化縣 (Changhua) -->
+                  <path data-county="changhua" class="taiwan-county" fill="#14b8a6"
+                    d="M192,234 L236,238 L242,286 L196,292 L180,268 Z" />
+
+                  <!-- 10. 南投縣 (Nantou) -->
+                  <path data-county="nantou" class="taiwan-county" fill="#0f766e"
+                    d="M236,238 L272,242 L328,236 L322,308 L286,336 L248,324 L242,286 Z" />
+
+                  <!-- 11. 雲林縣 (Yunlin) -->
+                  <path data-county="yunlin" class="taiwan-county" fill="#2dd4bf"
+                    d="M174,292 L242,286 L248,324 L172,332 L164,312 Z" />
+
+                  <!-- 12. 嘉義縣 (Chiayi County) -->
+                  <path data-county="chiayi-county" class="taiwan-county" fill="#f59e0b"
+                    d="M168,332 L248,324 L286,336 L278,374 L214,378 L162,366 Z" />
+
+                  <!-- 13. 嘉義市 (Chiayi City) -->
+                  <path data-county="chiayi-city" class="taiwan-county" fill="#fde047"
+                    d="M204,344 L224,344 L224,360 L204,360 Z" />
+
+                  <!-- 14. 台南市 (Tainan) -->
+                  <path data-county="tainan" class="taiwan-county" fill="#f97316"
+                    d="M158,366 L214,378 L244,376 L240,434 L172,442 L152,408 Z" />
+
+                  <!-- 15. 高雄市 (Kaohsiung) -->
+                  <path data-county="kaohsiung" class="taiwan-county" fill="#ea580c"
+                    d="M244,376 L288,372 L302,412 L272,476 L224,516 L186,494 L172,442 L240,434 Z" />
+
+                  <!-- 16. 屏東縣 (Pingtung) -->
+                  <path data-county="pingtung" class="taiwan-county" fill="#fb923c"
+                    d="M224,516 L272,476 L296,512 L288,582 L274,634 L254,630 L244,578 L216,544 Z" />
+
+                  <!-- 17. 宜蘭縣 (Yilan) -->
+                  <path data-county="yilan" class="taiwan-county" fill="#6366f1"
+                    d="M362,114 L386,104 L412,92 L404,148 L394,196 L338,204 L332,158 L346,124 Z" />
+
+                  <!-- 18. 花蓮縣 (Hualien) -->
+                  <path data-county="hualien" class="taiwan-county" fill="#4f46e5"
+                    d="M338,204 L394,196 L384,284 L366,368 L316,368 L322,308 L328,236 Z" />
+
+                  <!-- 19. 台東縣 (Taitung + 綠島 + 蘭嶼) -->
+                  <path data-county="taitung" class="taiwan-county" fill="#818cf8"
+                    d="M316,368 L366,368 L348,448 L314,522 L288,582 L296,512 L272,476 L302,412 L288,372 Z M392,462 L404,460 L406,472 L394,474 Z M398,538 L412,536 L415,552 L400,554 Z" />
+
+                  <!-- ===== 清晰可點擊的縣市名稱標籤（解決小面積城市難點擊問題） ===== -->
+                  <!-- 基隆市 標籤 -->
+                  <g class="map-pill-label" data-county="keelung">
+                    <line x1="395" y1="48" x2="430" y2="32" stroke="#0369a1" stroke-width="1.2" />
+                    <rect x="430" y="18" width="66" height="24" rx="12" fill="#ffffff" stroke="#0369a1" stroke-width="1.3" />
+                    <text x="463" y="34" text-anchor="middle" fill="#0369a1" font-size="11" font-weight="800">基隆市</text>
+                  </g>
+
+                  <!-- 台北市 標籤 -->
+                  <g class="map-pill-label" data-county="taipei">
+                    <line x1="364" y1="62" x2="290" y2="34" stroke="#0284c7" stroke-width="1.2" />
+                    <rect x="222" y="20" width="68" height="24" rx="12" fill="#ffffff" stroke="#0284c7" stroke-width="1.3" />
+                    <text x="256" y="36" text-anchor="middle" fill="#0284c7" font-size="11" font-weight="800">台北市</text>
+                  </g>
+
+                  <!-- 新北市 標籤 -->
+                  <g class="map-pill-label" data-county="new-taipei">
+                    <rect x="424" y="64" width="68" height="24" rx="12" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.3" />
+                    <text x="458" y="80" text-anchor="middle" fill="#0284c7" font-size="11" font-weight="800">新北市</text>
+                  </g>
+
+                  <!-- 桃園市 標籤 -->
+                  <g class="map-pill-label" data-county="taoyuan">
+                    <line x1="296" y1="88" x2="246" y2="74" stroke="#0284c7" stroke-width="1.2" />
+                    <rect x="180" y="60" width="66" height="24" rx="12" fill="#ffffff" stroke="#38bdf8" stroke-width="1.3" />
+                    <text x="213" y="76" text-anchor="middle" fill="#0369a1" font-size="11" font-weight="800">桃園市</text>
+                  </g>
+
+                  <!-- 新竹市 標籤 -->
+                  <g class="map-pill-label" data-county="hsinchu-city">
+                    <line x1="264" y1="116" x2="220" y2="108" stroke="#0284c7" stroke-width="1.2" />
+                    <rect x="154" y="95" width="66" height="24" rx="12" fill="#ffffff" stroke="#0284c7" stroke-width="1.3" />
+                    <text x="187" y="111" text-anchor="middle" fill="#0284c7" font-size="11" font-weight="800">新竹市</text>
+                  </g>
+
+                  <!-- 新竹縣 標籤 -->
+                  <g class="map-pill-label" data-county="hsinchu-county">
+                    <line x1="274" y1="138" x2="220" y2="138" stroke="#0284c7" stroke-width="1.2" />
+                    <rect x="154" y="126" width="66" height="24" rx="12" fill="#ffffff" stroke="#0284c7" stroke-width="1.3" />
+                    <text x="187" y="142" text-anchor="middle" fill="#0284c7" font-size="11" font-weight="800">新竹縣</text>
+                  </g>
+
+                  <!-- 苗栗縣 標籤 -->
+                  <g class="map-pill-label" data-county="miaoli">
+                    <line x1="242" y1="168" x2="206" y2="168" stroke="#0ea5e9" stroke-width="1.2" />
+                    <rect x="140" y="156" width="66" height="24" rx="12" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.3" />
+                    <text x="173" y="172" text-anchor="middle" fill="#0369a1" font-size="11" font-weight="800">苗栗縣</text>
+                  </g>
+
+                  <!-- 台中市 標籤 -->
+                  <g class="map-pill-label" data-county="taichung">
+                    <line x1="214" y1="208" x2="188" y2="202" stroke="#0d9488" stroke-width="1.2" />
+                    <rect x="122" y="189" width="66" height="24" rx="12" fill="#ffffff" stroke="#0d9488" stroke-width="1.3" />
+                    <text x="155" y="205" text-anchor="middle" fill="#0f766e" font-size="11" font-weight="800">台中市</text>
+                  </g>
+
+                  <!-- 彰化縣 標籤 -->
+                  <g class="map-pill-label" data-county="changhua">
+                    <line x1="186" y1="256" x2="168" y2="244" stroke="#14b8a6" stroke-width="1.2" />
+                    <rect x="102" y="226" width="66" height="24" rx="12" fill="#ffffff" stroke="#14b8a6" stroke-width="1.3" />
+                    <text x="135" y="242" text-anchor="middle" fill="#0f766e" font-size="11" font-weight="800">彰化縣</text>
+                  </g>
+
+                  <!-- 南投縣 -->
+                  <text x="282" y="286" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800" pointer-events="none">南投縣</text>
+
+                  <!-- 雲林縣 標籤 -->
+                  <g class="map-pill-label" data-county="yunlin">
+                    <line x1="170" y1="312" x2="146" y2="378" stroke="#0d9488" stroke-width="1.2" />
+                    <rect x="80" y="372" width="66" height="24" rx="12" fill="#ffffff" stroke="#14b8a6" stroke-width="1.3" />
+                    <text x="113" y="388" text-anchor="middle" fill="#0f766e" font-size="11" font-weight="800">雲林縣</text>
+                  </g>
+
+                  <!-- 嘉義市 標籤 -->
+                  <g class="map-pill-label" data-county="chiayi-city">
+                    <line x1="206" y1="352" x2="146" y2="412" stroke="#d97706" stroke-width="1.2" />
+                    <rect x="80" y="402" width="66" height="24" rx="12" fill="#ffffff" stroke="#f59e0b" stroke-width="1.3" />
+                    <text x="113" y="418" text-anchor="middle" fill="#b45309" font-size="11" font-weight="800">嘉義市</text>
+                  </g>
+
+                  <!-- 嘉義縣 標籤 -->
+                  <g class="map-pill-label" data-county="chiayi-county">
+                    <line x1="176" y1="356" x2="146" y2="442" stroke="#d97706" stroke-width="1.2" />
+                    <rect x="80" y="432" width="66" height="24" rx="12" fill="#ffffff" stroke="#f59e0b" stroke-width="1.3" />
+                    <text x="113" y="448" text-anchor="middle" fill="#b45309" font-size="11" font-weight="800">嘉義縣</text>
+                  </g>
+
+                  <!-- 台南市 標籤 -->
+                  <g class="map-pill-label" data-county="tainan">
+                    <line x1="164" y1="416" x2="146" y2="474" stroke="#ea580c" stroke-width="1.2" />
+                    <rect x="80" y="464" width="66" height="24" rx="12" fill="#ffffff" stroke="#f97316" stroke-width="1.3" />
+                    <text x="113" y="480" text-anchor="middle" fill="#c2410c" font-size="11" font-weight="800">台南市</text>
+                  </g>
+
+                  <!-- 高雄市 -->
+                  <text x="234" y="454" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800" pointer-events="none">高雄市</text>
+
+                  <!-- 屏東縣 -->
+                  <text x="266" y="555" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800" pointer-events="none">屏東縣</text>
+
+                  <!-- 宜蘭縣 -->
+                  <text x="374" y="156" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800" pointer-events="none">宜蘭縣</text>
+
+                  <!-- 花蓮縣 -->
+                  <text x="356" y="286" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800" pointer-events="none">花蓮縣</text>
+
+                  <!-- 台東縣 -->
+                  <text x="322" y="436" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800" pointer-events="none">台東縣</text>
+                </svg>
+              </div>
+
+              <!-- 地圖圖例 -->
+              <div class="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-slate-600">
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-sky-500"></span>北部 (7縣市)</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-teal-500"></span>中部 (4縣市)</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-orange-500"></span>南部 (5縣市)</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-indigo-500"></span>東部 (3縣市)</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-cyan-500"></span>離島 (3縣市)</span>
+              </div>
+            </div>
+
+            <!-- 右側：22 縣市同步選單與旅遊導覽說明 -->
+            <div class="lg:col-span-6 space-y-5">
+              <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100">
+                <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2 mb-2">
+                  <i class="fa-solid fa-compass text-sunset-500"></i> 選擇縣市進入專屬導覽頁
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 mb-6">
+                  也可直接點選下方依區域分類的縣市按鈕（滑鼠移過時左側地圖會同步亮起對應位置）：
+                </p>
+
+                <div id="guide-county-selector-list" class="space-y-5">
+                  <!-- 由 JS 動態生成五大區與 22 縣市按鈕 -->
+                </div>
+              </div>
+
+              <!-- 導覽頁使用小提示 -->
+              <div class="bg-gradient-to-r from-ocean-600 to-tropical-600 rounded-3xl p-6 text-white shadow-soft">
+                <div class="flex items-start gap-4">
+                  <div class="w-11 h-11 rounded-2xl bg-white/20 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-lightbulb text-sunset-400"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-extrabold text-base sm:text-lg">暑假旅遊規劃小幫手</h3>
+                    <p class="text-xs sm:text-sm text-white/90 mt-1 leading-relaxed">
+                      進入任一縣市導覽頁後，您可以查看該縣市的「必吃在地美食」、「交通建議」以及所有景點的「詳細介紹」，還能一鍵將心儀景點加入「我的暑假清單」排定天數！
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 子模式 B：單一縣市專屬景點導覽頁 (COUNTY EXCLUSIVE GUIDE VIEW) -->
+        <div id="guide-county-detail-mode" class="hidden animate-view">
+          <!-- 返回導覽圖與前後縣市快速切換 -->
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+            <button
+              onclick="backToTaiwanMap()"
+              class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold text-sm shadow-sm transition flex items-center gap-2"
+            >
+              <i class="fa-solid fa-arrow-left text-ocean-600"></i> 返回台灣互動地圖導覽
+            </button>
+
+            <div class="flex items-center gap-2">
+              <button id="prev-county-btn" class="px-3.5 py-2 rounded-xl bg-white hover:bg-ocean-50 border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 transition">
+                ← 上一個縣市
+              </button>
+              <button id="next-county-btn" class="px-3.5 py-2 rounded-xl bg-white hover:bg-ocean-50 border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 transition">
+                下一個縣市 →
+              </button>
+            </div>
+          </div>
+
+          <!-- 縣市專屬導覽橫幅 -->
+          <div id="county-detail-banner" class="hero-summer-gradient rounded-3xl p-6 sm:p-10 text-white shadow-card mb-8 relative overflow-hidden">
+            <div class="absolute -right-12 -bottom-12 text-white/10 text-[160px] pointer-events-none">
+              <i class="fa-solid fa-map-pin"></i>
+            </div>
+            <div class="relative z-10">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span id="county-detail-region" class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs font-bold">北部地區</span>
+                <span id="county-detail-count" class="px-3 py-1 rounded-full bg-sunset-500 text-white text-xs font-bold">共 4 個精選景點</span>
+              </div>
+              <h1 id="county-detail-title" class="text-3xl sm:text-5xl font-black tracking-tight mb-2">台北市</h1>
+              <p id="county-detail-tagline" class="text-base sm:text-xl font-bold text-amber-200 mb-4">都會魅力與山林步道交織的夏日探索之都</p>
+              <p id="county-detail-intro" class="text-sm sm:text-base text-white/90 max-w-4xl leading-relaxed">
+                台北市擁有便捷的捷運網絡，清晨可登上陽明山享受草原微風，午後漫步大稻埕百年街區，傍晚搭乘貓空纜車俯瞰夕陽，夜晚再大啖士林夜市小吃。
+              </p>
+
+              <!-- 縣市旅遊情報雙欄（在地必吃美食 & 交通建議） -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 pt-6 border-t border-white/20">
+                <div class="bg-white/12 backdrop-blur-md rounded-2xl p-4">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-amber-300 flex items-center gap-1.5 mb-1">
+                    <i class="fa-solid fa-bowl-food"></i> 在地必吃美食推薦
+                  </div>
+                  <p id="county-detail-foods" class="text-sm text-white/95 font-medium">滷肉飯、牛肉麵、大腸包小腸、芒果冰、胡椒餅</p>
+                </div>
+                <div class="bg-white/12 backdrop-blur-md rounded-2xl p-4">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-cyan-200 flex items-center gap-1.5 mb-1">
+                    <i class="fa-solid fa-train-subway"></i> 暑假交通攻略建議
+                  </div>
+                  <p id="county-detail-transport" class="text-sm text-white/95 font-medium">建議購買北北基好玩卡或使用悠遊卡搭乘台北捷運與台灣好行公車，輕鬆串聯市區與郊山。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 該縣市所有旅遊景點列表 -->
+          <div class="mb-5 flex items-center justify-between">
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900">
+              <span id="county-attractions-heading-name">台北市</span> 必去景點與詳細介紹
+            </h2>
+            <span class="text-xs sm:text-sm text-slate-500">點擊「查看詳細介紹」閱讀完整攻略</span>
+          </div>
+
+          <div id="county-detail-attractions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 由 JS 動態渲染該縣市景點卡片 -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 3: 全台景點大全・搜尋與多條件篩選 (DIRECTORY VIEW)   -->
+    <!-- ========================================================= -->
+    <section id="view-directory" class="hidden animate-view pt-8 pb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-ocean-600">ALL TAIWAN ATTRACTIONS</span>
+          <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">全台 22 縣市旅遊景點大全</h1>
+          <p class="text-sm text-slate-500 mt-1">透過關鍵字搜尋、地區、縣市與旅遊主題快速篩選最適合你的暑假好去處</p>
+        </div>
+
+        <!-- 搜尋與多維度篩選控制面板 -->
+        <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-card border border-slate-100 mb-8 space-y-5">
+          <!-- 搜尋框與縣市下拉選單 -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+            <div class="md:col-span-7 relative">
+              <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-ocean-600"></i>
+              <input
+                id="directory-search-input"
+                type="text"
+                placeholder="搜尋景點名稱、縣市、特色標籤或玩法（例如：浮潛、老街、日出、動物）..."
+                oninput="handleGlobalSearch(this.value, 'directory')"
+                class="w-full pl-11 pr-10 py-3 rounded-2xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-ocean-500 text-sm font-medium outline-none transition"
+              />
+              <button id="directory-search-clear" onclick="clearSearch()" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-circle-xmark"></i>
+              </button>
+            </div>
+
+            <div class="md:col-span-3">
+              <select
+                id="directory-county-select"
+                onchange="setDirectoryCountyFilter(this.value)"
+                class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 focus:bg-white focus:border-ocean-500 text-sm font-bold text-slate-700 outline-none transition"
+              >
+                <option value="all">📍 全部 22 縣市</option>
+                <!-- 由 JS 動態填入 22 縣市選項 -->
+              </select>
+            </div>
+
+            <div class="md:col-span-2">
+              <button
+                onclick="resetAllFilters()"
+                class="w-full h-full py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition flex items-center justify-center gap-1.5"
+              >
+                <i class="fa-solid fa-rotate-left"></i> 重設篩選
+              </button>
+            </div>
+          </div>
+
+          <!-- 地區篩選 Pills -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-extrabold text-slate-400 mr-1">地區：</span>
+            <button data-region="all" onclick="setDirectoryRegionFilter('all')" class="region-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">全部地區</button>
+            <button data-region="北部" onclick="setDirectoryRegionFilter('北部')" class="region-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">北部</button>
+            <button data-region="中部" onclick="setDirectoryRegionFilter('中部')" class="region-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">中部</button>
+            <button data-region="南部" onclick="setDirectoryRegionFilter('南部')" class="region-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">南部</button>
+            <button data-region="東部" onclick="setDirectoryRegionFilter('東部')" class="region-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">東部</button>
+            <button data-region="離島" onclick="setDirectoryRegionFilter('離島')" class="region-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">離島</button>
+          </div>
+
+          <!-- 景點主題類型 Pills -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-extrabold text-slate-400 mr-1">主題：</span>
+            <button data-cat="all" onclick="setDirectoryCategoryFilter('all')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">全部類型</button>
+            <button data-cat="海灘玩水" onclick="setDirectoryCategoryFilter('海灘玩水')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">🌊 海灘玩水</button>
+            <button data-cat="自然秘境" onclick="setDirectoryCategoryFilter('自然秘境')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">🌲 自然秘境</button>
+            <button data-cat="文化古蹟" onclick="setDirectoryCategoryFilter('文化古蹟')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">🏛️ 文化古蹟</button>
+            <button data-cat="親子樂園" onclick="setDirectoryCategoryFilter('親子樂園')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">🎡 親子樂園</button>
+            <button data-cat="在地夜市" onclick="setDirectoryCategoryFilter('在地夜市')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition">🍢 在地夜市</button>
+          </div>
+        </div>
+
+        <!-- 搜尋結果計數 -->
+        <div class="flex items-center justify-between mb-6">
+          <p class="text-sm font-bold text-slate-600">
+            共找到 <span id="directory-result-count" class="text-ocean-600 text-lg font-black">76</span> 個符合條件的旅遊景點
+          </p>
+          <button onclick="switchTab('guide')" class="text-xs sm:text-sm font-bold text-tropical-600 hover:underline flex items-center gap-1">
+            <i class="fa-solid fa-map"></i> 切換至台灣地圖模式
+          </button>
+        </div>
+
+        <!-- 景點卡片結果網格 -->
+        <div id="directory-results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 由 JS 動態渲染 -->
+        </div>
+
+        <!-- 無搜尋結果提示 -->
+        <div id="directory-empty-state" class="hidden text-center py-16 bg-white rounded-3xl border border-slate-100 shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mx-auto mb-4">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h3 class="text-lg font-extrabold text-slate-800">找不到完全符合的景點</h3>
+          <p class="text-sm text-slate-500 mt-1 mb-5">試試看清除部分篩選條件，或詢問右下角的 AI 旅遊客服推薦！</p>
+          <button onclick="resetAllFilters()" class="px-5 py-2.5 rounded-xl bg-ocean-600 text-white text-sm font-bold hover:bg-ocean-700 transition">
+            顯示全部景點
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 4: 我的暑假清單與行程規劃 (WISHLIST VIEW)            -->
+    <!-- ========================================================= -->
+    <section id="view-wishlist" class="hidden animate-view pt-8 pb-12">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-500">MY SUMMER ITINERARY</span>
+            <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">我的暑假旅遊清單</h1>
+            <p class="text-sm text-slate-500 mt-1">收藏喜愛的景點並安排天數，一鍵複製分享給家人與朋友！</p>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <button
+              onclick="copyItineraryToClipboard()"
+              class="px-5 py-3 rounded-2xl bg-gradient-to-r from-ocean-600 to-tropical-600 hover:from-ocean-700 hover:to-tropical-700 text-white font-bold text-sm shadow-soft transition flex items-center gap-2"
+            >
+              <i class="fa-solid fa-copy"></i> 一鍵複製行程表
+            </button>
+          </div>
+        </div>
+
+        <!-- 行程清單容器 -->
+        <div id="wishlist-content-container">
+          <!-- 由 JS 動態渲染 -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 頁尾 Footer ==================== -->
+  <footer class="bg-slate-900 text-slate-300 pt-14 pb-24 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-10 border-b border-slate-800">
+        <div>
+          <div class="flex items-center gap-2.5 text-white font-black text-xl mb-3">
+            <i class="fa-solid fa-sun text-sunset-400"></i>
+            <span>暑假最難忘的回憶</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            專為夏日旅行打造的台灣 22 縣市景點整合導覽平台。結合互動式台灣地圖、深度景點解析與 AI 旅遊客服，陪你走遍台灣每一座山海與城鎮。
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">快速導覽</h4>
+          <ul class="space-y-2 text-sm">
+            <li><button onclick="switchTab('home')" class="hover:text-sunset-400 transition">首頁總覽與五大夏日主題</button></li>
+            <li><button onclick="switchTab('guide')" class="hover:text-sunset-400 transition">導覽頁・台灣 22 縣市互動地圖</button></li>
+            <li><button onclick="switchTab('directory')" class="hover:text-sunset-400 transition">全台旅遊景點大全與搜尋</button></li>
+            <li><button onclick="switchTab('wishlist')" class="hover:text-sunset-400 transition">我的暑假行程清單規劃</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">熱門縣市直達</h4>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <button onclick="openCountyGuide('taipei')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">台北市</button>
+            <button onclick="openCountyGuide('new-taipei')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">新北市</button>
+            <button onclick="openCountyGuide('taichung')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">台中市</button>
+            <button onclick="openCountyGuide('nantou')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">南投縣</button>
+            <button onclick="openCountyGuide('tainan')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">台南市</button>
+            <button onclick="openCountyGuide('kaohsiung')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">高雄市</button>
+            <button onclick="openCountyGuide('pingtung')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">屏東縣</button>
+            <button onclick="openCountyGuide('yilan')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">宜蘭縣</button>
+            <button onclick="openCountyGuide('hualien')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">花蓮縣</button>
+            <button onclick="openCountyGuide('taitung')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">台東縣</button>
+            <button onclick="openCountyGuide('penghu')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-ocean-600 text-slate-200 transition">澎湖縣</button>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 text-center text-xs text-slate-500">
+        © 2026 暑假最難忘的回憶｜全台 22 縣市旅遊景點整合導覽網站 · 祝您有個美好難忘的夏日假期！
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== 景點詳細介紹彈窗 (MODAL) ==================== -->
+  <div id="attraction-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/65 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-3xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-view">
+      <!-- Modal 頂部視覺標題區 -->
+      <div id="modal-hero-banner" class="relative h-48 sm:h-56 p-6 sm:p-8 flex flex-col justify-between text-white shrink-0">
+        <div class="flex items-center justify-between z-10">
+          <div class="flex items-center gap-2">
+            <span id="modal-county-badge" class="px-3 py-1 rounded-full bg-white/25 backdrop-blur-md text-xs font-extrabold">新北市 · 北部</span>
+            <span id="modal-category-badge" class="px-3 py-1 rounded-full bg-slate-900/35 backdrop-blur-md text-xs font-bold">文化古蹟</span>
+          </div>
+          <button onclick="closeAttractionModal()" class="w-9 h-9 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="z-10">
+          <div class="flex items-center gap-2 text-amber-300 text-xs sm:text-sm font-bold mb-1">
+            <i class="fa-solid fa-star"></i>
+            <span id="modal-rating">4.8</span>
+            <span class="text-white/80 font-normal">· 暑假人氣推薦指數</span>
+          </div>
+          <h2 id="modal-title" class="text-2xl sm:text-3xl font-black tracking-tight">九份山城與黃金瀑布</h2>
+        </div>
+      </div>
+
+      <!-- Modal 可捲動詳細內容 -->
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+        <!-- 標籤列 -->
+        <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+
+        <!-- 詳細景點介紹 -->
+        <div>
+          <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2 mb-2">
+            <i class="fa-solid fa-book-open text-ocean-600"></i> 景點深度介紹
+          </h3>
+          <p id="modal-description" class="text-sm sm:text-base text-slate-600 leading-relaxed"></p>
+        </div>
+
+        <!-- 必玩亮點 -->
+        <div class="bg-ocean-50/70 rounded-2xl p-4 sm:p-5 border border-ocean-100">
+          <h4 class="text-sm font-extrabold text-ocean-900 flex items-center gap-2 mb-3">
+            <i class="fa-solid fa-sparkles text-sunset-500"></i> 暑假必玩亮點
+          </h4>
+          <ul id="modal-highlights" class="space-y-2 text-sm text-slate-700"></ul>
+        </div>
+
+        <!-- 實用旅遊資訊網格 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <div class="text-xs font-bold text-slate-400 mb-1"><i class="fa-regular fa-clock text-ocean-600 mr-1"></i> 開放時間</div>
+            <div id="modal-hours" class="font-bold text-slate-800"></div>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <div class="text-xs font-bold text-slate-400 mb-1"><i class="fa-solid fa-ticket text-sunset-500 mr-1"></i> 門票資訊</div>
+            <div id="modal-ticket" class="font-bold text-slate-800"></div>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <div class="text-xs font-bold text-slate-400 mb-1"><i class="fa-solid fa-hourglass-half text-tropical-600 mr-1"></i> 建議停留時間</div>
+            <div id="modal-duration" class="font-bold text-slate-800"></div>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <div class="text-xs font-bold text-slate-400 mb-1"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i> 景點地址</div>
+            <div id="modal-address" class="font-bold text-slate-800"></div>
+          </div>
+        </div>
+
+        <!-- 交通方式 -->
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-sm">
+          <div class="text-xs font-bold text-slate-400 mb-1"><i class="fa-solid fa-bus text-ocean-600 mr-1"></i> 交通方式指南</div>
+          <p id="modal-transport" class="text-slate-700 font-medium leading-relaxed"></p>
+        </div>
+
+        <!-- 暑假遊玩小撇步 -->
+        <div class="bg-amber-50 border border-amber-200/80 rounded-2xl p-4 flex items-start gap-3">
+          <i class="fa-solid fa-sun text-sunset-500 text-lg mt-0.5"></i>
+          <div>
+            <div class="text-xs font-extrabold text-amber-800">暑假遊玩小撇步</div>
+            <p id="modal-tip" class="text-sm text-amber-900/90 mt-0.5"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal 底部操作按鈕列 -->
+      <div class="p-4 sm:px-8 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <button
+          id="modal-county-link-btn"
+          class="px-4 py-2.5 rounded-xl bg-white hover:bg-ocean-50 border border-slate-200 text-ocean-700 font-bold text-xs sm:text-sm transition"
+        >
+          查看同縣市更多景點
+        </button>
+
+        <div class="flex items-center gap-2.5">
+          <a
+            id="modal-gmaps-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs sm:text-sm transition flex items-center gap-1.5"
+          >
+            <i class="fa-solid fa-map-location text-emerald-600"></i> Google 地圖
+          </a>
+          <button
+            id="modal-wishlist-btn"
+            class="px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center gap-1.5"
+          >
+            <i class="fa-solid fa-heart"></i> 加入暑假清單
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 右下角固定懸浮控制區（AI 客服 + 至最頂端按鈕） ==================== -->
+  <div class="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
+    <!-- AI 旅遊客服小幫手對話視窗 -->
+    <div
+      id="ai-chat-window"
+      class="hidden w-[calc(100vw-2.5rem)] sm:w-[390px] bg-white rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden flex flex-col transition-all"
+      style="max-height: 75vh;"
+    >
+      <!-- AI 客服標題列 -->
+      <div class="bg-gradient-to-r from-ocean-600 via-tropical-600 to-teal-600 p-4 text-white flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-lg relative">
+            <i class="fa-solid fa-robot"></i>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-ocean-700 absolute -bottom-0.5 -right-0.5"></span>
+          </div>
+          <div>
+            <div class="font-extrabold text-sm flex items-center gap-1.5">
+              <span>暑假旅遊 AI 客服小幫手</span>
+              <span class="px-1.5 py-0.2 rounded bg-white/20 text-[10px] font-bold">ONLINE</span>
+            </div>
+            <div class="text-[11px] text-white/85">為您推薦全台 22 縣市景點與行程</div>
+          </div>
+        </div>
+        <button onclick="toggleAIChat(false)" class="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </div>
+
+      <!-- 訊息紀錄區 -->
+      <div id="ai-chat-messages" class="p-4 space-y-3.5 overflow-y-auto flex-1 bg-slate-50/70 text-sm" style="min-height: 250px;">
+        <!-- 歡迎訊息 -->
+        <div class="flex items-start gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-ocean-600 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+            <i class="fa-solid fa-sun"></i>
+          </div>
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-slate-700 leading-relaxed">
+            嗨！歡迎來到<strong>「暑假最難忘的回憶」</strong>☀️<br/>
+            我是您的專屬 AI 旅遊客服！想找親子樂園、海邊玩水、離島跳島，或是請我幫您排 3 天 2 夜行程，都可以直接問我喔！
+          </div>
+        </div>
+      </div>
+
+      <!-- 快速提問建議 Chips -->
+      <div class="px-3.5 py-2 bg-white border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+        <button onclick="sendQuickAIQuestion('推薦3天2夜親子暑假行程')" class="shrink-0 px-2.5 py-1 rounded-full bg-ocean-50 hover:bg-ocean-100 text-ocean-700 text-xs font-bold transition">
+          🎡 3天2夜親子行程
+        </button>
+        <button onclick="sendQuickAIQuestion('暑假最適合玩水的縣市與景點推薦')" class="shrink-0 px-2.5 py-1 rounded-full bg-tropical-50 hover:bg-tropical-100 text-tropical-700 text-xs font-bold transition">
+          🌊 暑假玩水勝地
+        </button>
+        <button onclick="sendQuickAIQuestion('花東看海自由行怎麼排最順？')" class="shrink-0 px-2.5 py-1 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-bold transition">
+          🚂 花東看海攻略
+        </button>
+        <button onclick="sendQuickAIQuestion('澎湖離島必去景點與美食介紹')" class="shrink-0 px-2.5 py-1 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition">
+          🏝️ 澎湖跳島推薦
+        </button>
+      </div>
+
+      <!-- 輸入框區 -->
+      <form onsubmit="handleAIChatSubmit(event)" class="p-3 bg-white border-t border-slate-200 flex items-center gap-2 shrink-0">
+        <input
+          id="ai-chat-input"
+          type="text"
+          placeholder="輸入想去的縣市或旅遊問題..."
+          class="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-100 focus:bg-white border border-transparent focus:border-ocean-500 text-sm outline-none transition"
+        />
+        <button
+          type="submit"
+          id="ai-chat-send-btn"
+          class="w-10 h-10 rounded-xl bg-ocean-600 hover:bg-ocean-700 text-white flex items-center justify-center shadow-sm transition shrink-0"
+        >
+          <i class="fa-solid fa-paper-plane text-xs"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- 懸浮按鈕列：AI 客服啟動鈕 + 至最頂端按鈕 -->
+    <div class="flex items-center gap-3">
+      <!-- AI 客服啟動按鈕 -->
+      <button
+        onclick="toggleAIChat()"
+        aria-label="開啟 AI 旅遊客服"
+        class="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-ocean-600 to-tropical-600 hover:from-ocean-700 hover:to-tropical-700 text-white font-bold text-sm shadow-float transition-all hover:scale-105"
+      >
+        <div class="relative flex items-center justify-center">
+          <i class="fa-solid fa-headset text-lg"></i>
+          <span class="w-2.5 h-2.5 rounded-full bg-sunset-400 animate-ping absolute -top-1 -right-1"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-sunset-400 absolute -top-1 -right-1"></span>
+        </div>
+        <span>AI 客服</span>
+      </button>
+
+      <!-- 至最頂端按鈕 (Scroll-to-Top) -->
+      <button
+        id="scroll-to-top-btn"
+        onclick="scrollToTop()"
+        title="回到最頂端"
+        aria-label="回到最頂端"
+        class="w-12 h-12 rounded-full bg-white hover:bg-sunset-500 text-slate-700 hover:text-white border border-slate-200 hover:border-sunset-500 shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none"
+      >
+        <i class="fa-solid fa-arrow-up text-base"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== 輕量級通知 Toast ==================== -->
+  <div id="toast-notification" class="fixed top-24 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 -translate-y-3 transition-all duration-300">
+    <div class="bg-slate-900/95 text-white px-5 py-3 rounded-2xl shadow-xl text-sm font-bold flex items-center gap-2.5 backdrop-blur-md border border-white/10">
+      <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span id="toast-message">已加入我的暑假清單！</span>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT 完整資料與互動邏輯 ==================== -->
+  <script>
+    /**
+     * 1. 全台 22 縣市完整旅遊導覽資料庫
+     */
+    const COUNTIES_DATA = [
+      // --- 北部地區 (7縣市) ---
+      {
+        id: 'keelung',
+        name: '基隆市',
+        region: '北部',
+        tagline: '山海交響的微笑港都・彩色漁港與奇岩海岸',
+        intro: '基隆市三面環山、一面臨海，擁有獨特的港灣風情與海蝕地形。暑假來到基隆，白天可以到和平島公園沁涼海水泳池戲水、在正濱漁港色彩屋拍出異國感美照，傍晚則走進廟口夜市品嚐百年海味小吃。',
+        foods: '鼎邊趖、天婦羅、營養三明治、泡泡冰、吉古拉、炭烤三明治',
+        transport: '從台北車站搭乘台鐵區間車約 40 分鐘直達基隆站，轉乘「台灣好行濱海奇基線」即可輕鬆暢遊各大海岸景點。'
+      },
+      {
+        id: 'taipei',
+        name: '台北市',
+        region: '北部',
+        tagline: '都會魅力與山林步道交織的夏日探索之都',
+        intro: '台北市結合繁華都會與近郊自然生態，擁有四通八達的捷運路網。暑假期間不僅能帶孩子造訪台北市立動物園與貓空纜車，也能在傍晚前往大稻埕碼頭吹風看夕陽，體驗越夜越熱鬧的夏日河岸派對。',
+        foods: '牛肉麵、滷肉飯、小籠包、大腸包小腸、芒果雪花冰、胡椒餅',
+        transport: '搭乘台北捷運紅線、棕線、綠線與藍線即可抵達絕大多數景點，建議使用悠遊卡或北北基好玩卡暢行無阻。'
+      },
+      {
+        id: 'new-taipei',
+        name: '新北市',
+        region: '北部',
+        tagline: '青春山海線・金黃沙灘、懷舊山城與夕陽海岸',
+        intro: '新北市環抱大台北，擁有長達百餘公里的迷人海岸線與山城聚落。暑假最受歡迎的福隆國際沙雕藝術季、充滿燈籠氛圍的九份老街、野柳女王頭奇岩以及淡水漁人碼頭夕陽，都是難忘的夏日經典。',
+        foods: '淡水阿給、魚丸湯、九份芋圓、福隆便當、深坑臭豆腐、金山鴨肉',
+        transport: '可搭乘台北捷運淡水線、板南線，或搭乘台鐵至瑞芳、福隆站，並搭配台灣好行「黃金福隆線」與「皇冠北海岸線」。'
+      },
+      {
+        id: 'taoyuan',
+        name: '桃園市',
+        region: '北部',
+        tagline: '夢幻水族館、巴洛克老街與北橫拉拉山森呼吸',
+        intro: '桃園兼具現代親子娛樂與山林避暑勝地！高鐵青埔特區的 Xpark 水生公園是炎夏室內吹冷氣看企鵝的首選；往山區走則能走訪大溪老街品嚐豆干，並深入海拔千公尺的拉拉山巨木群享受天然冷氣。',
+        foods: '大溪黑豆干、龍岡米干、中壢牛肉麵、拉拉山水蜜桃、花生糖',
+        transport: '搭乘高鐵或桃園機場捷運至「高鐵桃園站」可步行達 Xpark；前往大溪與拉拉山建議自駕或搭乘台灣好行小烏來線、東眼山線。'
+      },
+      {
+        id: 'hsinchu-city',
+        name: '新竹市',
+        region: '北部',
+        tagline: '海風吹拂的微笑水岸與百年古蹟美食城',
+        intro: '新竹市是座步調輕快、古蹟密集的海風城市。暑假午後最適合騎單車沿著 17 公里海岸線吹海風、登上南寮魚鱗天梯看落日，再到新竹市立動物園與百年城隍廟口大啖貢丸與米粉。',
+        foods: '新竹貢丸湯、炒米粉、城隍廟潤餅、鴨香飯、水潤餅、紅豆餅',
+        transport: '搭乘台鐵或高鐵（轉六家線）至新竹火車站，市區景點步行或騎乘 YouBike 即可輕鬆串聯。'
+      },
+      {
+        id: 'hsinchu-county',
+        name: '新竹縣',
+        region: '北部',
+        tagline: '主題樂園尖叫放電・客家山城與上帝的部落',
+        intro: '新竹縣是親子與自然愛好者的夏日天堂！既有全台灣知名的六福村主題遊樂園與水樂園，也有充滿懷舊鐵道風情的內灣老街，以及深藏在雲霧中的司馬庫斯千年紅檜巨木群。',
+        foods: '客家擂茶、野薑花粽、客家粄條、柿餅、北埔膨風茶',
+        transport: '前往六福村可從台北或新竹搭乘直達客運；前往內灣可搭乘台鐵內灣支線；司馬庫斯則建議自駕或參加接駁導覽團。'
+      },
+      {
+        id: 'miaoli',
+        name: '苗栗縣',
+        region: '北部',
+        tagline: '慢城鐵道自行車、草原牧場與木雕山林小鎮',
+        intro: '苗栗擁有全台唯一的「慢城」三義與南庄，暑假來到這裡可以騎乘舊山線鐵道自行車穿越百年隧道與龍騰斷橋，或帶小朋友到飛牛牧場餵乳牛、體驗手作冰淇淋，享受悠閒的田園假期。',
+        foods: '客家小炒、薑絲大腸、三義賴新魁麵館、南庄桂花釀湯圓、草莓冰',
+        transport: '搭乘台鐵至三義站或苗栗站後，建議租車自駕或搭乘台灣好行「南庄線」深度漫遊山城。'
+      },
+
+      // --- 中部地區 (4縣市) ---
+      {
+        id: 'taichung',
+        name: '台中市',
+        region: '中部',
+        tagline: '落日濕地、水陸雙樂園與高山避暑農場',
+        intro: '台中氣候宜人且景點多元，從海線的高美濕地木棧道夕陽、后里麗寶水陸雙樂園，到和平區海拔兩千公尺的武陵農場與福壽山避暑勝地，晚上再到全台知名的逢甲夜市大快朵頤。',
+        foods: '太陽餅、大麵羹、逢甲大腸包小腸、宮原眼科冰淇淋、東泉辣椒醬炒麵',
+        transport: '搭乘高鐵至台中站或台鐵至台中站，市區可善用台中捷運綠線與幹線公車，前往武陵農場建議自駕或預約觀光巴士。'
+      },
+      {
+        id: 'changhua',
+        name: '彰化縣',
+        region: '中部',
+        tagline: '百年鹿港人文風華與西部潮間帶採蚵體驗',
+        intro: '彰化擁有深厚的歷史文化底蘊，走進鹿港老街與天后宮彷彿穿越時空；暑假期間更推薦前往王功漁港搭乘鐵牛採蚵車，深入潮間帶體驗挖文蛤與現烤鮮蚵的樂趣。',
+        foods: '彰化肉圓、鹿港麵線糊、王功蚵仔煎、牛舌餅、控肉飯、芋丸',
+        transport: '搭乘台鐵至彰化站後，轉乘台灣好行「鹿港祈福線」即可直達鹿港老街與各大文化館舍。'
+      },
+      {
+        id: 'nantou',
+        name: '南投縣',
+        region: '中部',
+        tagline: '台灣唯一不靠海的翡翠山城・湖光山色避暑天堂',
+        intro: '南投擁有全台最豐富的高山與湖泊資源，是暑假避暑的首選縣市！無論是日月潭環湖單車與立槳 SUP、清境農場青青草原看綿羊秀、溪頭森林浴，還是合歡山仰望銀河星空，都令人屏息。',
+        foods: '日月潭紅茶與茶葉蛋、埔里米粉、竹山甕缸雞、雲南擺夷料理、梅子製品',
+        transport: '從台中高鐵站轉乘「台灣好行日月潭線」、「清境線」或「溪頭線」無縫接駁，交通十分便利。'
+      },
+      {
+        id: 'yunlin',
+        name: '雲林縣',
+        region: '中部',
+        tagline: '雲霄飛車尖叫樂園・百年香火文化與咖啡山林',
+        intro: '雲林既有適合全家人歡笑尖叫的劍湖山世界水陸樂園，也有香火鼎盛的北港朝天宮美食老街，午後還能前往古坑綠色隧道與華山咖啡園區品嚐台灣在地精品咖啡。',
+        foods: '北港鴨肉飯、麵線糊、斗六肉圓、西螺醬油料理、古坑台灣咖啡',
+        transport: '搭乘高鐵至雲林站或台鐵至斗六站，轉乘台灣好行「北港虎尾線」或「斗六古坑線」暢遊各景點。'
+      },
+
+      // --- 南部地區 (5縣市) ---
+      {
+        id: 'chiayi-city',
+        name: '嘉義市',
+        region: '南部',
+        tagline: '阿里山林業起點・日式木屋群與火雞肉飯之都',
+        intro: '嘉義市是一座充滿文青氣息的木都小城，擁有全台最大的日式建築群「檜意森活村」與阿里山森林鐵路車庫園區。入夜後走進文化路夜市，一碗香氣四溢的火雞肉飯與砂鍋魚頭最能療癒旅人的胃。',
+        foods: '嘉義火雞肉飯、林聰明砂鍋魚頭、御香屋葡萄柚綠茶、方塊酥、豆漿豆花',
+        transport: '搭乘高鐵至嘉義站轉乘 BRT 公車，或搭乘台鐵直達嘉義火車站，市區景點步行與騎乘 YouBike 即可輕鬆逛遍。'
+      },
+      {
+        id: 'chiayi-county',
+        name: '嘉義縣',
+        region: '南部',
+        tagline: '阿里山日出雲海森林・故宮南院與東石鮮蚵海岸',
+        intro: '嘉義縣橫跨高山與大海！暑假登上阿里山森林遊樂區享受 18 度涼爽森林浴與小火車奇景；山腳下可參觀故宮南院並搭乘五分車；海線則有東石漁人碼頭與布袋高跟鞋教堂等你探索。',
+        foods: '阿里山高山茶與愛玉、奮起湖鐵路便當、東石烤鮮蚵、布袋海鮮粥',
+        transport: '從嘉義高鐵站或嘉義火車站搭乘「台灣好行阿里山線」或「故宮南院線」即可直達主要景區。'
+      },
+      {
+        id: 'tainan',
+        name: '台南市',
+        region: '南部',
+        tagline: '文化古都美食天堂・台江綠色隧道與歐風博物館',
+        intro: '台南是台灣歷史的起點，也是美食之都。暑假來到台南，早上搭乘竹筏穿越有「台灣亞馬遜」美譽的四草綠色隧道，午後吹冷氣欣賞奇美博物館典藏，晚上再穿梭於花園夜市與國華街大啖小吃。',
+        foods: '牛肉湯、蝦仁飯、鱔魚意麵、安平豆花、棺材板、芒果冰',
+        transport: '搭乘高鐵至台南站轉沙崙線至台南火車站，市區可搭乘「台灣好行府城巡迴線」與「西濱快線」。'
+      },
+      {
+        id: 'kaohsiung',
+        name: '高雄市',
+        region: '南部',
+        tagline: '熱情海港大都會・輕軌藝術特區與旗津沙灘夕陽',
+        intro: '高雄擁有全台最美的港灣景致與環狀輕軌！暑假搭乘渡輪前往旗津海水浴場踏浪、在駁二藝術特區與大港橋看旋轉秀，或是帶全家到義大遊樂世界暢玩一整天，感受南台灣滿滿的夏日活力。',
+        foods: '海之冰大碗公冰、旗津烤小卷、鴨肉飯、港式飲茶、六合與瑞豐夜市小吃',
+        transport: '搭乘高鐵至左營站後，轉乘高雄捷運紅橘線與環狀輕軌，即可輕鬆抵達駁二、西子灣與各大商圈。'
+      },
+      {
+        id: 'pingtung',
+        name: '屏東縣',
+        region: '南部',
+        tagline: '國境之南湛藍大海・墾丁水上活動與小琉球海龜共游',
+        intro: '提到台灣暑假玩水，絕對不能錯過屏東！墾丁白沙灣與南灣的熱帶陽光、全台最大的屏東海生館夜宿體驗，以及搭船 20 分鐘就能抵達的小琉球與綠蠵龜浮潛，打造最熱血的夏日回憶。',
+        foods: '東港黑鮪魚與櫻花蝦、萬巒豬腳、綠豆蒜、小琉球麻花捲、潮州冷熱冰',
+        transport: '從高鐵左營站搭乘「台灣好行墾丁快線」直達墾丁；前往小琉球則至東港碼頭搭乘交通船約 20 分鐘。'
+      },
+
+      // --- 東部地區 (3縣市) ---
+      {
+        id: 'yilan',
+        name: '宜蘭縣',
+        region: '東部',
+        tagline: '穿過雪隧的蘭陽平原・龜山島牛奶海與童玩水世界',
+        intro: '距離台北僅一小時車程的宜蘭，是暑假親子與年輕人最愛的度假後花園！可以出海賞鯨並一睹夢幻「龜山島牛奶海」、在外澳沙灘體驗衝浪，還能走訪國立傳統藝術中心與羅東夜市。',
+        foods: '三星蔥油餅、卜肉與糕渣、宜蘭滷味、包心粉圓、礁溪溫泉番茄',
+        transport: '從台北南港、市府或台北轉運站搭乘國道客運約 50~60 分鐘直達礁溪、宜蘭與羅東，亦可搭乘台鐵東部幹線。'
+      },
+      {
+        id: 'hualien',
+        name: '花蓮縣',
+        region: '東部',
+        tagline: '太平洋湛藍海岸線・海洋公園與縱谷金針花海',
+        intro: '花蓮擁有全台灣最療癒的太平洋海景與花東縱谷田園風光。暑假可以在七星潭聽海浪堆疊石頭、在遠雄海洋公園看海豚表演，八月更能登上赤科山與六十石山欣賞滿山遍野的澄黃色金針花海。',
+        foods: '公正包子、液香扁食、炸彈蔥油餅、瑞穗鮮奶饅頭、東大門原住民烤肉',
+        transport: '搭乘台鐵新自強號或普悠瑪號從台北出發約 2.5 小時抵達花蓮站，建議租車自駕或搭乘台灣好行縱谷花蓮線。'
+      },
+      {
+        id: 'taitung',
+        name: '台東縣',
+        region: '東部',
+        tagline: '熱氣球嘉年華盛典・池上稻浪與綠島蘭嶼藍海',
+        intro: '每年暑假最受矚目的「台灣國際熱氣球嘉年華」就在台東鹿野高台！除此之外，還能騎單車漫遊池上伯朗大道、在三仙台迎接太平洋第一道曙光，或搭船前往綠島潛水與泡海底溫泉。',
+        foods: '池上便當、台東米苔目、卑南豬血湯、東河包子、釋迦冰淇淋',
+        transport: '搭乘台鐵南迴線或花東線至台東站，或搭乘國內線航班直飛台東航空站，當地旅遊建議租車或騎乘機車最為自由。'
+      },
+
+      // --- 離島地區 (3縣市) ---
+      {
+        id: 'penghu',
+        name: '澎湖縣',
+        region: '離島',
+        tagline: '菊島盛夏藍海跳島・雙心石滬與夢幻摩西分海',
+        intro: '澎湖是台灣暑假最具代表性的海島度假天堂！擁有清澈見底的漸層海水、世界級玄武岩地質奇觀、七美雙心石滬、奎壁山摩西分海，以及新鮮平價的現撈海鮮與仙人掌冰。',
+        foods: '小管麵線、仙人掌冰、黑糖糕、炸棗、現烤生蠔與海膽炒飯',
+        transport: '從台北松山、台中、台南或高雄搭乘國內線航班約 40~55 分鐘抵達澎湖機場，島上以租機車或包車跳島為主。'
+      },
+      {
+        id: 'kinmen',
+        name: '金門縣',
+        region: '離島',
+        tagline: '戰地坑道秘境・閩南古厝聚落與建功嶼摩西分海',
+        intro: '金門融合了震撼人心的戰地史蹟與保存完好的閩南紅磚古厝聚落。暑假來到金門，既能走進鬼斧神工的翟山坑道感受清涼海風、退潮時步行登上建功嶼，還能尋找可愛的風獅爺打卡。',
+        foods: '廣東粥配油條、金門牛肉麵、燒餅、炒泡麵、貢糖與高粱酒冰淇淋',
+        transport: '從台灣本島各機場搭乘國內線航班約 50~60 分鐘抵達金門尚義機場，建議搭乘「台灣好行金門線」或租車自駕。'
+      },
+      {
+        id: 'lienchiang',
+        name: '連江縣',
+        region: '離島',
+        tagline: '馬祖地中海石頭屋・北海坑道搖櫓與生態奇景',
+        intro: '連江縣（馬祖）由南竿、北竿、東引、莒光四鄉五島組成，擁有媲美希臘地中海的北竿芹壁石頭聚落、壯觀的南竿北海坑道夜間搖櫓，以及最北端的東引白色燈塔與藍海懸崖。',
+        foods: '老酒麵線、繼光餅（馬祖漢堡）、淡菜海鮮餐、紅糟炒飯、黃金地瓜餃',
+        transport: '可從台北松山或台中機場搭機直飛南竿或北竿機場（約 50 分鐘），島際之間搭乘交通船班串聯。'
+      }
+    ];
+
+    /**
+     * 2. 全台 22 縣市 76 個詳細旅遊景點資料庫
+     */
+    const ATTRACTIONS_DATA = [
+      // === 基隆市 (4) ===
+      {
+        id: 'kl-1', countyId: 'keelung', countyName: '基隆市', region: '北部',
+        name: '正濱漁港色彩屋', category: '文化古蹟', rating: 4.7,
+        tags: ['網美打卡', '港灣風情', '免費景點', '親子散步'],
+        summary: '宛如威尼斯彩色島的夢幻港灣，十六棟繽紛建築倒映在平靜海面上。',
+        description: '正濱漁港曾是日治時期台灣第一大港，近年透過色彩計畫將港邊一排老屋漆上溫暖繽紛的彩虹色系，與停泊的漁船交織成充滿異國情調的港灣畫作。周邊聚集許多海景咖啡廳與手工吉古拉小店，非常適合暑假午後吹海風拍照。',
+        highlights: ['對岸觀景台拍攝完整彩色屋倒影', '品嚐基隆在地特色手工炭烤吉古拉', '順遊步行僅 3 分鐘的阿根納造船廠遺構'],
+        hours: '全天開放（周邊咖啡廳約 11:00–19:00）', ticket: '免費參觀',
+        address: '基隆市中正區正濱路 72 號',
+        transport: '基隆火車站搭乘公車 101、103、104 至「和平橋頭（原民文化會館）」下車即達。',
+        duration: '1.5 – 2 小時', summerTip: '建議下午 4 點後造訪，陽光斜射在彩色屋上光影最美，也較不曬！'
+      },
+      {
+        id: 'kl-2', countyId: 'keelung', countyName: '基隆市', region: '北部',
+        name: '和平島地質公園', category: '海灘玩水', rating: 4.8,
+        tags: ['海水泳池', '玩水消暑', '世界級奇岩', '親子戲水'],
+        summary: '擁有引入天然海水的藍海水泳池，與熱帶魚共游的夏日玩水秘境。',
+        description: '和平島地質公園擁有經過兩千萬年海蝕風化形成的「豆腐岩」、「萬人堆」等世界級地質景觀。園區內最受暑假遊客歡迎的「藍海水池」直接引進天然海水，水深適中且有救生員駐守，能與成群熱帶魚一同悠游。',
+        highlights: ['天然海水游泳池與親子沙灘戲水區', '環山步道遠眺基隆嶼與奇岩海蝕平台', '雷達站咖啡廳享受 270 度無敵海景'],
+        hours: '08:00 – 19:00（5月–10月夏季延長開放）', ticket: '全票 NT$120 / 學生與敬老票 NT$60',
+        address: '基隆市中正區平一路 360 號',
+        transport: '搭乘台灣好行「T99 濱海奇基線」至和平島公園站下車。',
+        duration: '3 – 4 小時', summerTip: '記得攜帶泳衣、泳帽與防曬乳，園區內設有完善的淋浴更衣室。'
+      },
+      {
+        id: 'kl-3', countyId: 'keelung', countyName: '基隆市', region: '北部',
+        name: '潮境公園與國立海洋科技博物館', category: '親子樂園', rating: 4.7,
+        tags: ['哈利波特飛天掃帚', '室內冷氣', '海洋生態', '無敵海景'],
+        summary: '吹冷氣探索深海奧秘，再到海邊草地與巨型飛天掃帚裝置藝術合影。',
+        description: '國立海洋科技博物館擁有全台首座「潮境智能海洋館」，結合 AR/VR 互動與巨型洋流缸，是暑假躲太陽的絕佳室內去處；走出館外便是遼闊的潮境公園綠地，可遠眺九份山城與基隆嶼。',
+        highlights: ['潮境智能海洋館近距離觀賞水母與魟魚', '潮境公園巨大飛天掃帚與鸚鵡螺溜滑梯', '望幽谷濱海步道俯瞰湛藍海灣'],
+        hours: '海科館 09:00–17:00（週一休館）；潮境公園全天開放', ticket: '海科館主題館全票 NT$200；潮境公園免費',
+        address: '基隆市中正區北寧路 367 號',
+        transport: '搭乘台鐵深澳線至「海科館站」下車步行約 5 分鐘。',
+        duration: '3 – 4 小時', summerTip: '中午最炎熱時先逛室內海科館，傍晚 5 點再走到潮境公園吹海風。'
+      },
+      {
+        id: 'kl-4', countyId: 'keelung', countyName: '基隆市', region: '北部',
+        name: '基隆廟口夜市', category: '在地夜市', rating: 4.8,
+        tags: ['百年美食', '必吃夜市', '宵夜天堂', '銅板小吃'],
+        summary: '匯集超過兩百攤百年經典海味與台式小吃，越夜越熱鬧的美食殿堂。',
+        description: '以奠濟宮為中心向外延伸的基隆廟口夜市，擁有統一編號的整齊攤位與深厚美食歷史。從清甜鮮美的鼎邊趖、現炸天婦羅、大排長龍的營養三明治，到消暑綿密的泡泡冰，每一口都是難忘的台灣味。',
+        highlights: ['仁三路與愛四路雙軸線美食大匯集', '必吃吳記螃蟹羹、邢記鼎邊趖與沈記泡泡冰', '步行 5 分鐘可達基隆海洋廣場賞郵輪夜景'],
+        hours: '12:00 – 24:00（多數攤位下午 16:00 後全數營業）', ticket: '免費入場（依消費計費）',
+        address: '基隆市仁愛區仁三路與愛四路口',
+        transport: '基隆火車站南站出口步行約 8 分鐘即可抵達。',
+        duration: '1.5 – 2 小時', summerTip: '建議多人同行分食多樣小吃，最後一定要來一杯現打花生或百香果泡泡冰消暑！'
+      },
+
+      // === 台北市 (4) ===
+      {
+        id: 'tp-1', countyId: 'taipei', countyName: '台北市', region: '北部',
+        name: '台北市立動物園與貓空纜車', category: '親子樂園', rating: 4.8,
+        tags: ['親子首選', '高空纜車', '貓熊與無尾熊', '山林品茶'],
+        summary: '上午探索亞洲最大規模動物園，午後搭乘水晶車廂飛越翠綠茶園。',
+        description: '台北市立動物園擁有大貓熊館、企鵝館、熱帶雨林穿山甲館等豐富展區，暑假期間更常推出夜間延長開放活動。逛完動物園後可直接在旁邊搭乘「貓空纜車」，選擇透明水晶車廂俯瞰台北盆地與山林茶園。',
+        highlights: ['穿山甲館室內熱帶雨林生態體驗', '貓空纜車水晶車廂 360 度高空視野', '貓空山上品嚐鐵觀音茶葉炒飯與茶味霜淇淋'],
+        hours: '動物園 09:00–17:00；貓空纜車 09:00–21:00（週一保養休園）', ticket: '動物園全票 NT$100；貓空纜車單程 NT$70–120',
+        address: '台北市文山區新光路二段 30 號',
+        transport: '搭乘台北捷運文湖線至終點站「動物園站」1 號出口即達。',
+        duration: '半日 – 1 日', summerTip: '動物園園區廣大，建議善用園內遊客列車（NT$5）從最高點的鳥園站往下逛最省力！'
+      },
+      {
+        id: 'tp-2', countyId: 'taipei', countyName: '台北市', region: '北部',
+        name: '陽明山擎天崗與冷水坑', category: '自然秘境', rating: 4.7,
+        tags: ['避暑草原', '水牛生態', '牛奶湖', '夏日微風'],
+        summary: '距離市區最近的雲端大草原，涼爽山風吹拂與水牛群悠閒漫步。',
+        description: '海拔約 770 公尺的擎天崗大草原氣溫比台北市區低約 4 至 5 度，是暑假北部絕佳的天然避暑勝地。沿著平坦的環形步道漫步，可見成群水牛在綠茵上吃草，還能順遊鄰近的冷水坑牛奶湖與菁山吊橋。',
+        highlights: ['一望無際的抹茶色療癒大草原步道', '全台唯一的硫磺沉澱乳白色「牛奶湖」', '免費體驗冷水坑公共溫泉泡腳池'],
+        hours: '全天開放（遊客服務站 09:00–16:30）', ticket: '免費入園',
+        address: '台北市士林區菁山路 101 巷 246 號',
+        transport: '捷運劍潭站搭乘小 15 公車可直達擎天崗站。',
+        duration: '2.5 – 3.5 小時', summerTip: '草原無遮蔽物，白天請戴遮陽帽並攜帶薄外套防山區午後陣雨。'
+      },
+      {
+        id: 'tp-3', countyId: 'taipei', countyName: '台北市', region: '北部',
+        name: '大稻埕碼頭貨櫃市集與迪化街', category: '文化古蹟', rating: 4.8,
+        tags: ['河岸夕陽', '百年街區', '文創市集', '夏日微醺'],
+        summary: '白天漫步百年巴洛克紅磚街屋，黃昏在淡水河畔欣賞絕美金色落日。',
+        description: '大稻埕是台北最具歷史韻味的街區，迪化街兩旁林立著百年南北貨商行、文創選物店與霞海城隍廟。傍晚時分步行至五號水門外的「大稻埕碼頭貨櫃市集」，點杯清涼飲品坐在河岸邊欣賞夕陽與夜景，充滿浪漫夏日氛圍。',
+        highlights: ['迪化街巴洛克歷史建築與文創小店巡禮', '大稻埕碼頭河岸夕陽與貨櫃美食市集', '搭乘藍色公路遊艇體驗淡水河夜航'],
+        hours: '貨櫃市集平日 16:00–22:00 / 假日 12:00–22:00', ticket: '免費參觀',
+        address: '台北市大同區民生西路底（五號水門）',
+        transport: '捷運北門站或雙連站步行約 12–15 分鐘即可抵達。',
+        duration: '3 – 4 小時', summerTip: '每年暑假期間大稻埕常舉辦夏日煙火節活動，建議提早卡位河岸第一排！'
+      },
+      {
+        id: 'tp-4', countyId: 'taipei', countyName: '台北市', region: '北部',
+        name: '士林觀光夜市', category: '在地夜市', rating: 4.6,
+        tags: ['國際級夜市', '豪大大雞排', '親子遊戲', '捷運直達'],
+        summary: '台北規模最大、最具代表性的觀光夜市，美食小吃與娛樂遊戲一應俱全。',
+        description: '士林夜市結合地下美食街與地面文林路、大東路商圈，擁有超大尺寸豪大大雞排、藥燉排骨、生炒花枝、青蛙下蛋等經典台灣小吃，周邊還有射氣球、撈金魚等傳統夜市遊戲，讓大小朋友玩得不亦樂乎。',
+        highlights: ['必吃大餅包小餅、士林大香腸與藥燉排骨', '傳統夜市彈珠台與射氣球懷舊遊戲體驗', '鄰近台北表演藝術中心球體建築打卡'],
+        hours: '16:00 – 24:00', ticket: '免費入場',
+        address: '台北市士林區基河路 101 號',
+        transport: '搭乘台北捷運淡水信義線至「劍潭站」1 號出口步行 3 分鐘。',
+        duration: '2 小時', summerTip: '地下美食區設有冷氣空調，怕熱的旅客可以先到地下層用餐再逛街區。'
+      },
+
+      // === 新北市 (4) ===
+      {
+        id: 'nt-1', countyId: 'new-taipei', countyName: '新北市', region: '北部',
+        name: '九份山城與黃金瀑布', category: '文化古蹟', rating: 4.8,
+        tags: ['悲情城市', '紅燈籠夜景', '芋圓美食', '山海景觀'],
+        summary: '沿山坡層疊而建的懷舊礦業山城，入夜點亮紅燈籠宛如奇幻動畫世界。',
+        description: '九份因昔日盛產金礦而繁華，獨特的豎崎路石階、古色古香的茶樓與紅燈籠高掛的景象享譽國際。白天可俯瞰深澳灣與基隆山海景，品嚐現煮 Q 彈芋圓；順遊山腳下的黃金瀑布與陰陽海，感受大自然的奇幻色彩。',
+        highlights: ['豎崎路階梯與阿妹茶樓經典夜景攝影', '品嚐阿柑姨與賴阿婆手工綜合芋圓冰', '順遊黃金瀑布與十三層遺址光影景觀'],
+        hours: '老街店家約 10:00–20:00（夜景全天可賞）', ticket: '免費參觀',
+        address: '新北市瑞芳區基山街',
+        transport: '捷運忠孝復興站搭乘基隆客運 1062 直達九份老街；或搭台鐵至瑞芳站轉公車。',
+        duration: '3 – 4 小時', summerTip: '建議下午 3 點抵達，同時飽覽白天的海景與傍晚點燈後的浪漫山城。'
+      },
+      {
+        id: 'nt-2', countyId: 'new-taipei', countyName: '新北市', region: '北部',
+        name: '福隆海水浴場與沙雕季', category: '海灘玩水', rating: 4.7,
+        tags: ['黃金沙灘', '國際沙雕季', '獨木舟SUP', '舊草嶺隧道'],
+        summary: '綿延三公里的金色細軟沙灘，暑假限定巨型沙雕藝術展與水上樂園。',
+        description: '福隆擁有台灣罕見的金色石英砂海灘，雙溪河在此入海形成內河外海的雙重地形，內河平靜適合獨木舟與立槳 SUP，外海則可盡情踏浪戲水。每年夏季舉辦的「福隆國際沙雕藝術季」更是親子必訪盛事。',
+        highlights: ['欣賞國際沙雕師打造的巨型主題沙雕作品', '內河體驗無浪獨木舟與 SUP 立式划槳', '租單車騎行涼爽的「舊草嶺隧道」鐵馬道'],
+        hours: '08:00 – 18:00', ticket: '全票 NT$150 / 優待票 NT$75',
+        address: '新北市貢寮區福隆街 40 號',
+        transport: '搭乘台鐵至「福隆火車站」出站步行約 5 分鐘即達。',
+        duration: '半日 – 1 日', summerTip: '出火車站別忘了買一個道地「福隆月台便當」，傍晚看沙雕光影最舒適。'
+      },
+      {
+        id: 'nt-3', countyId: 'new-taipei', countyName: '新北市', region: '北部',
+        name: '淡水漁人碼頭與老街', category: '文化古蹟', rating: 4.7,
+        tags: ['情人橋夕陽', '渡輪體驗', '古蹟巡禮', '河岸美食'],
+        summary: '白色風帆造型情人橋映照金色落日，搭乘渡輪暢遊淡水與八里左岸。',
+        description: '淡水融合荷蘭、西班牙與清代古蹟文化，紅毛城、小白宮與淡水老街充滿歷史故事。黃昏時分搭乘淡海輕軌或渡輪前往漁人碼頭，在木棧道上吹著海風欣賞名列台灣八景之一的「淡江夕照」。',
+        highlights: ['情人橋欣賞夕陽西下與夜間七彩燈光秀', '搭乘藍色公路渡輪往返淡水老街與八里左岸', '老街必吃阿給、魚丸湯、鐵蛋與巨無霸霜淇淋'],
+        hours: '全天開放（商店約 11:00–21:00）', ticket: '免費參觀',
+        address: '新北市淡水區觀海路 199 號',
+        transport: '搭乘台北捷運淡水信義線至「淡水站」，轉乘紅 26 公車或淡海輕軌藍海線。',
+        duration: '半日', summerTip: '夏季日落時間約在 18:30 左右，建議 17:30 前抵達情人橋佔好賞景位置。'
+      },
+      {
+        id: 'nt-4', countyId: 'new-taipei', countyName: '新北市', region: '北部',
+        name: '野柳地質公園', category: '自然秘境', rating: 4.7,
+        tags: ['女王頭', '世界奇景', '海蝕地形', '海洋教育'],
+        summary: '媲美外星地表的海蝕奇岩半島，親眼見證舉世聞名的「女王頭」。',
+        description: '野柳為大屯山餘脈伸入海中的岬角，受波浪侵蝕與風化作用，雕刻出女王頭、俏皮公主、燭台石、蕈狀岩等奇特岩石景觀，是極具震撼力的天然地質教室。',
+        highlights: ['與地標級天然奇岩「女王頭」及「俏皮公主」合影', '觀察海蝕壺穴、薑石與生痕化石地質奇觀', '順遊旁邊的野柳海洋世界觀看海豚與跳水秀'],
+        hours: '08:00 – 17:00', ticket: '全票 NT$120 / 優待票 NT$60',
+        address: '新北市萬里區港東路 167-1 號',
+        transport: '台北車站國光客運站搭乘 1815 路公車至「野柳站」下車步行 8 分鐘。',
+        duration: '2 – 2.5 小時', summerTip: '岬角海岸毫無遮蔭，請務必攜帶陽傘、帽子與充足飲用水防曬補水。'
+      },
+
+      // === 桃園市 (3) ===
+      {
+        id: 'ty-1', countyId: 'taoyuan', countyName: '桃園市', region: '北部',
+        name: 'Xpark 都會型水生公園', category: '親子樂園', rating: 4.7,
+        tags: ['室內冷氣', '企鵝咖啡廳', '夢幻水母牆', '高鐵直達'],
+        summary: '日系新都會型水族館，在沁涼冷氣房內與企鵝、海豹與萬花筒水母相遇。',
+        description: '由日本八景島團隊打造的 Xpark，結合科技光影、音樂與海洋生態，打造出福爾摩沙大水槽、癒見水母萬花筒與企鵝奇遇等 13 大展區，是暑假不怕曬太陽、不怕午後雷陣雨的頂級親子去處。',
+        highlights: ['無邊際水母萬花筒鏡面光影打卡牆', 'Xcafe 邊喝企鵝拉花咖啡邊看企鵝從頭頂游過', '步行 2 分鐘即達華泰名品城與置地廣場美食街'],
+        hours: '平日 10:00–18:00 / 假日 10:00–20:00', ticket: '成人票 NT$600 / 學生票 NT$430 / 孩童票 NT$270',
+        address: '桃園市中壢區春德路 105 號',
+        transport: '搭乘高鐵至「桃園站」或桃園機捷至「A18 高鐵桃園站」步行約 8 分鐘。',
+        duration: '2.5 – 3.5 小時', summerTip: '暑假人潮眾多，強烈建議提前於線上預約場次時段以節省現場排隊時間。'
+      },
+      {
+        id: 'ty-2', countyId: 'taoyuan', countyName: '桃園市', region: '北部',
+        name: '大溪老街與石門水庫', category: '文化古蹟', rating: 4.6,
+        tags: ['巴洛克牌樓', '大溪豆干', '湖光山色', '木藝生態'],
+        summary: '欣賞華麗精緻的巴洛克建築立面，品嚐百年滷豆干與湖畔活魚料理。',
+        description: '大溪和平老街保留了日治時期融合閩南圖騰與巴洛克風格的華麗牌樓，周邊的大溪木藝生態博物館群免門票開放參觀。午後可順遊鄰近的石門水庫欣賞碧綠湖景與大壩風光。',
+        highlights: ['和平老街巴洛克山牆建築與木藝博物館群', '大排長龍的老阿伯現滷豆干與賴媽媽豆花', '石門水庫環湖步道與遊艇碼頭賞景'],
+        hours: '老街全天開放（店家約 10:00–19:00）', ticket: '老街免費；石門水庫小型車清潔費 NT$120',
+        address: '桃園市大溪區和平路',
+        transport: '中壢或桃園火車站搭乘台灣好行「501 大溪快線」或桃園客運直達大溪老街。',
+        duration: '3 – 4 小時', summerTip: '大溪橋傍晚點燈後充滿歐洲宮廷浪漫感，非常適合飯後散步吹風。'
+      },
+      {
+        id: 'ty-3', countyId: 'taoyuan', countyName: '桃園市', region: '北部',
+        name: '拉拉山國家森林遊樂區', category: '自然秘境', rating: 4.8,
+        tags: ['千年神木群', '暑假避暑', '水蜜桃季', '芬多精'],
+        summary: '海拔 1,500 公尺的雲霧神木森林，夏季均溫僅 20 度的天然冷氣房。',
+        description: '拉拉山擁有全台灣面積最大的紅檜巨木林，園區內 24 株編號巨木樹齡介於 500 至 2,800 年之間，步道平緩好走、綠蔭蔽天。每年 6 至 8 月正值拉拉山水蜜桃盛產季，香甜多汁令人難忘。',
+        highlights: ['近距離仰望樹齡 2,800 年的 5 號巨木', '平緩木屑步道享受高濃度森林芬多精', '夏季限定現採香甜拉拉山水蜜桃與水蜜桃冰沙'],
+        hours: '06:00 – 17:00', ticket: '全票 NT$200 / 優待票 NT$100',
+        address: '桃園市復興區華陵里 11 鄰 205 號',
+        transport: '建議自駕前往，或於桃園車站搭乘桃園客運 5090、5091 至上巴陵再轉接駁車。',
+        duration: '3 – 4 小時', summerTip: '山上氣溫比平地低約 8–10 度，請攜帶薄長袖外套，並建議上午抵達避開午後山霧。'
+      },
+
+      // === 新竹市 (3) ===
+      {
+        id: 'hcc-1', countyId: 'hsinchu-city', countyName: '新竹市', region: '北部',
+        name: '南寮漁港魚鱗天梯', category: '海灘玩水', rating: 4.6,
+        tags: ['海岸夕陽', '親子放風箏', '17公里海岸線', '海鮮市場'],
+        summary: '層層堆疊如魚鱗般的白色消波塊階梯，坐看台灣海峽金色落日。',
+        description: '新竹南寮漁港將傳統消波塊打造成充滿設計感的「魚鱗天梯」，讓旅人能安全親近大海。一旁的國際風箏賽場擁有遼闊草地，暑假周末常有巨型造型風箏在天空飛舞，還能租借協力車騎乘 17 公里海岸線。',
+        highlights: ['魚鱗天梯海景階梯與波光市集建築美學', '國際風箏賽場大草地放風箏、吹泡泡', '漁產直銷中心現挑海鮮與代客料理'],
+        hours: '全天開放（波光市集週四至週日 11:00–20:00）', ticket: '免費參觀',
+        address: '新竹市北區新港三路 1-9 號',
+        transport: '新竹火車站搭乘藍 15 區公車至終點站「南寮站」下車即達。',
+        duration: '2.5 – 3 小時', summerTip: '新竹海風較強，傍晚看夕陽非常涼爽舒適，建議下午 4 點後造訪。'
+      },
+      {
+        id: 'hcc-2', countyId: 'hsinchu-city', countyName: '新竹市', region: '北部',
+        name: '新竹市立動物園與新竹公園', category: '親子樂園', rating: 4.7,
+        tags: ['全台最老動物園', '無籠舍設計', '銅板門票', '親子放電'],
+        summary: '台灣現存最古老的動物園，以友善無籠舍設計近距離觀察河馬與老虎。',
+        description: '創立於 1936 年的新竹市立動物園經過再生改造，打破傳統鐵籠限制，創造讓動物自由活動的類棲地環境。園區小巧精緻、綠樹成蔭，只需 50 元銅板價就能帶小朋友開心逛上一整個上午。',
+        highlights: ['明星動物河馬樂樂、孟加拉虎與紅毛猩猩', '森林食堂邊用餐邊看窓外動物漫步', '順遊一旁的玻璃工藝博物館與麗池湖畔'],
+        hours: '09:00 – 17:00（週一休園）', ticket: '全票 NT$50 / 優待票 NT$25 / 6歲以下免費',
+        address: '新竹市東區食品路 66 號',
+        transport: '新竹火車站後站步行約 10 分鐘即可抵達新竹公園與動物園。',
+        duration: '2 – 3 小時', summerTip: '園區內綠蔭茂密且設有噴霧降溫設施，非常適合帶推車的親子家庭。'
+      },
+      {
+        id: 'hcc-3', countyId: 'hsinchu-city', countyName: '新竹市', region: '北部',
+        name: '新竹都城隍廟口美食商圈', category: '在地夜市', rating: 4.7,
+        tags: ['百年古蹟', '貢丸米粉', '在地美食', '步行漫遊'],
+        summary: '全台位階最高的都城隍廟，廟埕周邊聚集數十年老字號新竹小吃。',
+        description: '擁有兩百多年歷史的新竹都城隍廟不僅是國家級古蹟，廟前廣場與周邊街巷更是新竹美食心臟地帶。Q 彈爆汁的貢丸湯、炒米粉、潤餅、鴨香飯與燒麻糬，從早到晚都能滿足饕客味蕾。',
+        highlights: ['品嚐阿城號米粉、柳家肉燥飯與郭家潤餅', '參拜百年歷史古蹟新竹都城隍廟', '步行至東門市場探索文青宵夜美食聚落'],
+        hours: '10:00 – 22:00', ticket: '免費入場',
+        address: '新竹市北區中山路 75 號',
+        transport: '新竹火車站前站沿中正路轉中山路步行約 10 分鐘。',
+        duration: '1.5 – 2 小時', summerTip: '吃完熱騰騰的貢丸米粉後，推薦來碗清涼消暑的冬瓜仙草絲或燒麻糬冰！'
+      },
+
+      // === 新竹縣 (3) ===
+      {
+        id: 'hco-1', countyId: 'hsinchu-county', countyName: '新竹縣', region: '北部',
+        name: '六福村主題遊樂園', category: '親子樂園', rating: 4.7,
+        tags: ['水陸雙樂園', '笑傲飛鷹', '野生動物園', '暑假必玩'],
+        summary: '結合刺激遊樂設施、猛獸野生動物園與夏季限定水樂園的歡樂王國。',
+        description: '六福村擁有美國大西部、南太平洋、阿拉伯皇宮與非洲部落四大主題村，不僅有笑傲飛鷹、大怒神等經典刺激設施，還能搭乘蒸氣火車與猛獸巴士近距離觀察長頸鹿、白老虎與犀牛；暑假更開放「六福水樂園」清涼消暑！',
+        highlights: ['非洲部落草食區蒸汽火車與猛獸巴士體驗', '暑假限定六福水樂園冰凍滑道與造浪池', '阿拉伯皇宮夢幻城堡拍照與遊行表演'],
+        hours: '09:00 – 18:00（暑假期間延長至 19:30）', ticket: '全票 NT$1,199（暑假常推出水陸聯票與親子優惠）',
+        address: '新竹縣關西鎮仁安里拱子溝 60 號',
+        transport: '台北捷運景安站或台鐵中壢站搭乘直達客運至六福村站下車。',
+        duration: '1 日', summerTip: '建議一開園先衝熱門設施，中午最熱時轉戰室內劇場或六福水樂園玩水！'
+      },
+      {
+        id: 'hco-2', countyId: 'hsinchu-county', countyName: '新竹縣', region: '北部',
+        name: '內灣老街與內灣吊橋', category: '文化古蹟', rating: 4.5,
+        tags: ['客家山城', '內灣支線火車', '野薑花粽', '戲院懷舊'],
+        summary: '搭乘懷舊支線小火車走進客家山城，品嚐清香野薑花粽與客家擂茶。',
+        description: '內灣老街保有濃厚的客家聚落文化與日式木造內灣車站，橫跨油羅溪的內灣吊橋清風徐來，溪水清澈見底。老街上處處可見現蒸的野薑花粽、紫玉菜包與客家麻糬，充滿純樸人情味。',
+        highlights: ['體驗親自研磨五穀堅果的傳統客家擂茶 DIY', '走過橫跨油羅溪的內灣吊橋欣賞山谷溪景', '參觀復古木造內灣戲院與愛情車站合興車站'],
+        hours: '10:00 – 18:00', ticket: '免費參觀',
+        address: '新竹縣橫山鄉中正路',
+        transport: '搭乘台鐵六家線至竹中站，轉乘「內灣支線」至終點站內灣站即達。',
+        duration: '3 – 4 小時', summerTip: '回程可順道在「合興愛情車站」下車拍照，感受浪漫鐵道氛圍。'
+      },
+      {
+        id: 'hco-3', countyId: 'hsinchu-county', countyName: '新竹縣', region: '北部',
+        name: '司馬庫斯神木群', category: '自然秘境', rating: 4.9,
+        tags: ['上帝的部落', '千年紅檜', '雲海秘境', '深度健行'],
+        summary: '深藏在尖石高山雲霧中的泰雅族部落，朝聖壯麗的千年紅檜巨木群。',
+        description: '位於海拔 1,500 公尺的司馬庫斯被譽為「上帝的部落」，擁有原始純淨的泰雅族共營文化與壯觀的巨木群步道。穿梭在竹林與檜木林之間，呼吸沁涼純淨的高山空氣，讓人徹底遠離都市酷暑。',
+        highlights: ['近距離感受巨木群老爺神木「YaYa 巨木」的震撼', '品嚐部落自製小米甜甜圈與原住民風味餐', '夜晚無光害的璀璨銀河星空'],
+        hours: '全天開放（自駕車輛需遵守尖石鄉公所上山管制時段）', ticket: '免費入山（汽車清潔費約 NT$100）',
+        address: '新竹縣尖石鄉玉峰村 14 鄰司馬庫斯 2 號',
+        transport: '山路蜿蜒遙遠，建議自駕（留意管制時間）或報名合法觀光接駁專車。',
+        duration: '半日 – 2 天 1 夜', summerTip: '部落住宿非常搶手，若計畫過夜請務必提前 2–3 個月預訂，並攜帶保暖衣物。'
+      },
+
+      // === 苗栗縣 (3) ===
+      {
+        id: 'ml-1', countyId: 'miaoli', countyName: '苗栗縣', region: '北部',
+        name: '飛牛牧場', category: '親子樂園', rating: 4.7,
+        tags: ['草原牧場', '餵小牛喝奶', '鮮奶冰淇淋', '親子野餐'],
+        summary: '宛如紐西蘭風光的翠綠丘陵牧場，與乳牛、綿羊、小鴨近距離互動。',
+        description: '飛牛牧場擁有廣達 120 公頃的青翠草原與緩坡，空氣清新宜人。小朋友可以參加免費的餵小牛喝牛奶、鴨寶寶大遊行、擠牛奶體驗，還能動手搖出香濃鮮奶冰淇淋，是暑假親子放電的經典首選。',
+        highlights: ['超可愛的搖擺鴨寶寶大遊行與餵小牛體驗', '必吃濃醇香飛牛鮮奶白布丁與牛奶霜淇淋', '遼闊大草原奔跑野餐與生態蝴蝶園'],
+        hours: '07:00 – 19:00', ticket: '全票 NT$280 / 學童票 NT$220 / 幼童票 NT$160',
+        address: '苗栗縣通霄鎮南和里 166 號',
+        transport: '搭乘台鐵至通霄站後轉乘計程車約 15 分鐘，或自駕走國道三號通霄交流道下。',
+        duration: '3 – 5 小時', summerTip: '入園門票可兌換一瓶新鮮美味的飛牛鮮乳，別忘了到兌換處領取！'
+      },
+      {
+        id: 'ml-2', countyId: 'miaoli', countyName: '苗栗縣', region: '北部',
+        name: '勝興車站與舊山線鐵道自行車', category: '文化古蹟', rating: 4.8,
+        tags: ['鐵道自行車', '百年隧道', '龍騰斷橋', '慢城山景'],
+        summary: '騎乘電動鐵道自行車穿梭百年開天隧道，從高空俯瞰壯麗龍騰斷橋。',
+        description: '勝興車站是台灣西部縱貫鐵路的最高點，全木造日式站房充滿懷舊風情。近年推出的「舊山線鐵道自行車」結合電動輔助與 GPS 導覽，讓旅客輕鬆踩踏於 33 公尺高的鐵橋上，享受涼爽山風與壯闊山景。',
+        highlights: ['搭乘 C 路線鐵道自行車橫跨魚藤坪高空鐵橋', '穿越百年歷史燈光投影「開天隧道」', '勝興老街品嚐客家擂茶與十六份人文茶館'],
+        hours: '鐵道自行車 08:30–17:30（需依班次預約）', ticket: '鐵道自行車票價 NT$220–275；車站參觀免費',
+        address: '苗栗縣三義鄉勝興村 14 鄰勝興 89 號',
+        transport: '搭乘台鐵至「三義火車站」，轉乘計程車或台灣好行「舊山線」抵達。',
+        duration: '3 – 4 小時', summerTip: '鐵道自行車採全網路預約制，暑假假日經常滿班，建議提早 2 週上網訂票！'
+      },
+      {
+        id: 'ml-3', countyId: 'miaoli', countyName: '苗栗縣', region: '北部',
+        name: '三義木雕博物館與龍騰斷橋', category: '文化古蹟', rating: 4.6,
+        tags: ['藝術工藝', '室內避暑', '紅磚遺跡', '山林秘境'],
+        summary: '走進全台唯一木雕主題博物館感受檜木香氣，探訪被綠意包圍的紅磚斷橋。',
+        description: '三義木雕博物館館內吹著沁涼冷氣，展出精緻細膩的台灣木雕藝術與南島民族木雕文化。距離約 15 分鐘車程的龍騰斷橋（魚藤坪斷橋）則以紅磚拱橋遺跡聞名，夏季被翠綠山林與老樹根包圍，宛如天空之城秘境。',
+        highlights: ['木雕博物館欣賞巧奪天工的樟木與檜木雕刻', '龍騰斷橋南斷橋秘境拍攝老樹盤根奇景', '順遊四月雪小徑與水美木雕街'],
+        hours: '博物館 09:00–17:00（週一休館）；龍騰斷橋全天開放', ticket: '博物館全票 NT$80 / 學生票 NT$50',
+        address: '苗栗縣三義鄉廣盛村廣聲新城 88 號',
+        transport: '建議自駕或包車串聯三義市區、木雕博物館與龍騰斷橋。',
+        duration: '2.5 – 3 小時', summerTip: '龍騰斷橋分為北斷橋與隱藏在樹林中的「南斷橋」，兩邊走過小溪都能步行抵達！'
+      },
+
+      // === 台中市 (4) ===
+      {
+        id: 'tc-1', countyId: 'taichung', countyName: '台中市', region: '中部',
+        name: '高美濕地木棧道', category: '自然秘境', rating: 4.8,
+        tags: ['天空之鏡', '絕美夕陽', '招潮蟹生態', '風車海岸'],
+        summary: '被譽為「一生必遊一次」的絕美濕地，木棧道延伸至海天一色的鏡面夕陽。',
+        description: '高美濕地擁有豐富的潮間帶生態，棲息著大量招潮蟹、彈塗魚與候鳥。沿著長達 691 公尺的木棧道走入濕地中央，退潮時淺水灘如鏡面般倒映著橘紅晚霞與巨大白色風車，震撼人心。',
+        highlights: ['走上木棧道近距離觀察可愛的招潮蟹揮舞大螯', '捕捉夕陽西下時金光灑落濕地的「天空之鏡」', '旁有高美濕地景觀橋與遊客服務中心'],
+        hours: '依每日潮汐時間開放木棧道進入', ticket: '免費參觀',
+        address: '台中市清水區美堤街',
+        transport: '台中火車站或高鐵站搭乘 309 路公車可直達高美濕地站。',
+        duration: '2 – 2.5 小時', summerTip: '出發前務必先上網查詢當日「高美濕地木棧道開放時間（潮汐表）」，漲潮時會封閉木棧道喔！'
+      },
+      {
+        id: 'tc-2', countyId: 'taichung', countyName: '台中市', region: '中部',
+        name: '麗寶樂園渡假區（馬拉灣）', category: '親子樂園', rating: 4.7,
+        tags: ['馬拉灣玩水', '大海嘯造浪', '天空之夢摩天輪', '購物Outlet'],
+        summary: '結合全台最大水上樂園「馬拉灣」、探索世界與全台最大摩天輪的度假勝地。',
+        description: '暑假玩水首選「馬拉灣」！擁有東南亞最大露天人工造浪池「大海嘯」、阿酋彎噴水迷宮與巫師飛艇，讓全家人清涼到底；傍晚還能搭乘全台最高的「天空之夢摩天輪」欣賞台中夜景，並逛逛歐風麗寶 Outlet。',
+        highlights: ['馬拉灣經典「大海嘯」體驗 2.4 公尺高巨浪衝擊', '探索世界全球唯一斷軌式雲霄飛車「搶救地心」', '搭乘天空之夢摩天輪吹冷氣俯瞰大台中山海景'],
+        hours: '09:30 – 17:00（暑假期間延長至 20:00）', ticket: '水陸單園全票 NT$899 / 雙園聯票 NT$1,199',
+        address: '台中市后里區福容路 8 號',
+        transport: '台中高鐵站可搭乘免費接駁專車直達麗寶樂園渡假區。',
+        duration: '1 日', summerTip: '馬拉灣每年僅於夏季（約 5 月至 10 月）開放，暑假正是玩水最佳時機！'
+      },
+      {
+        id: 'tc-3', countyId: 'taichung', countyName: '台中市', region: '中部',
+        name: '武陵農場避暑步道', category: '自然秘境', rating: 4.9,
+        tags: ['高山避暑', '桃山瀑布', '櫻花鉤吻鮭', '星空銀河'],
+        summary: '海拔兩千公尺的世外桃源，夏季氣溫僅 20 度，漫步清涼桃山瀑布步道。',
+        description: '武陵農場四面環山、溪水清澈見底，是國寶魚「台灣櫻花鉤吻鮭」的故鄉。暑假平地高溫破 35 度時，武陵農場卻涼爽如秋，沿著綠樹遮蔭的桃山瀑布步道健行，更能感受負離子水霧撲面而來的暢快。',
+        highlights: ['在七家灣溪觀魚台尋找國寶魚櫻花鉤吻鮭身影', '健行桃山瀑布步道感受 80 公尺高瀑布清涼水霧', '夏夜無光害雪山登山口觀賞滿天星斗與銀河'],
+        hours: '全天開放', ticket: '平日全票 NT$130 / 假日全票 NT$160',
+        address: '台中市和平區平等里武陵路 3-1 號',
+        transport: '建議自駕前往，或從宜蘭轉運站搭乘國光客運 1751、1764 直達武陵農場。',
+        duration: '半日 – 2 天 1 夜', summerTip: '夏季盛產高山水蜜桃與清脆高麗菜，農場內也提供露營區與國民賓館住宿。'
+      },
+      {
+        id: 'tc-4', countyId: 'taichung', countyName: '台中市', region: '中部',
+        name: '逢甲觀光夜市', category: '在地夜市', rating: 4.8,
+        tags: ['全台最大夜市', '創意小吃發源地', '年輕潮流', '美食天堂'],
+        summary: '台灣最具人氣與創意活力的夜市，無數台灣人氣排隊小吃的發源地。',
+        description: '位於逢甲大學旁的逢甲夜市，從文華路延伸至福星路與逢甲路，不僅聚集明倫蛋餅、官芝霖大腸包小腸、日船章魚小丸子等經典美味，每年暑假更推出最新潮的創意料理與飲料，讓人從街頭吃到街尾停不下來。',
+        highlights: ['品嚐明倫蛋餅、激旨燒鳥、地瓜球與黑糖珍珠鮮奶', '福星路與文華路流行服飾與文創小物逛街', '周邊旅館林立，適合安排台中自由行住宿基地'],
+        hours: '16:00 – 01:00', ticket: '免費入場',
+        address: '台中市西屯區文華路',
+        transport: '台中火車站或高鐵站搭乘公車（如 33、35、160 路）至「逢甲大學站」。',
+        duration: '2 – 3 小時', summerTip: '週末晚上 7 點至 9 點人潮最擁擠，建議 17:30 左右抵達能輕鬆買到排隊名店。'
+      },
+
+      // === 彰化縣 (3) ===
+      {
+        id: 'ch-1', countyId: 'changhua', countyName: '彰化縣', region: '中部',
+        name: '鹿港老街與天后宮', category: '文化古蹟', rating: 4.7,
+        tags: ['一府二鹿三艋舺', '紅磚巷弄', '百年古蹟', '傳統糕餅'],
+        summary: '漫步蜿蜒曲折的紅磚九曲巷，感受清代繁華商港的人文底蘊與傳統美食。',
+        description: '「一府二鹿三艋舺」的鹿港保存了台灣最完整的清代與日治街區風貌。走進埔頭街、瑤林街紅磚老街，摸乳巷、半邊井與香火鼎盛的鹿港天后宮訴說著百年故事，沿途還能品嚐麵茶冰、蝦猴酥與牛舌餅。',
+        highlights: ['參拜國定古蹟鹿港天后宮與龍山寺建築木雕', '穿梭九曲巷與摸乳巷體驗傳統防風建築智慧', '品嚐老街懷舊麵茶冰、芋丸與現烤牛舌餅'],
+        hours: '全天開放（店家約 10:00–19:00）', ticket: '免費參觀',
+        address: '彰化縣鹿港鎮瑤林街、埔頭街',
+        transport: '台鐵彰化站下車後，轉乘台灣好行「6936 鹿港祈福線」至鹿港乘車處。',
+        duration: '3 – 4 小時', summerTip: '老街上許多傳統茶館推出加入碎冰與杏仁片的「麵茶剉冰」，消暑又古早味！'
+      },
+      {
+        id: 'ch-2', countyId: 'changhua', countyName: '彰化縣', region: '中部',
+        name: '王功漁港採蚵車體驗', category: '海灘玩水', rating: 4.6,
+        tags: ['鐵牛採蚵車', '潮間帶生態', '現烤鮮蚵', '親子體驗'],
+        summary: '搭乘超酷的「海牛與鐵牛採蚵車」駛入潮間帶，親手體驗挖文蛤與烤鮮蚵！',
+        description: '王功漁港擁有遼闊的泥沙質潮間帶，是台灣著名的珍珠蚵產地。暑假參加在地生態導覽，搭乘改裝鐵牛車駛向大海退潮後的沙洲，不僅能赤腳踩沙挖文蛤、觀察和尚蟹，還能大啖現剝現烤的鮮甜珍珠蚵。',
+        highlights: ['搭乘特色鐵牛車奔馳在海天一線的潮間帶沙洲', '親子赤腳體驗挖掘野生文蛤與觀察潮間帶生物', '登上黑白相間的芳苑燈塔欣賞夕陽海景'],
+        hours: '依每日潮汐時間出車（建議提前預約採蚵導覽）', ticket: '採蚵車體驗約 NT$300–400/人（含烤蚵）',
+        address: '彰化縣芳苑鄉漁港路',
+        transport: '建議自駕前往，或從彰化火車站搭乘員林客運 6708 至王功站。',
+        duration: '2.5 – 3.5 小時', summerTip: '潮間帶體驗會弄濕雙腳，建議穿著涼鞋或拖鞋，並攜帶換洗衣物與防曬用品。'
+      },
+      {
+        id: 'ch-3', countyId: 'changhua', countyName: '彰化縣', region: '中部',
+        name: '八卦山大佛風景區', category: '文化古蹟', rating: 4.5,
+        tags: ['彰化地標', '天空步道', '城市夜景', '免費景點'],
+        summary: '仰望莊嚴宏偉的 22 公尺黑身如來大佛，漫步樹冠層上的天空步道。',
+        description: '八卦山大佛是彰化最具代表性的精神地標，大佛前方的九龍池觀景台可將整個彰化平原盡收眼底。一旁長達一公里的「八卦山天空步道」穿梭在鳳凰木與相思樹冠之間，微風徐徐十分愜意。',
+        highlights: ['九龍池觀景台俯瞰彰化市區與夕陽夜景', '漫步離地最高 16 公尺的八卦山天空步道', '下山順遊全台唯一國定古蹟「彰化扇形車庫」'],
+        hours: '08:30 – 17:30（天空步道全天開放）', ticket: '免費參觀',
+        address: '彰化縣彰化市溫泉路 31 號',
+        transport: '彰化火車站搭乘彰化客運或騎乘 MOOVO 公共自行車約 10 分鐘即達。',
+        duration: '2 小時', summerTip: '八卦山與「彰化扇形車庫」距離很近，建議排在一起順遊，下午還能吃碗彰化肉圓！'
+      },
+
+      // === 南投縣 (4) ===
+      {
+        id: 'ntou-1', countyId: 'nantou', countyName: '南投縣', region: '中部',
+        name: '日月潭國家風景區', category: '自然秘境', rating: 4.9,
+        tags: ['世界最美單車道', 'SUP立槳', '遊湖船票', '纜車賞景'],
+        summary: '湖光山色宛如水墨畫的台灣第一大天然湖泊，騎單車、搭船與清晨 SUP 聖地。',
+        description: '日月潭以拉魯島為界，北半部形如日輪、南半部狀似月鉤。暑假來到日月潭，清晨可體驗在如鏡面般的湖面上划 SUP 立槳看日出，白天騎乘獲 CNN 評選為全球十大最美單車道的水社向山段，並搭船暢遊伊達邵碼頭品嚐原住民美食。',
+        highlights: ['騎乘「向山段水上自行車道」並參觀清水模向山遊客中心', '搭乘電動遊艇往返水社、玄光寺與伊達邵三大碼頭', '搭乘日月潭纜車從高空鳥瞰微笑山谷與碧綠潭水'],
+        hours: '全天開放（遊艇約 09:00–17:00）', ticket: '風景區免費（遊艇一日券約 NT$300）',
+        address: '南投縣魚池鄉中山路 599 號',
+        transport: '台中高鐵站搭乘「台灣好行日月潭線」約 80 分鐘直達水社遊客中心。',
+        duration: '半日 – 2 天 1 夜', summerTip: '日月潭夏季午後偶有陣雨，建議上午先安排騎單車與搭船遊湖活動。'
+      },
+      {
+        id: 'ntou-2', countyId: 'nantou', countyName: '南投縣', region: '中部',
+        name: '清境農場青青草原', category: '自然秘境', rating: 4.8,
+        tags: ['台版小瑞士', '綿羊秀', '高空觀景步道', '高山避暑'],
+        summary: '海拔 1,750 公尺的歐風高山牧場，在涼爽夏風中看可愛綿羊秀與雲海。',
+        description: '清境農場夏季平均氣溫僅 16 至 22 度，是台灣首屈一指的高山避暑勝地！一望無際的青青草原上成群綿羊悠閒吃草，週末假日還有精彩的羊毛剪毛秀與馬術特技秀，走上「清境高空觀景步道」更彷彿漫步雲端。',
+        highlights: ['假日限定逗趣精彩的「綿羊秀」與「馬術秀」', '漫步海拔最高無障礙「清境高空觀景步道」遠眺奇萊山', '順遊歐式花園小瑞士花園與合歡山武嶺打卡'],
+        hours: '08:00 – 17:00', ticket: '平日全票 NT$220 / 假日全票 NT$270',
+        address: '南投縣仁愛鄉仁和路 170 號',
+        transport: '台中高鐵站搭乘「台灣好行清境線」或南投客運無縫接駁直達。',
+        duration: '半日 – 1 日', summerTip: '高山紫外線強但氣溫涼爽，記得防曬並隨身攜帶防風薄外套。'
+      },
+      {
+        id: 'ntou-3', countyId: 'nantou', countyName: '南投縣', region: '中部',
+        name: '溪頭自然教育園區與妖怪村', category: '自然秘境', rating: 4.8,
+        tags: ['大學池竹橋', '空中走廊', '森林避暑', '親子健行'],
+        summary: '被高聳柳杉與紅檜環繞的清涼森林樂園，走上七層樓高的樹冠空中走廊。',
+        description: '溪頭海拔約 1,150 公尺，終年雲霧繚繞、林木茂密，夏季氣溫比平地低約 6 度。園內經典地標「大學池」拱形竹橋倒映在碧綠池水中，走上離地 22.6 公尺的「空中走廊」更能與樹冠層平視，出口旁還有充滿日式奇幻風格的松林町妖怪村。',
+        highlights: ['大學池經典竹拱橋與神木區森林浴步道', '體驗全台首座森林冠層「空中走廊」', '順遊出口旁的日式鳥居「溪頭松林町妖怪村」品嚐咬人貓麵包'],
+        hours: '07:00 – 17:00', ticket: '全票 NT$220 / 優待票 NT$180 / 半票 NT$110',
+        address: '南投縣鹿谷鄉森林巷 9 號',
+        transport: '台中高鐵站或台中火車站搭乘「台灣好行溪頭線」直達園區大門。',
+        duration: '半日 – 1 日', summerTip: '溪頭森林步道樹蔭濃密，即使正午散步也非常涼爽，非常適合帶長輩與小孩同遊。'
+      },
+      {
+        id: 'ntou-4', countyId: 'nantou', countyName: '南投縣', region: '中部',
+        name: '合歡山暗空公園觀星', category: '自然秘境', rating: 4.9,
+        tags: ['國際暗空公園', '夏季銀河', '武嶺3275', '高山日出'],
+        summary: '台灣首座獲國際認證的「暗空公園」，夏夜肉眼即可看見橫跨天際的璀璨銀河！',
+        description: '合歡山擁有海拔超過 3,000 公尺的純淨大氣與低光害環境，是亞洲少數獲得國際暗空協會認證的觀星聖地。每年 6 至 8 月正是夏季銀河最清晰壯麗的季節，白天可登石門山百岳入門步道，夜晚在鳶峰與武嶺仰望星河。',
+        highlights: ['挑戰台灣最親民百岳「石門山步道」（單程僅 30 分鐘）', '海拔 3,275 公尺公路最高點「武嶺亭」打卡', '夜間在鳶峰觀星平台欣賞肉眼可見的夏季銀河'],
+        hours: '全天開放', ticket: '免費參觀',
+        address: '南投縣仁愛鄉台 14 甲線（鳶峰至武嶺段）',
+        transport: '建議自駕前往，或報名清境當地出發的夜間觀星導覽專車。',
+        duration: '2 – 4 小時', summerTip: '夜晚海拔三千公尺氣溫僅約 8–12 度，觀星務必穿著羽絨衣與毛帽保暖！'
+      },
+
+      // === 雲林縣 (3) ===
+      {
+        id: 'yl-1', countyId: 'yunlin', countyName: '雲林縣', region: '中部',
+        name: '劍湖山世界主題樂園', category: '親子樂園', rating: 4.6,
+        tags: ['水陸雙享', 'G5飛天潛艇', '小威の海盜村', '暑假玩水'],
+        summary: '中南部最具代表性的水陸主題樂園，夏季限定小威海盜村水樂園清涼開戰！',
+        description: '劍湖山世界擁有經典「飛天潛艇 G5」、幸福摩天輪與室內兒童玩國。每年暑假限定開放的「小威の海盜村水樂園」推出大碗公滑水道、龍捲風與維京巨浪造浪池，一票就能暢玩水陸雙重樂趣。',
+        highlights: ['夏季限定「小威の海盜村」大碗公與龍捲風滑水道', '挑戰垂直俯衝 65 公尺的經典「飛天潛艇 G5」', '室內冷氣「兒童玩國」適合學齡前幼童放電'],
+        hours: '09:00 – 17:00（暑假週末延長至 18:00）', ticket: '全票 NT$999（暑假官網常有水陸一票暢玩優惠價）',
+        address: '雲林縣古坑鄉永光村大湖口 67 號',
+        transport: '台鐵斗六站或高鐵雲林站轉乘「台灣好行斗六古坑線」直達園區。',
+        duration: '1 日', summerTip: '建議攜帶防水手機袋與換洗衣物，上午先玩陸地設施、下午 1 點後進水樂園最清涼！'
+      },
+      {
+        id: 'yl-2', countyId: 'yunlin', countyName: '雲林縣', region: '中部',
+        name: '北港朝天宮與老街', category: '文化古蹟', rating: 4.7,
+        tags: ['國定古蹟', '百年廟宇', '銅板美食', '北港天空之橋'],
+        summary: '全台媽祖信仰重鎮，感受國定古蹟精緻剪黏工藝與超平價在地美食。',
+        description: '擁有三百多年歷史的北港朝天宮建築雕樑畫棟、工藝精湛，廟前的中山路老街匯集眾多百年餅舖與傳統小吃，一碗 25 元的鴨肉飯與麵線糊展現雲林純樸熱情。步行還可造訪獲得國際建築獎的北港天空之橋。',
+        highlights: ['欣賞國定古蹟朝天宮屋頂精緻交趾陶與木雕藝術', '品嚐老受鴨肉飯、阿豐麵線糊、圓仔湯與北港大餅', '走訪清水模美學「北港天空之橋」與女兒橋'],
+        hours: '朝天宮 04:00–24:00；老街約 09:00–20:00', ticket: '免費參觀',
+        address: '雲林縣北港鎮中山路 178 號',
+        transport: '高鐵嘉義站或雲林站搭乘「台灣好行北港虎尾線」直達北港朝天宮。',
+        duration: '2.5 – 3 小時', summerTip: '北港美食價格極為親民，推薦購買狀元餅與花生酥作為伴手禮。'
+      },
+      {
+        id: 'yl-3', countyId: 'yunlin', countyName: '雲林縣', region: '中部',
+        name: '古坑綠色隧道與華山咖啡', category: '自然秘境', rating: 4.5,
+        tags: ['芒果樹大道', '台灣咖啡原鄉', '假日市集', '夜景咖啡'],
+        summary: '長達兩公里的百年芒果樹綠色隧道，午後到華山品嚐香醇台灣在地咖啡。',
+        description: '古坑綠色隧道兩旁種滿五十年以上歷史的茂密芒果樹，濃密樹蔭遮蔽烈日，形成涼爽的綠色長廊，一旁還有大草地與蜜蜂故事館。傍晚驅車前往海拔較高的華山咖啡園區，邊喝台灣咖啡邊欣賞嘉南平原夜景。',
+        highlights: ['漫步濃密芒果樹蔭下的綠色隧道與週末農創市集', '參觀巨型蜂巢造型的「蜜蜂故事館」品嚐蜂蜜冰淇淋', '華山景觀咖啡廳遠眺雲嘉平原夕陽與百萬夜景'],
+        hours: '全天開放（假日市集約 09:00–17:30）', ticket: '免費參觀',
+        address: '雲林縣古坑鄉湳仔村湳仔路',
+        transport: '台鐵斗六站搭乘台西客運或台灣好行「斗六古坑線」至綠色隧道站。',
+        duration: '2.5 – 3.5 小時', summerTip: '綠色隧道樹蔭極為涼爽，非常適合帶野餐墊在草地上度過悠閒下午。'
+      },
+
+      // === 嘉義市 (3) ===
+      {
+        id: 'cyc-1', countyId: 'chiayi-city', countyName: '嘉義市', region: '南部',
+        name: '文化路觀光夜市', category: '在地夜市', rating: 4.8,
+        tags: ['火雞肉飯', '砂鍋魚頭', '葡萄柚綠茶', '嘉義不夜城'],
+        summary: '嘉義人從晚餐吃到宵夜的美食大本營，噴香火雞肉飯與排隊名店雲集。',
+        description: '白天是車水馬龍的市區街道，每晚 7 點後變身為行人徒步區的「文化路觀光夜市」，聚集林聰明砂鍋魚頭、郭家雞肉飯、御香屋葡萄柚綠茶、阿娥豆漿豆花等超人氣名店，是體驗嘉義美食魅力的必訪第一站。',
+        highlights: ['必吃噴香油亮的嘉義火雞肉飯與粿仔湯', '來一杯滿滿果肉的「源興御香屋」紅鑽葡萄柚綠茶', '品嚐濃郁沙茶湯頭的林聰明砂鍋魚頭'],
+        hours: '17:00 – 01:00（19:00 後實施行人徒步區管制）', ticket: '免費入場',
+        address: '嘉義市東區文化路（圓環至垂楊路段）',
+        transport: '嘉義火車站前站沿中山路步行約 10 分鐘即可抵達文化路圓環。',
+        duration: '2 小時', summerTip: '建議先用手機抽御香屋與林聰明號碼牌，等待期間先逛文化路夜市其他小吃！'
+      },
+      {
+        id: 'cyc-2', countyId: 'chiayi-city', countyName: '嘉義市', region: '南部',
+        name: '檜意森活村', category: '文化古蹟', rating: 4.7,
+        tags: ['日式建築群', '台版小京都', '文創選物', '和服體驗'],
+        summary: '全台規模最大的日式歷史建築群，29 棟檜木老屋化身文創與茶藝聚落。',
+        description: '日治時期為阿里山林業開發所建立的官方宿舍群「檜意森活村」，全區採用阿里山檜木建造，走進園區便能聞到淡淡木頭清香。如今進駐眾多台灣文創品牌、伴手禮店與和服體驗館，拍照極具質感。',
+        highlights: ['漫步 29 棟保存完好的日式木造建築群拍出京都感美照', '品嚐森咖啡現烤鬆餅與阿里山手沖精品咖啡', '體驗穿著浴衣在日式庭園與木屋廊道留影'],
+        hours: '10:00 – 18:00', ticket: '免費入園',
+        address: '嘉義市東區林森東路 1 號',
+        transport: '嘉義火車站搭乘公車或騎乘 YouBike 約 8 分鐘即可抵達。',
+        duration: '2 – 2.5 小時', summerTip: '園區內每棟木屋都有冷氣空調，炎熱午後可以邊吹冷氣邊逛文創小店！'
+      },
+      {
+        id: 'cyc-3', countyId: 'chiayi-city', countyName: '嘉義市', region: '南部',
+        name: '阿里山森林鐵路車庫園區', category: '親子樂園', rating: 4.6,
+        tags: ['蒸汽火車頭', '鐵道迷必訪', '免費景點', '親子拍照'],
+        summary: '近距離欣賞百年蒸汽火車頭、機關車庫與經典紅色森林小火車。',
+        description: '位於檜意森活村對面的「阿里山森林鐵路車庫園區」，是阿里山小火車的大本營。園區內停放著多輛退役的珍貴蒸汽火車、柴油機車與客車廂，還能看到火車頭調頭用的圓形轉車台，鐵道迷與小朋友都會為之瘋狂。',
+        highlights: ['近距離與經典百年「Shay 式蒸汽火車頭」合影', '參觀運作中的阿里山林鐵維修車庫與圓形轉車台', '順遊一旁的北門驛百年木造車站'],
+        hours: '08:00 – 18:00', ticket: '免費參觀',
+        address: '嘉義市東區林森西路 2 號',
+        transport: '嘉義火車站搭乘公車至「文化中心站」下車步行 3 分鐘。',
+        duration: '1 – 1.5 小時', summerTip: '與對面的「檜意森活村」僅隔一條馬路，非常適合安排一起順遊！'
+      },
+
+      // === 嘉義縣 (3) ===
+      {
+        id: 'cyo-1', countyId: 'chiayi-county', countyName: '嘉義縣', region: '南部',
+        name: '阿里山國家森林遊樂區', category: '自然秘境', rating: 4.9,
+        tags: ['日出雲海', '森林小火車', '神木群步道', '夏日避暑18度'],
+        summary: '名揚國際的台灣山林瑰寶，夏季均溫僅 18 度，搭乘小火車迎接祝山日出！',
+        description: '海拔超過 2,200 公尺的阿里山擁有「日出、雲海、晚霞、森林、高山鐵路」五大奇景。暑假平地酷熱難耐時，阿里山卻是涼爽宜人的 18 度避暑天堂，漫步巨木群棧道與碧綠姐妹潭，身心徹底被大自然療癒。',
+        highlights: ['清晨搭乘祝山線小火車前往小笠原山觀景台賞 360 度日出', '漫步受鎮宮神木群棧道與夢幻姐妹潭', '下山順遊「奮起湖老街」品嚐經典鐵路便當與現烤甜甜圈'],
+        hours: '24 小時開放', ticket: '本國籍全票 NT$200 / 優待票 NT$100',
+        address: '嘉義縣阿里山鄉中正村 59 號',
+        transport: '從嘉義高鐵站或嘉義火車站搭乘「台灣好行阿里山線」約 2.5 小時直達。',
+        duration: '半日 – 2 天 1 夜', summerTip: '清晨觀日出氣溫僅約 10–12 度，即使暑假上山也務必攜帶防風保暖外套！'
+      },
+      {
+        id: 'cyo-2', countyId: 'chiayi-county', countyName: '嘉義縣', region: '南部',
+        name: '故宮南院與蒜頭糖廠五分車', category: '文化古蹟', rating: 4.7,
+        tags: ['博物館吹冷氣', '水舞燈光秀', '百年五分車', '親子美學'],
+        summary: '流線型現代建築藝術殿堂，夏季夜晚還有湖面水舞光雕秀與五分車體驗。',
+        description: '國立故宮博物院南部院區以濃墨、飛白與渲染三種書法筆意打造出震撼的流線型建築，館內典藏亞洲藝術珍品並設有兒童創意中心。走出館外還可搭乘連接高鐵站的「蒜頭糖廠五分車」，體驗懷舊製糖鐵道風情。',
+        highlights: ['吹冷氣欣賞故宮典藏文物與免費「兒童創意中心」互動遊戲', '至美橋與湖畔夏季限定夜間水舞雷射燈光秀', '搭乘「尋蜜號五分車」前往蒜頭糖廠吃紅豆鮮奶冰'],
+        hours: '博物館 09:00–17:00（週一休館）；戶外園區 05:00–24:00', ticket: '博物館全票 NT$150 / 學生與未滿18歲免費',
+        address: '嘉義縣太保市故宮大道 888 號',
+        transport: '高鐵嘉義站轉乘「尋蜜號五分車」或免費接駁公車約 10 分鐘即達。',
+        duration: '3 – 4 小時', summerTip: '未滿 18 歲學生憑證件免費入館，是暑假親子高質感室內避暑的首選！'
+      },
+      {
+        id: 'cyo-3', countyId: 'chiayi-county', countyName: '嘉義縣', region: '南部',
+        name: '東石漁人碼頭', category: '海灘玩水', rating: 4.5,
+        tags: ['親子戲水區', '白沙灘', '烤鮮蚵吃到飽', '海風吹拂'],
+        summary: '結合荷蘭風車意象、大白沙灘與免費噴水戲水區的親子海岸樂園。',
+        description: '東石漁人碼頭以「風、陽光、魚、船」為設計主題，園區內設有適合小朋友安全玩水的「鯨魚池戲水區」與細白沙灘，玩水後還能到海鮮美食街品嚐現烤鮮蚵、蚵仔煎與花枝丸，物美價廉。',
+        highlights: ['夏季開放免費鯨魚池親子戲水區與白沙灘堆沙堡', '彩色歐風小屋與堤防海景夕陽散步', '大啖肥美鮮甜的東石現烤生蠔與海鮮料理'],
+        hours: '全天開放（戲水區夏季週末及暑假期間開放）', ticket: '免費入園',
+        address: '嘉義縣東石鄉彩霞大道 420 號',
+        transport: '高鐵嘉義站搭乘「台灣好行鹽鄉濱海線」至東石漁人碼頭站下車。',
+        duration: '2.5 – 3.5 小時', summerTip: '建議下午 3 點半後抵達，太陽較溫和，玩水後剛好在港邊看夕陽吃晚餐！'
+      },
+
+      // === 台南市 (4) ===
+      {
+        id: 'tn-1', countyId: 'tainan', countyName: '台南市', region: '南部',
+        name: '安平古堡與安平樹屋', category: '文化古蹟', rating: 4.7,
+        tags: ['台灣歷史起點', '老榕樹奇景', '安平老街', '古蹟巡禮'],
+        summary: '走訪近四百年歷史的熱蘭遮城遺跡，驚嘆老榕樹氣根與百年倉庫共生的奇景。',
+        description: '安平是台灣歷史文化的發源地，登上安平古堡瞭望台可遠眺安平港景；不遠處的「安平樹屋」原為德記洋行倉庫，經過百年歲月被巨大的榕樹氣根完全盤踞包覆，形成「樹中有牆、牆中有樹」的魔幻生態奇觀。',
+        highlights: ['安平樹屋空中木棧道穿梭於百年榕樹氣根之間', '延平老街尋訪可愛劍獅圖騰並品嚐同記安平豆花', '順遊安平定情碼頭德陽艦園區登上驅逐艦參觀'],
+        hours: '08:30 – 17:30', ticket: '安平古堡與樹屋各全票 NT$70 / 學生票 NT$35',
+        address: '台南市安平區國勝路 82 號',
+        transport: '台南火車站搭乘台灣好行「99 安平台江線」或 2 路公車直達安平。',
+        duration: '3 – 4 小時', summerTip: '安平樹屋在茂密大樹遮蔭下比戶外涼爽許多，樹屋咖啡廳還有美味的蜷尾家霜淇淋！'
+      },
+      {
+        id: 'tn-2', countyId: 'tainan', countyName: '台南市', region: '南部',
+        name: '四草綠色隧道', category: '自然秘境', rating: 4.8,
+        tags: ['台版亞馬遜', '紅樹林生態', '竹筏體驗', '天使之吻'],
+        summary: '搭乘觀光竹筏穿越兩側紅樹林交織而成的翠綠水上隧道，倒影美如仙境。',
+        description: '位於台江國家公園內的四草綠色隧道，是台灣唯一的水上綠色河道。遊客戴上斗笠搭乘電動管筏緩緩前行，兩岸五梨跤、水筆仔與海茄苳枝葉在頭頂交會，陽光穿透樹梢灑落水面，形成令人屏息的「天使之吻」倒影。',
+        highlights: ['搭乘竹筏穿越茂密紅樹林水上隧道拍攝「天使之吻」倒影', '近距離觀察灘塗上的招潮蟹與彈塗魚生態', '順遊純白高腳屋建築美學「台江國家公園遊客中心」'],
+        hours: '08:00 – 16:30（依現場船班售票情況調整）', ticket: '全票 NT$200 / 兒童票 NT$100',
+        address: '台南市安南區大眾路 360 號',
+        transport: '台南火車站搭乘台灣好行「99 安平台江線」至四草大眾廟站下車。',
+        duration: '1.5 – 2 小時', summerTip: '建議上午 9 點至 10 點或下午 3 點左右搭乘，光線斜射穿透樹林時拍照最夢幻！'
+      },
+      {
+        id: 'tn-3', countyId: 'tainan', countyName: '台南市', region: '南部',
+        name: '奇美博物館', category: '文化古蹟', rating: 4.9,
+        tags: ['歐風純白宮殿', '室內冷氣', '西洋藝術兵器', '親子野餐'],
+        summary: '彷彿置身歐洲凡爾賽宮的純白圓頂博物館，館藏豐富且冷氣超涼爽！',
+        description: '位於台南都會公園內的奇美博物館，以西洋古典美學建築與阿波羅噴泉震撼人心。館內展出西洋藝術、動物標本、古兵器與全球最大的提琴收藏，兼具知性與娛樂性，是暑假台南必訪的頂級文化地標。',
+        highlights: ['阿波羅噴泉與奧林帕斯橋十二神祇雕塑拍照', '館內參觀逼真動物標本廳與自動演奏樂器劇場', '傍晚在都會公園湖畔草地散步吹風'],
+        hours: '09:30 – 17:30（週三休館）', ticket: '常設展全票 NT$200 / 學生票 NT$150（戶外園區免費）',
+        address: '台南市仁德區文華路二段 66 號',
+        transport: '搭乘台鐵沙崙線至「保安火車站」下車步行約 10 分鐘即達。',
+        duration: '3 – 4 小時', summerTip: '館內禁止飲食但有精緻咖啡廳，建議先在博物館吹冷氣逛展，下午 5 點再到戶外拍建築倒影！'
+      },
+      {
+        id: 'tn-4', countyId: 'tainan', countyName: '台南市', region: '南部',
+        name: '花園夜市與國華街美食', category: '在地夜市', rating: 4.8,
+        tags: ['美食之都', '大大武花大武花', '牛肉湯', '芒果冰'],
+        summary: '走進南台灣規模最大的花園夜市與國華街，從早到晚品嚐傳奇府城小吃。',
+        description: '台南夜市口訣「大大武花大武花」中的花園夜市（週四、六、日營業）佔地廣大、旗海飄揚；若平日造訪則可前往國華街與神農街，品嚐現燙溫體牛肉湯、富盛號碗粿、捲尾家霜淇淋與清涼芒果冰。',
+        highlights: ['花園夜市必吃二師兄滷味、統大炭烤雞排與陳記麻辣鴨血', '國華街與友愛街品嚐現燙牛肉湯、小卷米粉與白糖粿', '漫步百盞燈籠點綴的文青老街「神農街」'],
+        hours: '花園夜市週四、六、日 17:00–24:00；國華街全天營業', ticket: '免費入場',
+        address: '台南市北區海安路三段 533 號',
+        transport: '台南火車站搭乘 0 左、0 右路公車或計程車約 10 分鐘即可抵達。',
+        duration: '2 – 3 小時', summerTip: '來台南暑假一定要吃一碗現切新鮮愛文芒果冰，香甜消暑！'
+      },
+
+      // === 高雄市 (4) ===
+      {
+        id: 'kh-1', countyId: 'kaohsiung', countyName: '高雄市', region: '南部',
+        name: '駁二藝術特區與大港橋', category: '文化古蹟', rating: 4.8,
+        tags: ['輕軌漫遊', '旋轉大港橋', '文創倉庫', '港灣海風'],
+        summary: '百年港口舊倉庫華麗轉身藝術特區，搭乘輕軌欣賞全台首座水平旋轉橋。',
+        description: '駁二藝術特區分為大勇、蓬萊與大義三大倉庫群，充滿巨型戶外裝置藝術、文創市集與設計小店。連接駁二與棧貳庫的「大港橋」是亞洲最長跨港旋轉橋，每天下午 3 點上演浪漫的水平旋轉開合秀！',
+        highlights: ['每日下午 15:00 觀賞白色貝殼造型的「大港橋水平旋轉秀」', '搭乘高雄環狀輕軌穿梭於綠色草皮與港灣建築之間', '順遊棧貳庫 KW2 白色旋轉木馬與海景美食街'],
+        hours: '戶外全天開放（倉庫店家約 10:00–20:00）', ticket: '免費參觀',
+        address: '高雄市鹽埕區大勇路 1 號',
+        transport: '高雄捷運橘線「鹽埕埔站」1 號出口或輕軌「駁二大義站」下車即達。',
+        duration: '3 – 4 小時', summerTip: '別忘了順道走進鹽埕區老街品嚐樺達奶茶總店、鴨肉珍與婆婆冰！'
+      },
+      {
+        id: 'kh-2', countyId: 'kaohsiung', countyName: '高雄市', region: '南部',
+        name: '旗津海水浴場與彩虹教堂', category: '海灘玩水', rating: 4.7,
+        tags: ['搭渡輪', '沙灘踏浪', '黑沙玩藝節', '海產美食'],
+        summary: '搭乘渡輪跨海 5 分鐘即達的熱帶半島，享受黑沙灘踏浪與夕陽海景。',
+        description: '從鼓山輪渡站搭乘渡輪吹著海風抵達旗津，綿延的細緻黑沙灘是高雄人暑假玩水消暑勝地，夏季常舉辦「旗津黑沙玩藝節」與沙灘音樂派對；沿海岸單車道騎行還能打卡彩虹教堂、海珍珠與旗後砲台。',
+        highlights: ['旗津海水浴場安全警戒區踏浪玩水與沙灘排球', '純白幾何「旗津彩虹教堂」與巨型貝殼「海珍珠」美拍', '廟前路海產街大啖現烤小卷、番茄切盤與大碗公海之冰'],
+        hours: '全天開放（海水浴場救生員執勤時間約 09:00–18:00）', ticket: '免費參觀（渡輪單程全票 NT$30 / 悠遊卡享優惠）',
+        address: '高雄市旗津區廟前路 1 號',
+        transport: '捷運橘線「西子灣站」步行至鼓山輪渡站，轉乘渡輪約 5 分鐘抵達旗津。',
+        duration: '半日', summerTip: '建議下午 4 點後再搭船前往旗津，避開正午烈日，玩水後剛好在海邊看夕陽！'
+      },
+      {
+        id: 'kh-3', countyId: 'kaohsiung', countyName: '高雄市', region: '南部',
+        name: '義大遊樂世界', category: '親子樂園', rating: 4.6,
+        tags: ['希臘愛琴海風', '全台最大室內遊樂館', '不怕日曬雨淋', '摩天輪'],
+        summary: '全台唯一希臘愛琴海藍白山城主題樂園，擁有最大室內親子遊樂館！',
+        description: '義大遊樂世界擁有衛城、聖托里尼山城與特洛伊城堡三大主題區。其中「特洛伊城堡」是全台最大的室內親子遊樂館，擁有超過 30 項冷氣室內設施，讓家長與孩子在炎炎夏日也能舒適暢玩一整天。',
+        highlights: ['在藍白相間的「聖托里尼山城」拍出希臘度假大片', '特洛伊城堡室內冷氣區暢玩旋轉木馬、飛越台灣模擬飛行', '緊鄰義大世界購物廣場與摩天輪一站式度假'],
+        hours: '09:00 – 17:30（暑假期間延長至 20:00）', ticket: '全票 NT$899 / 學童票 NT$580',
+        address: '高雄市大樹區學城路一段 10 號',
+        transport: '高鐵左營站搭乘義大客運 8501 路約 20 分鐘直達園區。',
+        duration: '1 日', summerTip: '暑假期間常推出「水戰遊行」活動，記得準備輕便雨衣或換洗衣物加入潑水同樂！'
+      },
+      {
+        id: 'kh-4', countyId: 'kaohsiung', countyName: '高雄市', region: '南部',
+        name: '瑞豐與六合觀光夜市', category: '在地夜市', rating: 4.7,
+        tags: ['捷運直達', '天使雞排', '木瓜牛奶', '港都夜生活'],
+        summary: '高雄兩大超人氣指標夜市，匯集南台灣豪邁份量小吃與消暑木瓜牛奶。',
+        description: '位於巨蛋商圈的「瑞豐夜市」（週二、四、五、六、日營業）是高雄在地人最愛，攤位密集、創意美食林立；「六合夜市」則天天營業、道路寬敞好逛，來一杯香濃鄭老牌木瓜牛奶配海產粥最對味。',
+        highlights: ['瑞豐夜市必吃萬國牛排、天使雞排、沖繩酥炸大魷魚', '六合夜市經典鄭老牌木瓜牛奶、莊記海產粥與烤肉之家', '搭乘高雄捷運紅線即可輕鬆抵達兩大夜市'],
+        hours: '17:00 – 24:00', ticket: '免費入場',
+        address: '高雄市左營區裕誠路與南屏路口（瑞豐夜市）',
+        transport: '高雄捷運紅線「巨蛋站」1 號出口步行 3 分鐘達瑞豐；「美麗島站」達六合。',
+        duration: '2 小時', summerTip: '抵達美麗島站時別忘了抬頭欣賞世界最美捷運站之一的「光之穹頂」玻璃藝術！'
+      },
+
+      // === 屏東縣 (4) ===
+      {
+        id: 'pt-1', countyId: 'pingtung', countyName: '屏東縣', region: '南部',
+        name: '墾丁白沙灣與南灣水上活動', category: '海灘玩水', rating: 4.9,
+        tags: ['國境之南', '香蕉船水上摩托車', '白沙灘', '墾丁大街'],
+        summary: '熱帶陽光與漸層寶石藍大海，體驗刺激水上活動與純白貝殼沙灘踏浪！',
+        description: '墾丁是台灣暑假熱血玩水的代名詞！「南灣」擁有多樣刺激的水上摩托車、香蕉船與衝浪體驗；而《少年 Pi 的奇幻漂流》取景地「白沙灣」則擁有長達 500 公尺的純白貝殼沙灘與清澈海水，入夜後再到墾丁大街感受南國夜生活。',
+        highlights: ['南灣體驗香蕉船、大力水手與海上拖曳傘水上活動', '白沙灣純白細軟貝殼沙灘踏浪與夕陽發呆', '夜晚逛墾丁大街品嚐泰式料理、調酒與海鮮燒烤'],
+        hours: '全天開放（水上活動約 08:30–17:30）', ticket: '沙灘免費進入（水上活動依項目收費）',
+        address: '屏東縣恆春鎮白砂路 / 南灣路',
+        transport: '高鐵左營站搭乘「台灣好行 9189 墾丁快線」直達南灣與墾丁。',
+        duration: '1 – 2 日', summerTip: '墾丁夏季陽光極為熱情，務必使用海洋友善防曬乳，保護珊瑚礁生態也保護肌膚！'
+      },
+      {
+        id: 'pt-2', countyId: 'pingtung', countyName: '屏東縣', region: '南部',
+        name: '國立海洋生物博物館', category: '親子樂園', rating: 4.9,
+        tags: ['夜宿海生館', '海底隧道', '小白鯨與企鵝', '全室內冷氣'],
+        summary: '全台規模最大的海洋生物博物館，走進夢幻海底隧道與企鵝共眠！',
+        description: '屏東海生館分為台灣水域館、珊瑚王國館與世界水域館，擁有亞洲最長的海底隧道與三層樓高的巨型海藻森林缸。暑假最夢幻的「夜宿海生館」活動更能讓親子在魚群與小白鯨陪伴下進入夢鄉。',
+        highlights: ['穿越 84 公尺長海底隧道與魔鬼魟魚、鯊魚擦身而過', '世界水域館觀賞呆萌企鵝與巨型海藻森林餵食秀', '館外鯨魚親水廣場免費玩水消暑'],
+        hours: '09:00 – 17:30（暑假期間 08:00 提前開館）', ticket: '全票 NT$450 / 優待票 NT$250',
+        address: '屏東縣車城鄉後灣村後灣路 2 號',
+        transport: '搭乘墾丁快線至「南保力站」轉乘墾丁街車橘線直達海生館。',
+        duration: '半日 – 2 天 1 夜（夜宿）', summerTip: '暑假「夜宿海生館」海底隧道區與極地水域區極為熱門，建議提前 2 個月官網預約！'
+      },
+      {
+        id: 'pt-3', countyId: 'pingtung', countyName: '屏東縣', region: '南部',
+        name: '小琉球花瓶岩與海龜浮潛', category: '海灘玩水', rating: 4.9,
+        tags: ['與海龜共游', '玻璃船', '珊瑚礁島', '免搭飛機離島'],
+        summary: '搭船 20 分鐘即達的珊瑚礁小島，浮潛 99% 機率與野生綠蠵龜悠游！',
+        description: '小琉球是台灣唯一的珊瑚礁島嶼，海水清澈見底且全島棲息著上百隻保育類綠蠵龜。暑假來到小琉球，無論是參加教練帶領的浮潛、透明獨木舟，或搭乘半潛艇玻璃船，都能近距離看見海龜在身邊優雅換氣。',
+        highlights: ['花瓶岩或美人洞海域浮潛與野生綠蠵龜同框合影', '體驗全透明獨木舟與 SUP 立槳拍出漂浮海上美照', '環島打卡烏鬼洞、山豬溝生態步道與網美老木'],
+        hours: '全天開放', ticket: '三大風景區聯票全票 NT$120 / 半票 NT$60',
+        address: '屏東縣琉球鄉（東港碼頭搭船前往）',
+        transport: '高鐵左營站搭接駁車至東港碼頭，轉乘東琉線交通船約 20 分鐘抵達白沙尾港。',
+        duration: '1 – 2 日', summerTip: '與海龜共游請務必遵守「不觸摸、不追逐、不餵食、保持 5 公尺距離」守則喔！'
+      },
+      {
+        id: 'pt-4', countyId: 'pingtung', countyName: '屏東縣', region: '南部',
+        name: '東港華僑市場（漁港漁產品直銷中心）', category: '在地夜市', rating: 4.7,
+        tags: ['黑鮪魚生魚片', '現撈海鮮', '雙糕潤', '搭船順遊'],
+        summary: '南台灣最澎湃的海鮮美食寶庫，厚切生魚片、旗魚黑輪與炭烤海鮮現點現吃！',
+        description: '緊鄰小琉球搭船碼頭的東港華僑市場，擁有超過四百個攤位，每天午後漁船進港後鮮貨雲集。這裡能以超親民價格大啖入口即化的東港黑鮪魚、鮭魚厚切生魚片、現炸旗魚黑輪與傳統甜點雙糕潤。',
+        highlights: ['品嚐厚切鮮甜生魚片與炙燒握壽司名店', '現炸包水煮蛋的東港招牌「旗魚黑輪」', '購買東港三寶伴手禮（櫻花蝦、油魚子）與邱記雙糕潤'],
+        hours: '11:00 – 20:00（每月第一個週二公休）', ticket: '免費入場',
+        address: '屏東縣東港鎮朝隆路 39 號',
+        transport: '高鐵左營站搭乘 9127D 大鵬灣琉球線公車至「東琉線碼頭站」步行 2 分鐘。',
+        duration: '1.5 – 2 小時', summerTip: '安排小琉球跳島旅遊時，去程或回程直接在東港華僑市場享用午餐最適合不過！'
+      },
+
+      // === 宜蘭縣 (4) ===
+      {
+        id: 'yln-1', countyId: 'yilan', countyName: '宜蘭縣', region: '東部',
+        name: '龜山島賞鯨與牛奶海', category: '海灘玩水', rating: 4.8,
+        tags: ['夢幻牛奶海', '賞鯨豚跳躍', '登島401高地', '遊艇派對'],
+        summary: '出海追逐成群飛旋海豚躍出水面，一睹海底溫泉交融出的夢幻「牛奶海」！',
+        description: '龜山島是宜蘭最具代表性的海上地標，每年暑假正是賞鯨豚與登島的最佳季節！海域內飛旋海豚與瓶鼻海豚出現率高達九成以上，島嶼東側因海底溫泉湧出與海水交融，形成蒂芬妮藍與乳白色漸層的奇幻「牛奶海」。',
+        highlights: ['搭乘賞鯨船近距離欣賞數百隻野生海豚海上特技', '遊艇或 SUP 體驗親近絕美蒂芬妮藍「龜山島牛奶海」', '預約登島探訪軍事坑道與龜尾湖風光'],
+        hours: '每年 3 月至 11 月開放登島與賞鯨船班（需提前預約）', ticket: '賞鯨+繞島船票約 NT$1,000–1,200/人',
+        address: '宜蘭縣頭城鎮烏石港路 168 號（烏石港報到登船）',
+        transport: '搭乘台鐵至「外澳站」或「頭城站」，轉乘計程車約 5 分鐘至烏石港遊客中心。',
+        duration: '3 – 4 小時', summerTip: '夏季海象最平穩，但容易暈船者建議開船前 30 分鐘服用暈船藥。'
+      },
+      {
+        id: 'yln-2', countyId: 'yilan', countyName: '宜蘭縣', region: '東部',
+        name: '國立傳統藝術中心（宜蘭傳藝園區）', category: '文化古蹟', rating: 4.7,
+        tags: ['紅磚古街', '傳統戲曲遊行', '親子DIY', '水上巴士'],
+        summary: '走進充滿古早味的紅磚街道與文昌祠，體驗藍染、捏麵人與精彩民俗大秀。',
+        description: '宜蘭傳藝園區將台灣傳統聚落建築與工藝美學完美重現，每天上演熱鬧的踩街遊行與傳統戲曲表演。園區內提供超過數十種親子手作 DIY（藍染、木工、玻璃吹製），還能搭乘水上巴士遊覽冬山河畔。',
+        highlights: ['每天兩場精彩熱鬧的園區踩街大遊行與劇場表演', '親子共同體驗藍染、柑仔店童玩與糖蔥製作', '搭乘畫舫船遊覽冬山河欣賞水岸風光'],
+        hours: '09:00 – 18:00（暑假週末延長夜間開放）', ticket: '普通票 NT$150 / 優待票 NT$120 / 6歲以下免費',
+        address: '宜蘭縣五結鄉五濱路二段 201 號',
+        transport: '羅東火車站後站搭乘台灣好行「冬山河線」直達傳藝園區門口。',
+        duration: '3 – 4 小時', summerTip: '園區內許多工藝教室都有冷氣，中午炎熱時最適合帶孩子進教室體驗手作 DIY！'
+      },
+      {
+        id: 'yln-3', countyId: 'yilan', countyName: '宜蘭縣', region: '東部',
+        name: '外澳沙灘衝浪與蘭陽博物館', category: '海灘玩水', rating: 4.7,
+        tags: ['新手衝浪勝地', '遠眺龜山島', '單面山建築', '室內吹冷氣'],
+        summary: '在平緩黑沙灘體驗人生第一次衝浪，午後走進幾何單面山博物館吹冷氣！',
+        description: '外澳沙灘擁有綿延平坦的細黑沙灘與穩定浪況，對面就是清晰的龜山島，是北台灣最適合初學者體驗衝浪與踏浪的海灘。鄰近的「蘭陽博物館」以北關海岸單面山為造型，倒映在濕地水面美如建築藝術品。',
+        highlights: ['專業教練一對一教學體驗人生第一道衝浪快感', '外澳海景咖啡館正面遠眺龜山島享用早午餐', '走進冷氣涼爽的蘭陽博物館認識宜蘭山海文化'],
+        hours: '沙灘全天開放；蘭陽博物館 09:00–17:00（週三休館）', ticket: '沙灘免費；蘭陽博物館全票 NT$100 / 學生票 NT$50',
+        address: '宜蘭縣頭城鎮濱海路二段 6 號',
+        transport: '搭乘台鐵區間車至「外澳站」出站過馬路即達外澳沙灘。',
+        duration: '3 – 4 小時', summerTip: '外澳車站出站即海灘，不用開車也能輕鬆來一趟說走就走的看海玩水小旅行！'
+      },
+      {
+        id: 'yln-4', countyId: 'yilan', countyName: '宜蘭縣', region: '東部',
+        name: '羅東觀光夜市', category: '在地夜市', rating: 4.7,
+        tags: ['三星蔥餅', '當歸羊肉湯', '包心粉圓', '宜蘭必逛'],
+        summary: '圍繞羅東中山公園的美食不夜城，三星蔥料理與包心粉圓讓人回味無窮。',
+        description: '羅東夜市是宜蘭最熱鬧的夜間美食中心，無論是湯頭甘甜的阿灶伯當歸羊肉湯、外酥內多汁的三星蔥多餅、一串心，還是冷熱交融的魏姐包心粉圓，都展現蘭陽平原滿滿的在地美味。',
+        highlights: ['必吃現煎爆汁的三星蔥多餅與義豐蔥油派', '冷熱交替超消暑的「魏姐包心粉圓」雪沙冰', '品嚐宜蘭特色小吃糕渣、卜肉與龍鳳腿'],
+        hours: '15:00 – 24:00', ticket: '免費入場',
+        address: '宜蘭縣羅東鎮興東路與民權路口',
+        transport: '羅東火車站前站沿公正路步行約 6 分鐘即可抵達。',
+        duration: '2 小時', summerTip: '暑假週末羅東夜市人潮非常踴躍，建議 17:30 前抵達先吃一輪最舒適！'
+      },
+
+      // === 花蓮縣 (4) ===
+      {
+        id: 'hl-1', countyId: 'hualien', countyName: '花蓮縣', region: '東部',
+        name: '七星潭海岸風景區', category: '自然秘境', rating: 4.9,
+        tags: ['太平洋月牙灣', '疊石頭許願', '自行車道', '日出聖地'],
+        summary: '壯麗的太平洋弧形月牙海灣，聆聽海浪沖刷圓潤鵝卵石的療癒交響曲。',
+        description: '七星潭並非湖泊，而是一處被中央山脈與太平洋擁抱的優美弧形海灣。湛藍漸層的海水拍打著潔白鵝卵石海灘，發出清脆悅耳的浪濤聲，沿著濱海自行車道騎行吹海風，是花蓮最經典的夏日記憶。',
+        highlights: ['在礫石海灘疊起 7 顆鵝卵石許下夏日心願', '騎乘兩潭自行車道從七星潭一路吹海風賞太平洋', '順遊四八高地戰備坑道俯瞰月牙灣全景'],
+        hours: '全天開放', ticket: '免費參觀',
+        address: '花蓮縣新城鄉七星街 79 巷 5 號',
+        transport: '花蓮火車站搭乘台灣好行「310 太魯閣線」或計程車約 15 分鐘直達。',
+        duration: '1.5 – 2.5 小時', summerTip: '七星潭海域為陡降型海灘暗流強勁，請在岸邊踏浪觀海即可，切勿下水游泳，也別把石頭帶回家喔！'
+      },
+      {
+        id: 'hl-2', countyId: 'hualien', countyName: '花蓮縣', region: '東部',
+        name: '遠雄海洋公園', category: '親子樂園', rating: 4.8,
+        tags: ['太平洋海景樂園', '美人魚實境秀', '海豚海獅表演', '水花派對'],
+        summary: '依山傍海的太平洋主題樂園，邊玩雲霄飛車邊俯瞰無敵海景與華麗人魚秀！',
+        description: '遠雄海洋公園坐落於壽豐鄉鹽寮海濱山坡上，結合海洋生態劇場、刺激遊樂設施與夢幻水晶城堡。暑假期間推出盛大的「海洋冰風暴水花派對」，讓大人小孩在太平洋海風中打水仗清涼狂歡！',
+        highlights: ['探險島水族館海底隧道與全台唯一「美人魚實境秀」', '搭乘愛情摩天輪從高空俯瞰 180 度太平洋海天一色', '暑假限定「海洋冰風暴」水花派對清涼濕身同樂'],
+        hours: '09:30 – 17:00（暑假期間延長至 18:30）', ticket: '全票 NT$990 / 優待票 NT$890 / 學童票 NT$690',
+        address: '花蓮縣壽豐鄉鹽寮村福德 189 號',
+        transport: '花蓮火車站搭乘花蓮客運 1140、1145 路公車約 30 分鐘直達門口。',
+        duration: '1 日', summerTip: '入園時先拍下當日各項劇場表演時間表，能順暢銜接海豚秀、海獅秀與美人魚秀！'
+      },
+      {
+        id: 'hl-3', countyId: 'hualien', countyName: '花蓮縣', region: '東部',
+        name: '瑞穗牧場與赤科山金針花海', category: '自然秘境', rating: 4.8,
+        tags: ['八月金針花季', '台版小瑞士', '鮮奶饅頭', '花東縱谷'],
+        summary: '喝一杯現擠香濃瑞穗鮮奶，八月登上高山欣賞滿山遍野的澄黃色金針花海！',
+        description: '花東縱谷擁有純淨水源與肥沃草原，瑞穗牧場可以免費入園餵鴕鳥與乳牛，品嚐現蒸鮮奶饅頭與鮮奶酪。每年 8 月至 9 月，玉里赤科山與富里六十石山更迎來金色金針花海盛開，宛如金色地毯鋪滿山頭。',
+        highlights: ['瑞穗牧場品嚐現擠鮮奶、鮮奶冰淇淋與炸鮮奶饅頭', '每年 8 月下旬造訪赤科山或六十石山「忘憂金針花海」', '順遊北回歸線標誌公園與光復糖廠吃古早味冰棒'],
+        hours: '瑞穗牧場 08:00–17:30；金針花山全天開放', ticket: '均為免費參觀',
+        address: '花蓮縣瑞穗鄉舞鶴村 157 號',
+        transport: '搭乘台鐵至「瑞穗站」或「玉里站」後，建議租車自駕或包車暢遊花東縱谷。',
+        duration: '半日', summerTip: '金針花海盛開期集中在每年 8 月中旬至 9 月中旬，山上涼爽宜人超好拍！'
+      },
+      {
+        id: 'hl-4', countyId: 'hualien', countyName: '花蓮縣', region: '東部',
+        name: '東大門國際觀光夜市', category: '在地夜市', rating: 4.8,
+        tags: ['原住民一條街', '寬敞步道', '花蓮必逛', '街頭藝人'],
+        summary: '全台規劃最寬敞舒適的觀光夜市，結合原住民風味烤肉與各省一條街美食。',
+        description: '佔地廣達 9 公頃的東大門夜市包含福町夜市、原住民一條街、大陸各省一條街與自強夜市四大區。寬敞平坦的石板步道逛起來毫不擁擠，還有原住民竹筒飯、石板烤肉、第一家烤肉串與果汁現打名店。',
+        highlights: ['原住民一條街大啖現烤山豬肉、竹筒飯與小米酒特調', '必排自強夜市第一家烤肉串、蔣家棺材板與妙不可言果汁', '中央廣場每晚皆有精彩街頭藝人駐唱表演'],
+        hours: '17:30 – 23:30', ticket: '免費入場',
+        address: '花蓮縣花蓮市中山路 50 號',
+        transport: '花蓮火車站搭乘公車（如 301、307 路）至「重慶市場（東大門夜市）」下車。',
+        duration: '2 – 2.5 小時', summerTip: '夜市旁就是日出香榭大道與太平洋公園，吃飽後還能散步去吹太平洋晚風！'
+      },
+
+      // === 台東縣 (4) ===
+      {
+        id: 'tt-1', countyId: 'taitung', countyName: '台東縣', region: '東部',
+        name: '鹿野高台台灣國際熱氣球嘉年華', category: '親子樂園', rating: 4.9,
+        tags: ['熱氣球繫留體驗', '光雕音樂會', '大草原滑草', '暑假盛典'],
+        summary: '每年暑假全台灣最夢幻的夏日盛會！數十顆造型熱氣球在花東縱谷緩緩升空。',
+        description: '每年 7 月至 8 月在台東鹿野高台舉辦的「台灣國際熱氣球嘉年華」，吸引世界各地可愛造型熱氣球齊聚一堂。清晨與傍晚不僅能搭乘熱氣球繫留體驗俯瞰縱谷茶園，夜間還有結合無人機與煙火的光雕音樂會！',
+        highlights: ['搭乘熱氣球繫留升空俯瞰鹿野棋盤狀茶園與縱谷美景', '欣賞可愛造型熱氣球展演與夜間光雕煙火音樂會', '白天體驗刺激有趣的鹿野高台大草原滑草'],
+        hours: '熱氣球展演分清晨場 05:30–07:00 與傍晚場 17:00–18:30', ticket: '園區免費（熱氣球繫留體驗 NT$550–650/人，需預約）',
+        address: '台東縣鹿野鄉永安村高台路 46 號',
+        transport: '搭乘台鐵至「鹿野火車站」轉乘台灣好行「縱谷鹿野線」直達鹿野高台。',
+        duration: '半日', summerTip: '想看熱氣球升空務必挑「清晨 5 點半」或「傍晚 5 點」兩個時段，正午太陽大是不會充氣立球的喔！'
+      },
+      {
+        id: 'tt-2', countyId: 'taitung', countyName: '台東縣', region: '東部',
+        name: '三仙台跨海步橋', category: '自然秘境', rating: 4.8,
+        tags: ['八拱跨海步橋', '太平洋第一道曙光', '海蝕奇岩', '無敵藍海'],
+        summary: '宛如巨龍伏臥在太平洋上的八拱紅色跨海步橋，迎接台灣本島第一道曙光。',
+        description: '三仙台由離岸小島與珊瑚礁海岸構成，相傳八仙中的呂洞賓、李鐵拐、何仙姑曾登島休憩而得名。波浪造型的八拱跨海步橋橫越湛藍太平洋，與海蝕洞、礫石海灘交織出氣勢磅礴的東海岸絕景。',
+        highlights: ['遠眺或漫步波浪造型「八拱跨海步橋」欣賞太平洋海景', '礫石海灘聆聽海浪沖刷麥飯石的清脆浪聲', '順遊成功漁港品嚐新鮮現切旗魚生魚片與東河包子'],
+        hours: '全天開放（園區清潔維護時間 08:30–17:00）', ticket: '免門票（小型車清潔費平日 NT$50 / 假日 NT$60）',
+        address: '台東縣成功鎮基翬路 74 號',
+        transport: '台東火車站搭乘鼎東客運海線或台灣好行「東部海岸線」直達三仙台。',
+        duration: '1.5 – 2 小時', summerTip: '跨海步橋無遮蔽物，夏季請做好防曬並攜帶飲用水，順遊成功鎮吃海鮮超滿足！'
+      },
+      {
+        id: 'tt-3', countyId: 'taitung', countyName: '台東縣', region: '東部',
+        name: '伯朗大道與池上單車漫遊', category: '自然秘境', rating: 4.9,
+        tags: ['翠綠稻浪', '金城武樹', '天堂路', '池上便當'],
+        summary: '沒有一根電線桿遮擋視野的筆直田園大道，騎單車穿梭在翠綠波浪稻田中！',
+        description: '池上伯朗大道被譽為「翠綠的天堂路」，筆直道路兩旁是一望無際的稻田與壯麗中央山脈，全年禁止汽機車進入，非常適合全家租借電動協力車悠閒騎行，打卡金城武樹、大觀亭與波浪狀天堂路。',
+        highlights: ['騎乘電動四人協力車漫遊無電線桿的筆直伯朗大道', '打卡金城武樹、蔡依林樹與曲線優美的「天堂路」', '池上火車站前品嚐木盒裝經典「池上飯包」與大池豆皮店'],
+        hours: '全天開放', ticket: '免費參觀（租借電動腳踏車約 NT$300–600）',
+        address: '台東縣池上鄉錦新三號道路',
+        transport: '搭乘台鐵至「池上火車站」出站後，車站前即有多家單車租借店可騎車前往。',
+        duration: '2.5 – 3.5 小時', summerTip: '暑假 7 至 8 月正值二期稻作插秧後的一片翠綠嫩秧期，微風吹過宛如綠色海浪！'
+      },
+      {
+        id: 'tt-4', countyId: 'taitung', countyName: '台東縣', region: '東部',
+        name: '綠島朝日溫泉與藍洞秘境', category: '海灘玩水', rating: 4.9,
+        tags: ['世界級海底溫泉', '浮潛玻璃海', '哈巴狗與睡美人', '離島跳島'],
+        summary: '世界僅有三處的罕見海底溫泉，在太平洋海浪聲中泡湯看日出與滿天星斗！',
+        description: '從台東富岡漁港搭船 50 分鐘即可抵達火燒島「綠島」，這裡擁有能見度超過 30 公尺的琉璃藍海水與豐富珊瑚礁生態。夜晚在世界級「朝日溫泉」邊聽海浪邊仰望銀河，白天則到石朗或柴口浮潛與小丑魚共游。',
+        highlights: ['世界三大海底溫泉之一「朝日溫泉」邊泡海水溫泉邊迎接太平洋日出', '石朗或柴口保護區浮潛欣賞千年大香菇珊瑚與熱帶魚群', '環島打卡哈巴狗與睡美人岩、白色綠島燈塔與藍洞秘境'],
+        hours: '朝日溫泉夏季 05:00–24:00', ticket: '朝日溫泉全票 NT$250 / 優待票 NT$125',
+        address: '台東縣綠島鄉公館村溫泉 167 號',
+        transport: '台東火車站搭計程車至富岡漁港，轉乘交通船約 50 分鐘抵達綠島南寮港。',
+        duration: '2 天 1 夜', summerTip: '綠島環島一圈僅約 20 公里，建議提前預訂電動機車與船票套裝行程最划算！'
+      },
+
+      // === 澎湖縣 (4) ===
+      {
+        id: 'ph-1', countyId: 'penghu', countyName: '澎湖縣', region: '離島',
+        name: '澎湖跨海大橋與通梁古榕', category: '文化古蹟', rating: 4.8,
+        tags: ['澎湖必拍地標', '仙人掌冰', '三百年古榕樹', '跳島路線'],
+        summary: '橫跨吼門水道的純白跨海大橋，在三百年巨大榕樹蔭下品嚐酸甜仙人掌冰！',
+        description: '連接白沙與西嶼兩島的「澎湖跨海大橋」全長 2,494 公尺，白色拱門是每位旅人來到澎湖必拍的經典地標。橋頭旁的通梁古榕擁有超過三百年歷史，90 多條氣根交織成面積超過 600 平方公尺的天然巨型遮陽傘。',
+        highlights: ['與「澎湖跨海大橋」經典白色拱門與蔚藍海景合影', '走進通梁古榕遮天蔽日的涼爽氣根林道', '必吃橋頭易家或自由冰品的現挖澎湖仙人掌冰淇淋'],
+        hours: '全天開放', ticket: '免費參觀',
+        address: '澎湖縣白沙鄉通梁村與西嶼鄉橫礁村之間',
+        transport: '從馬公市區騎機車走縣道 203 線約 25 分鐘，或搭乘「台灣好行媽宮北環線」。',
+        duration: '1 – 1.5 小時', summerTip: '北環路線可一路串聯中屯風車、跨海大橋、大菓葉玄武岩與二崁聚落古厝！'
+      },
+      {
+        id: 'ph-2', countyId: 'penghu', countyName: '澎湖縣', region: '離島',
+        name: '七美雙心石滬與藍洞跳島', category: '海灘玩水', rating: 4.9,
+        tags: ['浪漫雙心石滬', '南方四島藍洞', '跳島遊艇', '漸層果凍海'],
+        summary: '搭快艇跳島巡禮南方四島奇幻藍洞，俯瞰七美懸崖下浪漫的「雙心石滬」！',
+        description: '參加澎湖南海跳島行程，搭乘快艇巡航無人島「西吉嶼藍洞（灶籠）」，陽光從海蝕洞頂端直射入碧藍海水，發出夢幻寶石藍光；接著登上七美島，親眼見證先民用玄武岩堆砌而成的浪漫「雙心石滬」。',
+        highlights: ['巡航西吉嶼天然海蝕奇觀「藍洞」拍攝寶石藍光影', '七美島俯瞰世界級文化景觀「雙心石滬」與小台灣奇岩', '順遊望安花宅古厝聚落與綠蠵龜保育中心'],
+        hours: '依南海遊艇船班時間（約 08:00–16:00）', ticket: '南海跳島一日遊船票約 NT$900–1,200/人（含島上機車）',
+        address: '澎湖縣七美鄉東湖村（馬公南海遊客中心搭船）',
+        transport: '於馬公市「南海遊客中心」搭乘合法跳島快艇前往七美與南方四島。',
+        duration: '1 日（跳島行程）', summerTip: '雙心石滬在「退潮前後」線條最清晰完整，跳島船班通常都會抓準潮汐時間開航！'
+      },
+      {
+        id: 'ph-3', countyId: 'penghu', countyName: '澎湖縣', region: '離島',
+        name: '奎壁山摩西分海', category: '自然秘境', rating: 4.8,
+        tags: ['大海分開奇景', '潮汐步道', '玄武岩沙洲', '親子自然課'],
+        summary: '見證《出埃及記》般的自然奇蹟！海水退潮時緩緩露出一條通往赤嶼的 S 型礫石步道。',
+        description: '位於湖西鄉北寮的奎壁山遊憩區，每天隨著海水退潮，原本淹沒在海面下的 300 公尺礫石沙洲會逐漸浮現，彷彿大海被一分為二，讓旅人能步行走上對面的無人小島「赤嶼」，極具震撼力。',
+        highlights: ['親眼目睹海水從左右兩側退去、露出 S 型步道的海分奇景', '觀察潮間帶玄武岩潮池中的海參、陽燧足與小螃蟹', '順遊南寮古厝浮球秘境與隘門金沙灘'],
+        hours: '依每日潮汐時間開放步道通行（務必查詢潮汐表）', ticket: '免費參觀',
+        address: '澎湖縣湖西鄉北寮村',
+        transport: '從馬公市區騎機車或開車約 20 分鐘，或搭乘「台灣好行媽宮湖西線」。',
+        duration: '1.5 – 2 小時', summerTip: '出發前務必先上網查詢「澎湖奎壁山摩西分海潮汐時間表」，在開始退潮前 20 分鐘抵達就能完整看見大海分開的過程！'
+      },
+      {
+        id: 'ph-4', countyId: 'penghu', countyName: '澎湖縣', region: '離島',
+        name: '山水沙灘與觀音亭海濱', category: '海灘玩水', rating: 4.8,
+        tags: ['黃金貝殼沙灘', '水上活動', '西瀛虹橋夕陽', '夜晚夜釣小管'],
+        summary: '擁有澎湖最細緻金黃貝殼沙的山水沙灘，踏浪衝浪、玩 SUP 並欣賞西瀛虹橋落日。',
+        description: '山水沙灘擁有長達兩百多公尺的潔淨金黃貝殼沙灘與清澈見底的漸層海水，沒有過多人工設施卻充滿純粹海島度假感。傍晚回到馬公市區的「觀音亭海濱公園」，在西瀛虹橋下吹海風看夕陽，晚上還能報名刺激的夜釣小管！',
+        highlights: ['山水沙灘踏浪玩水、體驗透明獨木舟與衝浪', '觀音亭西瀛虹橋欣賞澎湖最浪漫的金色夕陽', '夜晚出海體驗「夜釣小管」現釣現吃新鮮小管沙西米與麵線'],
+        hours: '全天開放', ticket: '免費參觀',
+        address: '澎湖縣馬公市山水里 / 介壽路 7 號',
+        transport: '距離馬公市區騎機車僅約 12 分鐘即可抵達山水沙灘。',
+        duration: '半日', summerTip: '澎湖夏季紫外線極高，建議白天安排室內或下午 4 點後再前往沙灘玩水最舒適！'
+      },
+
+      // === 金門縣 (3) ===
+      {
+        id: 'km-1', countyId: 'kinmen', countyName: '金門縣', region: '離島',
+        name: '莒光樓與建功嶼摩西分海', category: '文化古蹟', rating: 4.8,
+        tags: ['金門版摩西分海', '牡蠣人裝置藝術', '戰地地標', '遠眺廈門'],
+        summary: '退潮時步行走過石板海道登上建功嶼，與巨型「牡蠣人」裝置藝術及延平郡王像合影。',
+        description: '位於金城鎮外海的建功嶼是昔日軍事衛哨據點，每天退潮時會露出一條 500 公尺石板道，兩旁矗立著芬蘭建築師創作的 4 座巨型鐵雕「牡蠣人」，退潮時露出全身、漲潮時僅剩上半身，充滿戲劇張力。',
+        highlights: ['退潮時步行穿越石板潮間道與巨型「牡蠣人」合影', '登上建築典雅的「莒光樓」三樓俯瞰金城鎮與廈門高樓天際線', '順遊金城模範街紅磚拱廊品嚐廣東粥與燒餅'],
+        hours: '建功嶼依每日潮汐開放；莒光樓 08:00–22:00', ticket: '均為免費參觀',
+        address: '金門縣金城鎮賢城路 1 號（莒光樓）',
+        transport: '金城車站搭乘台灣好行「A 線水頭翟山線」即可抵達莒光樓與建功嶼。',
+        duration: '2.5 – 3 小時', summerTip: '前往建功嶼前請務必查詢當日潮汐表，並留意漲潮時間準時返回岸上喔！'
+      },
+      {
+        id: 'km-2', countyId: 'kinmen', countyName: '金門縣', region: '離島',
+        name: '翟山坑道', category: '文化古蹟', rating: 4.9,
+        tags: ['地下水上坑道', '鬼斧神工', '天然冷氣房', '戰地奇觀'],
+        summary: '花崗岩山體中人工開鑿的 A 字型水上戰備坑道，涼爽靜謐且水面倒影如鏡！',
+        description: '翟山坑道是八二三砲戰後動員人力在堅硬花崗岩壁中一鑿一斧開鑿而成的地下小艇坑道，全長 357 公尺。走進坑道內瞬間暑氣全消，花崗岩壁與藍色水道倒影交相輝映，展現令人敬畏的戰地工程奇蹟。',
+        highlights: ['漫步花崗岩水上坑道欣賞鏡面般的水道岩壁倒影', '走訪戶外軍事武器展示區與海濱碉堡', '每年秋季此處更會舉辦聞名國際的「金門坑道音樂節」'],
+        hours: '08:30 – 17:00', ticket: '免費參觀',
+        address: '金門縣金城鎮古崗湖東南方翟山腹內',
+        transport: '金城車站搭乘台灣好行「A 線水頭翟山線」直達翟山坑道站。',
+        duration: '1 – 1.5 小時', summerTip: '坑道內終年恆溫約 20 度左右，非常涼爽，是金門夏季最消暑的必訪景點！'
+      },
+      {
+        id: 'km-3', countyId: 'kinmen', countyName: '金門縣', region: '離島',
+        name: '山后民俗文化村與水頭聚落', category: '文化古蹟', rating: 4.7,
+        tags: ['閩南燕尾古厝', '得月樓洋樓', '王阿婆蚵仔煎', '人文攝影'],
+        summary: '整齊劃一的十八棟清代閩南燕尾古厝群，感受百年僑鄉建築之美與石蚵美味。',
+        description: '建於清光緒年間的「山后民俗文化村」共有 18 棟傳統閩南二進式雙落古厝，燕尾屋脊依山面海整齊排列，氣勢恢宏；而「水頭聚落」則融合中西合璧的得月樓銃樓與洋樓建築，展現金門獨特的僑鄉歷史。',
+        highlights: ['山后民俗文化村拍攝整齊對稱的紅磚燕尾屋脊群', '在古厝中庭品嚐超人氣「王阿婆小吃店」金門石蚵煎與海蚵麵線', '參觀水頭聚落指標建築「得月樓」與風獅爺文物館'],
+        hours: '08:00 – 17:00', ticket: '免費參觀',
+        address: '金門縣金沙鎮山后 61 號',
+        transport: '山外車站搭乘台灣好行「C 線獅山民俗村線」可直達山后民俗文化村。',
+        duration: '2 – 3 小時', summerTip: '別忘了品嚐一碗使用金門在地野生「石蚵」製作的蚵仔麵線，鮮甜無腥味！'
+      },
+
+      // === 連江縣 (馬祖) (3) ===
+      {
+        id: 'lc-1', countyId: 'lienchiang', countyName: '連江縣', region: '離島',
+        name: '南竿北海坑道搖櫓賞藍眼淚', category: '自然秘境', rating: 4.9,
+        tags: ['馬祖藍眼淚', '夜間搖櫓體驗', '鬼斧神工坑道', '井字型水道'],
+        summary: '搭乘傳統搖櫓木船駛入深邃花崗岩坑道，伸手撥水看見夢幻星辰般的藍眼淚！',
+        description: '南竿北海坑道是深入花崗岩山腹開鑿的井字型地下碼頭，高 18 公尺、長 700 公尺，壯觀程度媲美地下宮殿。每年 3 月至 9 月期間，夜間搭乘預約制「搖櫓船」進入無光害的坑道內，撥動水面即可近距離欣賞發光的藍色夜光蟲奇景。',
+        highlights: ['預約夜間搖櫓船近距離體驗伸手觸碰「藍眼淚」的感動', '白天退潮時沿坑道環形步道欣賞花崗岩倒影奇景', '順遊一旁的「大漢據點」與「鐵堡」海上碉堡'],
+        hours: '白天 08:00–17:00（依潮汐開放）；夜間搖櫓 18:30–21:00（需預約）', ticket: '坑道參觀免費；夜間搖櫓體驗全票 NT$350',
+        address: '連江縣南竿鄉仁愛村 95-1 號',
+        transport: '南竿機場或福澳港騎機車約 8 分鐘，或搭乘台灣好行「媽祖巨神像線」。',
+        duration: '1.5 – 2 小時', summerTip: '夜間搖櫓賞藍眼淚名額有限，出發前務必先透過馬祖旅遊通或電話預約場次！'
+      },
+      {
+        id: 'lc-2', countyId: 'lienchiang', countyName: '連江縣', region: '離島',
+        name: '北竿芹壁聚落', category: '文化古蹟', rating: 4.9,
+        tags: ['馬祖地中海', '花崗岩石頭屋', '龜島海景', '老酒麵線'],
+        summary: '依山面海層疊而建的花崗岩閩東石頭屋聚落，坐擁媲美希臘地中海的絕美海灣！',
+        description: '北竿芹壁是馬祖保存最完整的閩東傳統聚落，一棟棟以青白花崗岩砌成的石頭屋沿著山坡錯落有致，正對著海面上的「龜島」。坐在石頭屋咖啡廳露台喝杯咖啡、吃碗老酒麵線，吹著海風彷彿置身南歐小鎮。',
+        highlights: ['穿梭在石階巷弄與花崗岩「印章屋」建築間拍出歐風美照', '在石頭屋海景餐廳品嚐熱騰騰的馬祖老酒麵線與黃金地瓜餃', '順遊壁山觀景台俯瞰北竿機場跑道與大海相連奇景'],
+        hours: '全天開放', ticket: '免費參觀',
+        address: '連江縣北竿鄉芹壁村',
+        transport: '從南竿福澳港搭乘交通船約 15 分鐘至北竿白沙港，再騎機車約 8 分鐘即達。',
+        duration: '2.5 – 3.5 小時', summerTip: '推薦在芹壁百年石頭屋民宿住上一晚，夜晚聽海浪聲、清晨看海上日出超浪漫！'
+      },
+      {
+        id: 'lc-3', countyId: 'lienchiang', countyName: '連江縣', region: '離島',
+        name: '東引燈塔與一線天', category: '自然秘境', rating: 4.8,
+        tags: ['國之北疆', '純白歐風燈塔', '海蝕峽谷', '壯麗懸崖'],
+        summary: '矗立於國境最北端峭壁上的 18 世紀英式純白燈塔，俯瞰湛藍東海與海蝕峽谷。',
+        description: '東引島擁有全台最壯麗的海蝕花崗岩懸崖地形，建於 1904 年的「東引島燈塔（東湧燈塔）」純白塔身矗立在陡峭山壁上，與藍天碧海交織成明信片般的絕景；另一端的「一線天」則是兩座垂直海蝕壁夾出的狹窄海溝，浪濤聲震耳欲聾。',
+        highlights: ['與純白歐式建築「東引島燈塔」及擂鼓石合影', '走訪驚險壯觀的海蝕峽谷「一線天」與「烈女義坑」', '打卡台灣國土最北端「國之北疆」石碑與三色石海景'],
+        hours: '燈塔 09:00–17:00（週一不開放內部，外部全天可賞）', ticket: '免費參觀',
+        address: '連江縣東引鄉樂華村 169 號',
+        transport: '從南竿福澳港搭乘「新臺馬輪」或臺馬之星約 2 小時航程抵達東引中柱港。',
+        duration: '半日 – 1 日', summerTip: '東引海鮮如野生淡菜、佛手與紅糟料理極為鮮美，來到島上千萬別錯過！'
+      }
+    ];
+
+    /**
+     * 3. 應用程式狀態管理 (State Management)
+     */
+    const appState = {
+      activeTab: 'home', // 'home' | 'guide' | 'directory' | 'wishlist'
+      selectedCountyId: null, // 若不為 null，代表目前處於該縣市的專屬導覽頁
+      searchQuery: '',
+      dirRegion: 'all',
+      dirCounty: 'all',
+      dirCategory: 'all',
+      wishlist: [], // 儲存收藏項目: [{ attractionId: 'kl-1', day: 'unassigned' | 'day1' | 'day2' | 'day3' }]
+      aiChatOpen: false,
+      aiHistory: []
+    };
+
+    // 從 localStorage 載入使用者先前的暑假清單
+    try {
+      const savedWishlist = localStorage.getItem('summer_memories_wishlist_v1');
+      if (savedWishlist) {
+        appState.wishlist = JSON.parse(savedWishlist);
+      }
+    } catch (e) {
+      // 忽略瀏覽器隱私模式儲存限制
+    }
+
+    function saveWishlistToStorage() {
+      try {
+        localStorage.setItem('summer_memories_wishlist_v1', JSON.stringify(appState.wishlist));
+      } catch (e) {
+        // 忽略錯誤
+      }
+      updateWishlistBadges();
+    }
+
+    /**
+     * 4. 依景點主題生成高質感客製化 SVG 風景插畫封面（確保零破圖、視覺現代）
+     */
+    function getCategoryVisualHTML(category, seedIndex = 0) {
+      const configs = {
+        '海灘玩水': {
+          gradient: 'from-sky-500 via-cyan-500 to-teal-500',
+          icon: 'fa-umbrella-beach',
+          svg: `
+            <svg viewBox="0 0 400 180" class="w-full h-full object-cover" preserveAspectRatio="none">
+              <circle cx="320" cy="45" r="28" fill="#fde047" opacity="0.85"/>
+              <circle cx="320" cy="45" r="42" fill="#fde047" opacity="0.22"/>
+              <path d="M0,115 Q100,90 200,115 T400,115 L400,180 L0,180 Z" fill="#ffffff" opacity="0.18"/>
+              <path d="M0,135 Q90,115 190,135 T400,132 L400,180 L0,180 Z" fill="#ffffff" opacity="0.28"/>
+              <path d="M0,155 Q120,142 240,158 T400,152 L400,180 L0,180 Z" fill="#f8fafc" opacity="0.35"/>
+            </svg>`
+        },
+        '自然秘境': {
+          gradient: 'from-emerald-600 via-teal-600 to-cyan-700',
+          icon: 'fa-mountain-sun',
+          svg: `
+            <svg viewBox="0 0 400 180" class="w-full h-full object-cover" preserveAspectRatio="none">
+              <circle cx="85" cy="46" r="22" fill="#fef08a" opacity="0.75"/>
+              <polygon points="140,180 245,55 355,180" fill="#ffffff" opacity="0.14"/>
+              <polygon points="40,180 155,75 270,180" fill="#ffffff" opacity="0.22"/>
+              <polygon points="220,180 315,85 410,180" fill="#ffffff" opacity="0.18"/>
+              <path d="M0,152 Q130,135 260,152 T400,148 L400,180 L0,180 Z" fill="#ffffff" opacity="0.25"/>
+            </svg>`
+        },
+        '文化古蹟': {
+          gradient: 'from-amber-600 via-orange-500 to-rose-500',
+          icon: 'fa-landmark',
+          svg: `
+            <svg viewBox="0 0 400 180" class="w-full h-full object-cover" preserveAspectRatio="none">
+              <circle cx="315" cy="52" r="30" fill="#fef08a" opacity="0.5"/>
+              <path d="M90,95 Q200,55 310,95 L295,105 Q200,72 105,105 Z" fill="#ffffff" opacity="0.26"/>
+              <rect x="125" y="105" width="12" height="55" fill="#ffffff" opacity="0.22"/>
+              <rect x="194" y="105" width="12" height="55" fill="#ffffff" opacity="0.22"/>
+              <rect x="263" y="105" width="12" height="55" fill="#ffffff" opacity="0.22"/>
+              <rect x="80" y="158" width="240" height="22" rx="4" fill="#ffffff" opacity="0.28"/>
+            </svg>`
+        },
+        '親子樂園': {
+          gradient: 'from-violet-600 via-indigo-500 to-sky-500',
+          icon: 'fa-ferris-wheel',
+          svg: `
+            <svg viewBox="0 0 400 180" class="w-full h-full object-cover" preserveAspectRatio="none">
+              <circle cx="285" cy="95" r="52" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.26"/>
+              <circle cx="285" cy="95" r="34" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.22"/>
+              <line x1="285" y1="95" x2="255" y2="175" stroke="#ffffff" stroke-width="4" opacity="0.25"/>
+              <line x1="285" y1="95" x2="315" y2="175" stroke="#ffffff" stroke-width="4" opacity="0.25"/>
+              <circle cx="95" cy="50" r="14" fill="#fde047" opacity="0.6"/>
+              <circle cx="132" cy="38" r="10" fill="#f472b6" opacity="0.6"/>
+              <path d="M0,150 Q100,132 200,150 T400,145 L400,180 L0,180 Z" fill="#ffffff" opacity="0.22"/>
+            </svg>`
+        },
+        '在地夜市': {
+          gradient: 'from-rose-600 via-orange-600 to-amber-500',
+          icon: 'fa-utensils',
+          svg: `
+            <svg viewBox="0 0 400 180" class="w-full h-full object-cover" preserveAspectRatio="none">
+              <path d="M0,25 Q100,55 200,25 T400,25" fill="none" stroke="#fef08a" stroke-width="2" opacity="0.45"/>
+              <ellipse cx="75" cy="48" rx="12" ry="16" fill="#fde047" opacity="0.65"/>
+              <ellipse cx="155" cy="42" rx="12" ry="16" fill="#fb7185" opacity="0.65"/>
+              <ellipse cx="245" cy="42" rx="12" ry="16" fill="#fde047" opacity="0.65"/>
+              <ellipse cx="325" cy="48" rx="12" ry="16" fill="#fb923c" opacity="0.65"/>
+              <path d="M0,145 L400,145 L400,180 L0,180 Z" fill="#ffffff" opacity="0.22"/>
+            </svg>`
+        }
+      };
+
+      const cfg = configs[category] || configs['自然秘境'];
+      return {
+        gradient: cfg.gradient,
+        icon: cfg.icon,
+        svg: cfg.svg
+      };
+    }
+
+    /**
+     * 5. 渲染通用景點卡片 HTML
+     */
+    function createAttractionCardHTML(item) {
+      const visual = getCategoryVisualHTML(item.category);
+      const isSaved = appState.wishlist.some(w => w.attractionId === item.id);
+
+      return `
+        <article class="attraction-card bg-white rounded-3xl overflow-hidden shadow-card border border-slate-100 flex flex-col justify-between">
+          <div>
+            <!-- 卡片頂部插畫視覺區 -->
+            <div onclick="openAttractionModal('${item.id}')" class="cursor-pointer relative h-44 bg-gradient-to-br ${visual.gradient} overflow-hidden">
+              ${visual.svg}
+
+              <!-- 縣市與分類標籤 -->
+              <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
+                <button
+                  onclick="event.stopPropagation(); openCountyGuide('${item.countyId}')"
+                  class="px-3 py-1 rounded-full bg-white/95 hover:bg-white text-slate-800 text-xs font-extrabold shadow-sm transition flex items-center gap-1"
+                  title="前往 ${item.countyName} 專屬導覽頁"
+                >
+                  <i class="fa-solid fa-location-dot text-sunset-500"></i> ${item.countyName}
+                </button>
+
+                <button
+                  onclick="event.stopPropagation(); toggleWishlist('${item.id}')"
+                  aria-label="收藏景點"
+                  class="w-9 h-9 rounded-full ${isSaved ? 'bg-rose-500 text-white' : 'bg-white/90 hover:bg-white text-slate-600 hover:text-rose-500'} shadow-sm flex items-center justify-center transition"
+                >
+                  <i class="fa-${isSaved ? 'solid' : 'regular'} fa-heart text-sm"></i>
+                </button>
+              </div>
+
+              <!-- 底部類別與評分 -->
+              <div class="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-white">
+                <span class="px-2.5 py-1 rounded-lg bg-slate-900/35 backdrop-blur-md text-xs font-bold flex items-center gap-1.5">
+                  <i class="fa-solid ${visual.icon}"></i> ${item.category}
+                </span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-900/35 backdrop-blur-md text-xs font-extrabold text-amber-300 flex items-center gap-1">
+                  <i class="fa-solid fa-star"></i> ${item.rating}
+                </span>
+              </div>
+            </div>
+
+            <!-- 卡片文字內容區 -->
+            <div class="p-5">
+              <h3 onclick="openAttractionModal('${item.id}')" class="cursor-pointer text-lg font-extrabold text-slate-900 hover:text-ocean-600 transition line-clamp-1">
+                ${item.name}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                ${item.summary}
+              </p>
+
+              <!-- 特色標籤 -->
+              <div class="flex flex-wrap gap-1.5 mt-3.5">
+                ${item.tags.slice(0, 3).map(tag => `
+                  <span class="px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-semibold">#${tag}</span>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- 卡片底部資訊與詳細介紹按鈕 -->
+          <div class="px-5 pb-5 pt-2 border-t border-slate-50 flex items-center justify-between gap-2">
+            <div class="text-xs text-slate-400 font-medium truncate">
+              <i class="fa-regular fa-clock text-ocean-500 mr-1"></i>建議 ${item.duration}
+            </div>
+            <button
+              onclick="openAttractionModal('${item.id}')"
+              class="px-4 py-2 rounded-xl bg-ocean-50 hover:bg-ocean-600 text-ocean-700 hover:text-white font-bold text-xs transition flex items-center gap-1.5 shrink-0"
+            >
+              <span>查看詳細介紹</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    /**
+     * 6. 視圖分頁切換邏輯 (Navigation & Routing)
+     */
+    function switchTab(tabName) {
+      appState.activeTab = tabName;
+
+      // 隱藏所有主視圖
+      ['home', 'guide', 'directory', 'wishlist'].forEach(id => {
+        const el = document.getElementById(`view-${id}`);
+        if (el) el.classList.add('hidden');
+      });
+
+      // 顯示目標視圖
+      const targetView = document.getElementById(`view-${tabName}`);
+      if (targetView) {
+        targetView.classList.remove('hidden');
+      }
+
+      // 更新導覽按鈕啟用狀態樣式
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const isMatch = btn.getAttribute('data-nav') === tabName;
+        if (isMatch) {
+          btn.classList.add('bg-ocean-600', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-white/60');
+        } else {
+          btn.classList.remove('bg-ocean-600', 'text-white', 'shadow-sm');
+          btn.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-white/60');
+        }
+      });
+
+      // 依不同分頁刷新對應內容
+      if (tabName === 'guide') {
+        if (appState.selectedCountyId) {
+          renderCountyDetailView(appState.selectedCountyId);
+        } else {
+          backToTaiwanMap(false);
+        }
+      } else if (tabName === 'directory') {
+        renderDirectoryResults();
+      } else if (tabName === 'wishlist') {
+        renderWishlistView();
+      } else if (tabName === 'home') {
+        renderHomeFeatured();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * 7. 台灣互動地圖與縣市專屬導覽頁邏輯
+     */
+    function initInteractiveTaiwanMap() {
+      const tooltip = document.getElementById('map-tooltip');
+      const tooltipName = document.getElementById('tooltip-county-name');
+      const tooltipInfo = document.getElementById('tooltip-county-info');
+
+      // 綁定 SVG 區塊與藥丸標籤的滑鼠移入、移動與點擊事件
+      const mapElements = document.querySelectorAll('#taiwan-interactive-svg [data-county]');
+
+      mapElements.forEach(el => {
+        const countyId = el.getAttribute('data-county');
+        const countyObj = COUNTIES_DATA.find(c => c.id === countyId);
+        if (!countyObj) return;
+
+        const attractionCount = ATTRACTIONS_DATA.filter(a => a.countyId === countyId).length;
+
+        el.addEventListener('mouseenter', (e) => {
+          highlightCountyOnMap(countyId, true);
+          tooltipName.textContent = `${countyObj.name} (${countyObj.region})`;
+          tooltipInfo.textContent = `精選 ${attractionCount} 個必去景點 · 點擊進入導覽頁`;
+          tooltip.classList.remove('hidden');
+        });
+
+        el.addEventListener('mousemove', (e) => {
+          tooltip.style.left = `${e.clientX + 14}px`;
+          tooltip.style.top = `${e.clientY + 14}px`;
+        });
+
+        el.addEventListener('mouseleave', () => {
+          highlightCountyOnMap(countyId, false);
+          tooltip.classList.add('hidden');
+        });
+
+        el.addEventListener('click', () => {
+          tooltip.classList.add('hidden');
+          openCountyGuide(countyId);
+        });
+      });
+
+      // 渲染右側 22 縣市同步選單
+      const selectorContainer = document.getElementById('guide-county-selector-list');
+      const regions = ['北部', '中部', '南部', '東部', '離島'];
+      const regionBadgeColors = {
+        '北部': 'bg-sky-100 text-sky-700',
+        '中部': 'bg-teal-100 text-teal-700',
+        '南部': 'bg-orange-100 text-orange-700',
+        '東部': 'bg-indigo-100 text-indigo-700',
+        '離島': 'bg-cyan-100 text-cyan-700'
+      };
+
+      selectorContainer.innerHTML = regions.map(region => {
+        const countiesInRegion = COUNTIES_DATA.filter(c => c.region === region);
+        return `
+          <div>
+            <div class="flex items-center gap-2 mb-2.5">
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-extrabold ${regionBadgeColors[region]}">${region}地區</span>
+              <span class="text-xs text-slate-400">${countiesInRegion.length} 個縣市</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${countiesInRegion.map(c => {
+                const count = ATTRACTIONS_DATA.filter(a => a.countyId === c.id).length;
+                return `
+                  <button
+                    onmouseenter="highlightCountyOnMap('${c.id}', true)"
+                    onmouseleave="highlightCountyOnMap('${c.id}', false)"
+                    onclick="openCountyGuide('${c.id}')"
+                    class="px-3.5 py-2 rounded-xl bg-slate-50 hover:bg-sunset-500 text-slate-700 hover:text-white border border-slate-200/80 hover:border-sunset-500 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow-2xs"
+                  >
+                    <span>${c.name}</span>
+                    <span class="text-[11px] opacity-75">(${count})</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function highlightCountyOnMap(countyId, isActive) {
+      document.querySelectorAll(`#taiwan-interactive-svg [data-county="${countyId}"]`).forEach(el => {
+        if (isActive) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+    }
+
+    // 點擊地圖縣市後進入該縣市專屬景點導覽頁
+    function openCountyGuide(countyId) {
+      appState.selectedCountyId = countyId;
+      appState.activeTab = 'guide';
+
+      ['home', 'directory', 'wishlist'].forEach(id => {
+        document.getElementById(`view-${id}`).classList.add('hidden');
+      });
+      document.getElementById('view-guide').classList.remove('hidden');
+
+      // 更新頂部導覽列狀態為「導覽頁・台灣地圖」
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const isMatch = btn.getAttribute('data-nav') === 'guide';
+        btn.classList.toggle('bg-ocean-600', isMatch);
+        btn.classList.toggle('text-white', isMatch);
+        btn.classList.toggle('shadow-sm', isMatch);
+        btn.classList.toggle('text-slate-600', !isMatch);
+      });
+
+      renderCountyDetailView(countyId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderCountyDetailView(countyId) {
+      const countyIndex = COUNTIES_DATA.findIndex(c => c.id === countyId);
+      if (countyIndex === -1) return;
+
+      const county = COUNTIES_DATA[countyIndex];
+      const countyAttractions = ATTRACTIONS_DATA.filter(a => a.countyId === countyId);
+
+      // 切換子視圖：隱藏地圖總覽，顯示縣市專屬導覽
+      document.getElementById('guide-map-mode').classList.add('hidden');
+      document.getElementById('guide-county-detail-mode').classList.remove('hidden');
+
+      // 填入縣市完整導覽資訊
+      document.getElementById('county-detail-region').textContent = `${county.region}地區`;
+      document.getElementById('county-detail-count').textContent = `共 ${countyAttractions.length} 個精選景點`;
+      document.getElementById('county-detail-title').textContent = `${county.name}旅遊景點導覽`;
+      document.getElementById('county-detail-tagline').textContent = county.tagline;
+      document.getElementById('county-detail-intro').textContent = county.intro;
+      document.getElementById('county-detail-foods').textContent = county.foods;
+      document.getElementById('county-detail-transport').textContent = county.transport;
+      document.getElementById('county-attractions-heading-name').textContent = county.name;
+
+      // 設定上一個/下一個縣市切換鈕
+      const prevCounty = COUNTIES_DATA[(countyIndex - 1 + COUNTIES_DATA.length) % COUNTIES_DATA.length];
+      const nextCounty = COUNTIES_DATA[(countyIndex + 1) % COUNTIES_DATA.length];
+
+      const prevBtn = document.getElementById('prev-county-btn');
+      const nextBtn = document.getElementById('next-county-btn');
+      prevBtn.textContent = `← ${prevCounty.name}`;
+      nextBtn.textContent = `${nextCounty.name} →`;
+      prevBtn.onclick = () => openCountyGuide(prevCounty.id);
+      nextBtn.onclick = () => openCountyGuide(nextCounty.id);
+
+      // 渲染該縣市所有景點卡片
+      const grid = document.getElementById('county-detail-attractions-grid');
+      grid.innerHTML = countyAttractions.map(item => createAttractionCardHTML(item)).join('');
+    }
+
+    function backToTaiwanMap(shouldScroll = true) {
+      appState.selectedCountyId = null;
+      document.getElementById('guide-county-detail-mode').classList.add('hidden');
+      document.getElementById('guide-map-mode').classList.remove('hidden');
+      if (shouldScroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    /**
+     * 8. 首頁渲染邏輯 (五大區域卡片 + 精選景點)
+     */
+    function renderHomeSections() {
+      // 更新總景點數顯示
+      document.getElementById('stat-total-attractions').textContent = `${ATTRACTIONS_DATA.length} 景點`;
+      document.getElementById('home-more-count').textContent = ATTRACTIONS_DATA.length;
+
+      // 渲染五大區域 22 縣市直達卡片
+      const regionContainer = document.getElementById('home-region-counties-grid');
+      const regionConfigs = [
+        { name: '北部', desc: '都會探索、山海公路與懷舊九份老街', color: 'from-sky-500 to-blue-600', icon: 'fa-city' },
+        { name: '中部', desc: '日月潭湖光山色、清境避暑與高美夕陽', color: 'from-teal-500 to-emerald-600', icon: 'fa-mountain' },
+        { name: '南部', desc: '墾丁陽光沙灘、府城古蹟與熱帶島嶼風情', color: 'from-orange-500 to-amber-600', icon: 'fa-sun' },
+        { name: '東部', desc: '太平洋藍海、熱氣球嘉年華與縱谷稻浪', color: 'from-indigo-500 to-purple-600', icon: 'fa-water' },
+        { name: '離島', desc: '澎湖跳島藍洞、金門戰地與馬祖地中海', color: 'from-cyan-500 to-sky-600', icon: 'fa-ship' }
+      ];
+
+      regionContainer.innerHTML = regionConfigs.map(reg => {
+        const counties = COUNTIES_DATA.filter(c => c.region === reg.name);
+        return `
+          <div class="bg-white rounded-3xl p-6 shadow-card border border-slate-100 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${reg.color} text-white flex items-center justify-center shadow-sm">
+                    <i class="fa-solid ${reg.icon}"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-black text-slate-900">${reg.name}地區</h3>
+                    <span class="text-xs text-slate-400 font-semibold">共 ${counties.length} 個縣市</span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">${reg.desc}</p>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              ${counties.map(c => `
+                <button
+                  onclick="openCountyGuide('${c.id}')"
+                  class="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-ocean-600 text-slate-700 hover:text-white border border-slate-200/80 hover:border-ocean-600 text-xs font-bold transition"
+                >
+                  ${c.name}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      renderHomeFeatured();
+    }
+
+    function renderHomeFeatured() {
+      // 挑選跨北中南東離島的 6 個代表性暑期景點
+      const featuredIds = ['pt-1', 'tt-1', 'ph-2', 'ntou-1', 'nt-1', 'hl-2'];
+      const featuredList = featuredIds
+        .map(id => ATTRACTIONS_DATA.find(a => a.id === id))
+        .filter(Boolean);
+
+      document.getElementById('home-featured-grid').innerHTML = featuredList
+        .map(item => createAttractionCardHTML(item))
+        .join('');
+    }
+
+    /**
+     * 9. 全台景點大全：搜尋與多條件篩選邏輯
+     */
+    function initDirectoryFilters() {
+      const countySelect = document.getElementById('directory-county-select');
+      COUNTIES_DATA.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = `${c.name} (${c.region})`;
+        countySelect.appendChild(opt);
+      });
+      updateFilterPillsUI();
+    }
+
+    function handleGlobalSearch(value, source) {
+      appState.searchQuery = value.trim();
+
+      // 同步所有搜尋輸入框的文字
+      ['header-search-input', 'hero-search-input', 'directory-search-input'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.value !== value) {
+          el.value = value;
+        }
+      });
+
+      // 顯示或隱藏清除按鈕
+      const hasText = appState.searchQuery.length > 0;
+      document.getElementById('header-search-clear').classList.toggle('hidden', !hasText);
+      document.getElementById('directory-search-clear').classList.toggle('hidden', !hasText);
+
+      // 若目前在景點大全頁，即時刷新結果
+      if (appState.activeTab === 'directory') {
+        renderDirectoryResults();
+      }
+    }
+
+    function clearSearch() {
+      handleGlobalSearch('', 'clear');
+      if (appState.activeTab === 'directory') {
+        renderDirectoryResults();
+      }
+    }
+
+    function quickSearchKeyword(keyword) {
+      handleGlobalSearch(keyword, 'quick');
+      switchTab('directory');
+    }
+
+    function filterByCategoryAndGo(category) {
+      appState.dirCategory = category;
+      appState.dirRegion = 'all';
+      appState.dirCounty = 'all';
+      appState.searchQuery = '';
+      handleGlobalSearch('', 'reset');
+      document.getElementById('directory-county-select').value = 'all';
+      updateFilterPillsUI();
+      switchTab('directory');
+    }
+
+    function setDirectoryRegionFilter(region) {
+      appState.dirRegion = region;
+      // 若切換地區與目前選中縣市不符，則重設縣市選單
+      if (region !== 'all' && appState.dirCounty !== 'all') {
+        const countyObj = COUNTIES_DATA.find(c => c.id === appState.dirCounty);
+        if (countyObj && countyObj.region !== region) {
+          appState.dirCounty = 'all';
+          document.getElementById('directory-county-select').value = 'all';
+        }
+      }
+      updateFilterPillsUI();
+      renderDirectoryResults();
+    }
+
+    function setDirectoryCountyFilter(countyId) {
+      appState.dirCounty = countyId;
+      if (countyId !== 'all') {
+        const countyObj = COUNTIES_DATA.find(c => c.id === countyId);
+        if (countyObj) {
+          appState.dirRegion = countyObj.region;
+        }
+      }
+      updateFilterPillsUI();
+      renderDirectoryResults();
+    }
+
+    function setDirectoryCategoryFilter(category) {
+      appState.dirCategory = category;
+      updateFilterPillsUI();
+      renderDirectoryResults();
+    }
+
+    function resetAllFilters() {
+      appState.dirRegion = 'all';
+      appState.dirCounty = 'all';
+      appState.dirCategory = 'all';
+      document.getElementById('directory-county-select').value = 'all';
+      handleGlobalSearch('', 'reset');
+      updateFilterPillsUI();
+      renderDirectoryResults();
+    }
+
+    function updateFilterPillsUI() {
+      document.querySelectorAll('.region-pill').forEach(btn => {
+        const active = btn.getAttribute('data-region') === appState.dirRegion;
+        btn.className = `region-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition ${
+          active ? 'bg-ocean-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+        }`;
+      });
+
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        const active = btn.getAttribute('data-cat') === appState.dirCategory;
+        btn.className = `cat-pill px-3.5 py-1.5 rounded-xl text-xs font-bold transition ${
+          active ? 'bg-sunset-500 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+        }`;
+      });
+    }
+
+    function renderDirectoryResults() {
+      const q = appState.searchQuery.toLowerCase();
+
+      const filtered = ATTRACTIONS_DATA.filter(item => {
+        const matchRegion = appState.dirRegion === 'all' || item.region === appState.dirRegion;
+        const matchCounty = appState.dirCounty === 'all' || item.countyId === appState.dirCounty;
+        const matchCategory = appState.dirCategory === 'all' || item.category === appState.dirCategory;
+
+        if (!matchRegion || !matchCounty || !matchCategory) return false;
+        if (!q) return true;
+
+        const searchableText = [
+          item.name,
+          item.countyName,
+          item.region,
+          item.category,
+          item.summary,
+          item.description,
+          ...item.tags
+        ].join(' ').toLowerCase();
+
+        return searchableText.includes(q);
+      });
+
+      document.getElementById('directory-result-count').textContent = filtered.length;
+
+      const grid = document.getElementById('directory-results-grid');
+      const emptyState = document.getElementById('directory-empty-state');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+        grid.innerHTML = filtered.map(item => createAttractionCardHTML(item)).join('');
+      }
+    }
+
+    /**
+     * 10. 景點詳細介紹彈窗 (Modal)
+     */
+    function openAttractionModal(attractionId) {
+      const item = ATTRACTIONS_DATA.find(a => a.id === attractionId);
+      if (!item) return;
+
+      const visual = getCategoryVisualHTML(item.category);
+      const isSaved = appState.wishlist.some(w => w.attractionId === item.id);
+
+      const banner = document.getElementById('modal-hero-banner');
+      banner.className = `relative h-48 sm:h-56 p-6 sm:p-8 flex flex-col justify-between text-white shrink-0 bg-gradient-to-br ${visual.gradient}`;
+
+      document.getElementById('modal-county-badge').textContent = `${item.countyName} · ${item.region}地區`;
+      document.getElementById('modal-category-badge').textContent = item.category;
+      document.getElementById('modal-rating').textContent = item.rating;
+      document.getElementById('modal-title').textContent = item.name;
+      document.getElementById('modal-description').textContent = item.description;
+      document.getElementById('modal-hours').textContent = item.hours;
+      document.getElementById('modal-ticket').textContent = item.ticket;
+      document.getElementById('modal-duration').textContent = item.duration;
+      document.getElementById('modal-address').textContent = item.address;
+      document.getElementById('modal-transport').textContent = item.transport;
+      document.getElementById('modal-tip').textContent = item.summerTip;
+
+      document.getElementById('modal-tags').innerHTML = item.tags.map(tag => `
+        <span class="px-3 py-1 rounded-full bg-ocean-50 text-ocean-700 text-xs font-bold">#${tag}</span>
+      `).join('');
+
+      document.getElementById('modal-highlights').innerHTML = item.highlights.map(hl => `
+        <li class="flex items-start gap-2">
+          <i class="fa-solid fa-circle-check text-tropical-600 mt-1 shrink-0"></i>
+          <span>${hl}</span>
+        </li>
+      `).join('');
+
+      // Google 地圖連結
+      const gmapsQuery = encodeURIComponent(`${item.countyName} ${item.name}`);
+      document.getElementById('modal-gmaps-link').href = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+
+      // 同縣市更多景點按鈕
+      const countyLinkBtn = document.getElementById('modal-county-link-btn');
+      countyLinkBtn.textContent = `探索「${item.countyName}」所有景點 →`;
+      countyLinkBtn.onclick = () => {
+        closeAttractionModal();
+        openCountyGuide(item.countyId);
+      };
+
+      // 收藏按鈕狀態與事件
+      updateModalWishlistButton(item.id, isSaved);
+
+      document.getElementById('attraction-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateModalWishlistButton(attractionId, isSaved) {
+      const btn = document.getElementById('modal-wishlist-btn');
+      if (isSaved) {
+        btn.className = 'px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center gap-1.5';
+        btn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> 已在暑假清單中';
+      } else {
+        btn.className = 'px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center gap-1.5';
+        btn.innerHTML = '<i class="fa-solid fa-heart"></i> 加入暑假清單';
+      }
+      btn.onclick = () => {
+        toggleWishlist(attractionId);
+        const nowSaved = appState.wishlist.some(w => w.attractionId === attractionId);
+        updateModalWishlistButton(attractionId, nowSaved);
+      };
+    }
+
+    function closeAttractionModal() {
+      document.getElementById('attraction-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // 點擊 Modal 背景遮罩或按 ESC 關閉
+    document.getElementById('attraction-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'attraction-modal') {
+        closeAttractionModal();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAttractionModal();
+      }
+    });
+
+    /**
+     * 11. 我的暑假清單與分日行程規劃 (Wishlist & Day Planner)
+     */
+    function toggleWishlist(attractionId) {
+      const idx = appState.wishlist.findIndex(w => w.attractionId === attractionId);
+      const item = ATTRACTIONS_DATA.find(a => a.id === attractionId);
+
+      if (idx > -1) {
+        appState.wishlist.splice(idx, 1);
+        showToast(`已從暑假清單移除「${item ? item.name : '景點'}」`, 'info');
+      } else {
+        appState.wishlist.push({ attractionId, day: 'day1' });
+        showToast(`已將「${item ? item.name : '景點'}」加入我的暑假清單！`, 'success');
+      }
+
+      saveWishlistToStorage();
+
+      // 同步刷新目前畫面卡片的愛心狀態
+      if (appState.activeTab === 'home') renderHomeFeatured();
+      if (appState.activeTab === 'directory') renderDirectoryResults();
+      if (appState.activeTab === 'guide' && appState.selectedCountyId) {
+        renderCountyDetailView(appState.selectedCountyId);
+      }
+      if (appState.activeTab === 'wishlist') renderWishlistView();
+    }
+
+    function updateWishlistDay(attractionId, newDay) {
+      const target = appState.wishlist.find(w => w.attractionId === attractionId);
+      if (target) {
+        target.day = newDay;
+        saveWishlistToStorage();
+        renderWishlistView();
+      }
+    }
+
+    function updateWishlistBadges() {
+      const count = appState.wishlist.length;
+      document.getElementById('nav-wishlist-badge').textContent = count;
+      document.getElementById('mobile-wishlist-badge').textContent = count;
+    }
+
+    function renderWishlistView() {
+      const container = document.getElementById('wishlist-content-container');
+
+      if (appState.wishlist.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-3xl p-12 text-center shadow-card border border-slate-100">
+            <div class="w-20 h-20 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4">
+              <i class="fa-regular fa-heart"></i>
+            </div>
+            <h3 class="text-xl font-black text-slate-900">您的暑假清單目前是空的</h3>
+            <p class="text-sm text-slate-500 max-w-md mx-auto mt-2 mb-6">
+              點擊任一景點卡片右上角的愛心圖示，就能將喜歡的景點收集到這裡，自由安排 Day 1、Day 2、Day 3 的專屬行程！
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+              <button onclick="switchTab('guide')" class="px-6 py-3 rounded-2xl bg-ocean-600 hover:bg-ocean-700 text-white font-bold text-sm transition">
+                去台灣地圖挑景點
+              </button>
+              <button onclick="switchTab('directory')" class="px-6 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition">
+                瀏覽全部景點大全
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const dayGroups = [
+        { key: 'day1', label: 'Day 1｜第一天行程', badge: 'bg-sky-100 text-sky-700' },
+        { key: 'day2', label: 'Day 2｜第二天行程', badge: 'bg-teal-100 text-teal-700' },
+        { key: 'day3', label: 'Day 3｜第三天行程', badge: 'bg-amber-100 text-amber-700' },
+        { key: 'unassigned', label: '備選靈感口袋名單', badge: 'bg-slate-100 text-slate-700' }
+      ];
+
+      container.innerHTML = `
+        <div class="space-y-6">
+          ${dayGroups.map(group => {
+            const itemsInDay = appState.wishlist
+              .filter(w => w.day === group.key)
+              .map(w => ATTRACTIONS_DATA.find(a => a.id === w.attractionId))
+              .filter(Boolean);
+
+            return `
+              <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-card border border-slate-100">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                  <div class="flex items-center gap-2.5">
+                    <span class="px-3 py-1 rounded-xl text-xs sm:text-sm font-extrabold ${group.badge}">${group.label}</span>
+                    <span class="text-xs text-slate-400 font-bold">${itemsInDay.length} 個景點</span>
+                  </div>
+                </div>
+
+                ${itemsInDay.length === 0 ? `
+                  <p class="text-xs sm:text-sm text-slate-400 py-4 text-center">尚無安排景點，可從其他天數切換至此日</p>
+                ` : `
+                  <div class="space-y-3">
+                    ${itemsInDay.map((attr, idx) => `
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-slate-50/90 hover:bg-ocean-50/40 border border-slate-100 transition">
+                        <div class="flex items-start gap-3">
+                          <span class="w-7 h-7 rounded-lg bg-ocean-600 text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                            ${idx + 1}
+                          </span>
+                          <div>
+                            <div class="flex flex-wrap items-center gap-2">
+                              <button onclick="openAttractionModal('${attr.id}')" class="font-extrabold text-slate-900 hover:text-ocean-600 text-left text-sm sm:text-base">
+                                ${attr.name}
+                              </button>
+                              <span class="px-2 py-0.5 rounded bg-white border border-slate-200 text-[11px] font-bold text-slate-600">
+                                ${attr.countyName}
+                              </span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">${attr.address} · 建議停留 ${attr.duration}</p>
+                          </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 self-end sm:self-center shrink-0">
+                          <select
+                            onchange="updateWishlistDay('${attr.id}', this.value)"
+                            class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 outline-none focus:border-ocean-500"
+                          >
+                            <option value="day1" ${group.key === 'day1' ? 'selected' : ''}>排入 Day 1</option>
+                            <option value="day2" ${group.key === 'day2' ? 'selected' : ''}>排入 Day 2</option>
+                            <option value="day3" ${group.key === 'day3' ? 'selected' : ''}>排入 Day 3</option>
+                            <option value="unassigned" ${group.key === 'unassigned' ? 'selected' : ''}>備選名單</option>
+                          </select>
+
+                          <button
+                            onclick="toggleWishlist('${attr.id}')"
+                            title="移除景點"
+                            class="w-8 h-8 rounded-xl bg-white hover:bg-rose-50 border border-slate-200 text-slate-400 hover:text-rose-500 flex items-center justify-center transition"
+                          >
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                          </button>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                `}
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    // 使用 document.execCommand('copy') 複製行程表
+    function copyItineraryToClipboard() {
+      if (appState.wishlist.length === 0) {
+        showToast('請先加入至少一個景點再複製行程表喔！', 'info');
+        return;
+      }
+
+      const dayNames = {
+        day1: '【Day 1 第一天】',
+        day2: '【Day 2 第二天】',
+        day3: '【Day 3 第三天】',
+        unassigned: '【備選口袋名單】'
+      };
+
+      let textOutput = '☀️ 暑假最難忘的回憶｜我的專屬台灣旅遊行程表 ☀️\n\n';
+      ['day1', 'day2', 'day3', 'unassigned'].forEach(dayKey => {
+        const items = appState.wishlist
+          .filter(w => w.day === dayKey)
+          .map(w => ATTRACTIONS_DATA.find(a => a.id === w.attractionId))
+          .filter(Boolean);
+
+        if (items.length > 0) {
+          textOutput += `${dayNames[dayKey]}\n`;
+          items.forEach((item, i) => {
+            textOutput += `  ${i + 1}. [${item.countyName}] ${item.name}（建議停留：${item.duration}）\n`;
+          });
+          textOutput += '\n';
+        }
+      });
+
+      const tempTextarea = document.createElement('textarea');
+      tempTextarea.value = textOutput;
+      tempTextarea.style.position = 'fixed';
+      tempTextarea.style.left = '-9999px';
+      document.body.appendChild(tempTextarea);
+      tempTextarea.select();
+
+      try {
+        document.execCommand('copy');
+        showToast('已複製完整暑假行程表到剪貼簿！', 'success');
+      } catch (err) {
+        showToast('複製失敗，請手動選取文字複製', 'info');
+      } finally {
+        document.body.removeChild(tempTextarea);
+      }
+    }
+
+    /**
+     * 12. 輕量級通知 Toast
+     */
+    let toastTimer = null;
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      const iconEl = document.getElementById('toast-icon');
+
+      msgEl.textContent = message;
+      iconEl.className = type === 'success'
+        ? 'fa-solid fa-circle-check text-emerald-400'
+        : 'fa-solid fa-circle-info text-sky-400';
+
+      toast.classList.remove('opacity-0', '-translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', '-translate-y-3');
+      }, 2600);
+    }
+
+    /**
+     * 13. 至最頂端按鈕 (Scroll-to-Top) 監聽與行為
+     */
+    const scrollTopBtn = document.getElementById('scroll-to-top-btn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 320) {
+        scrollTopBtn.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+        scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        scrollTopBtn.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+      }
+    }, { passive: true });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * 14. AI 旅遊客服小幫手 (Gemini API 整合 + 指數退避重試 + 離線智慧備援)
+     */
+    function toggleAIChat(forceState) {
+      if (typeof forceState === 'boolean') {
+        appState.aiChatOpen = forceState;
+      } else {
+        appState.aiChatOpen = !appState.aiChatOpen;
+      }
+
+      const chatWindow = document.getElementById('ai-chat-window');
+      if (appState.aiChatOpen) {
+        chatWindow.classList.remove('hidden');
+        document.getElementById('ai-chat-input').focus();
+      } else {
+        chatWindow.classList.add('hidden');
+      }
+    }
+
+    function sendQuickAIQuestion(question) {
+      document.getElementById('ai-chat-input').value = question;
+      handleAIChatSubmit(new Event('submit'));
+    }
+
+    function appendChatMessage(role, text) {
+      const container = document.getElementById('ai-chat-messages');
+      const wrapper = document.createElement('div');
+
+      if (role === 'user') {
+        wrapper.className = 'flex items-start justify-end gap-2';
+        wrapper.innerHTML = `
+          <div class="bg-ocean-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm max-w-[82%] leading-relaxed">
+            ${escapeHTML(text)}
+          </div>
+        `;
+      } else {
+        // 將簡易換行與粗體轉換為乾淨 HTML
+        const formatted = escapeHTML(text)
+          .replace(/\*\*(.*?)\*\*/g, '<strong class="text-ocean-700">$1</strong>')
+          .replace(/\n/g, '<br/>');
+
+        wrapper.className = 'flex items-start gap-2.5';
+        wrapper.innerHTML = `
+          <div class="w-8 h-8 rounded-xl bg-ocean-600 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+            <i class="fa-solid fa-sun"></i>
+          </div>
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-slate-700 max-w-[85%] leading-relaxed">
+            ${formatted}
+          </div>
+        `;
+      }
+
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      const container = document.getElementById('ai-chat-messages');
+      const indicator = document.createElement('div');
+      indicator.id = 'ai-typing-indicator';
+      indicator.className = 'flex items-start gap-2.5';
+      indicator.innerHTML = `
+        <div class="w-8 h-8 rounded-xl bg-ocean-600 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+          <i class="fa-solid fa-sun"></i>
+        </div>
+        <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-ocean-500 typing-dot"></span>
+          <span class="w-2 h-2 rounded-full bg-ocean-500 typing-dot"></span>
+          <span class="w-2 h-2 rounded-full bg-ocean-500 typing-dot"></span>
+        </div>
+      `;
+      container.appendChild(indicator);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+      const indicator = document.getElementById('ai-typing-indicator');
+      if (indicator) indicator.remove();
+    }
+
+    function escapeHTML(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // 離線或 API 未啟用時的智慧台灣旅遊知識庫備援回答
+    function generateSmartLocalFallbackReply(userMsg) {
+      const msg = userMsg.toLowerCase();
+
+      if (msg.includes('親子') || msg.includes('3天2夜') || msg.includes('三天兩夜')) {
+        return '為您推薦超人氣 **【中台灣親子 3 天 2 夜暑假行程】** 🎡：\n\n' +
+          '• **Day 1（台中水陸歡樂日）**：上午暢玩「麗寶樂園馬拉灣」清涼消暑 → 傍晚搭乘天空之夢摩天輪 → 晚上逛「逢甲夜市」大啖小吃。\n' +
+          '• **Day 2（南投森林避暑日）**：前往「溪頭自然教育園區」走空中走廊享受森林浴 → 順遊日式「松林町妖怪村」。\n' +
+          '• **Day 3（日月潭湖光單車日）**：騎乘「日月潭向山自行車道」→ 搭遊艇遊湖並搭乘日月潭纜車！\n\n' +
+          '💡 您可以直接點選上方「導覽頁・台灣地圖」點擊台中市與南投縣收藏這些景點喔！';
+      }
+
+      if (msg.includes('玩水') || msg.includes('海灘') || msg.includes('浮潛')) {
+        return '暑假最適合玩水的台灣縣市與勝地推薦 🌊：\n\n' +
+          '1. **屏東縣**：墾丁南灣水上摩托車、白沙灣貝殼沙灘、小琉球與綠蠵龜浮潛。\n' +
+          '2. **澎湖縣**：山水沙灘踏浪、七美藍洞跳島、奎壁山摩西分海。\n' +
+          '3. **新北市 & 基隆市**：福隆海水浴場沙雕季、和平島公園天然藍海水泳池。\n' +
+          '4. **宜蘭縣**：外澳沙灘衝浪體驗、龜山島夢幻牛奶海！';
+      }
+
+      if (msg.includes('花東') || msg.includes('花蓮') || msg.includes('台東')) {
+        return '花東看海自由行超順路線推薦 🚂：\n\n' +
+          '• **Day 1（花蓮海岸線）**：七星潭月牙灣聽浪疊石 → 遠雄海洋公園看美人魚秀 → 晚上逛「東大門夜市」。\n' +
+          '• **Day 2（花東縱谷線）**：瑞穗牧場喝鮮奶（8月可賞赤科山金針花海）→ 池上「伯朗大道」騎單車看翠綠稻浪。\n' +
+          '• **Day 3（台東熱氣球盛典）**：清晨前往「鹿野高台」欣賞台灣國際熱氣球嘉年華 → 三仙台跨海步橋看太平洋藍海！';
+      }
+
+      if (msg.includes('澎湖') || msg.includes('離島')) {
+        return '澎湖離島暑假必玩亮點與美食 🏝️：\n\n' +
+          '• **必去景點**：澎湖跨海大橋與通梁古榕、七美雙心石滬與南方四島藍洞、奎壁山摩西分海、山水沙灘夕陽。\n' +
+          '• **必吃美食**：小管麵線、酸甜仙人掌冰、黑糖糕、現烤生蠔與夜釣小管沙西米！\n' +
+          '👉 歡迎切換至「導覽頁・台灣地圖」點擊左側澎湖縣圖框查看完整攻略！';
+      }
+
+      // 檢查是否提到特定 22 縣市名稱
+      const matchedCounty = COUNTIES_DATA.find(c => msg.includes(c.name.replace('市', '').replace('縣', '')));
+      if (matchedCounty) {
+        const attrs = ATTRACTIONS_DATA.filter(a => a.countyId === matchedCounty.id);
+        return `**${matchedCounty.name}** 是非常棒的暑假旅遊選擇！✨\n\n` +
+          `• **旅遊特色**：${matchedCounty.tagline}\n` +
+          `• **推薦必去景點**：${attrs.map(a => `「${a.name}」`).join('、')}\n` +
+          `• **在地必吃美食**：${matchedCounty.foods}\n` +
+          `• **交通建議**：${matchedCounty.transport}`;
+      }
+
+      return '收到您的問題！在 **「暑假最難忘的回憶」** 網站中，我們完整收錄了全台 22 縣市（含金門、馬祖、澎湖離島）共 76 個精選夏日景點 ☀️。\n\n' +
+        '您可以：\n' +
+        '1. 點擊頂部 **「導覽頁・台灣地圖」** 直接點選想去的縣市。\n' +
+        '2. 告訴我您的**出遊天數、同行成員（親子/情侶/朋友）或想玩的類型（玩水/避暑/美食）**，我馬上為您量身規劃行程！';
+    }
+
+    async function fetchGeminiWithBackoff(userMessage) {
+      const apiKey = ""; // 由執行環境自動注入
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+      const systemPrompt = `你是「暑假最難忘的回憶」台灣旅遊網站的專屬 AI 旅遊客服小幫手。
+請使用親切、熱情、有條理的繁體中文（台灣習慣用語）回答旅客關於台灣 22 縣市暑假旅遊、景點推薦、親子行程、交通與在地美食的問題。
+網站內已收錄全台 22 縣市（基隆、台北、新北、桃園、新竹市、新竹縣、苗栗、台中、彰化、南投、雲林、嘉義市、嘉義縣、台南、高雄、屏東、宜蘭、花蓮、台東、澎湖、金門、連江馬祖）共 76 個景點。
+回答請精簡實用（約 150-280 字內），可使用項目符號與重點粗體（**文字**），並適時引導使用者點擊網站上的「導覽頁・台灣地圖」或收藏景點至「我的暑假清單」。`;
+
+      const contents = [
+        ...appState.aiHistory.slice(-6),
+        { role: 'user', parts: [{ text: userMessage }] }
+      ];
+
+      const payload = {
+        contents,
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        }
+      };
+
+      const delays = [1000, 2000, 4000];
+      for (let attempt = 0; attempt <= delays.length; attempt++) {
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          const result = await response.json();
+          const replyText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (replyText) {
+            appState.aiHistory.push({ role: 'user', parts: [{ text: userMessage }] });
+            appState.aiHistory.push({ role: 'model', parts: [{ text: replyText }] });
+            return replyText;
+          }
+          throw new Error('Empty response');
+        } catch (err) {
+          if (attempt < delays.length) {
+            await new Promise(resolve => setTimeout(resolve, delays[attempt]));
+          } else {
+            // 若無 API 金鑰或網路受限，無縫切換至高品質在地旅遊知識庫回應
+            return generateSmartLocalFallbackReply(userMessage);
+          }
+        }
+      }
+    }
+
+    async function handleAIChatSubmit(event) {
+      event.preventDefault();
+      const input = document.getElementById('ai-chat-input');
+      const sendBtn = document.getElementById('ai-chat-send-btn');
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      input.disabled = true;
+      sendBtn.disabled = true;
+
+      appendChatMessage('user', text);
+      showTypingIndicator();
+
+      try {
+        const reply = await fetchGeminiWithBackoff(text);
+        removeTypingIndicator();
+        appendChatMessage('model', reply);
+      } catch (e) {
+        removeTypingIndicator();
+        appendChatMessage('model', generateSmartLocalFallbackReply(text));
+      } finally {
+        input.disabled = false;
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    }
+
+    /**
+     * 15. 應用程式初始化啟動
+     */
+    window.addEventListener('DOMContentLoaded', () => {
+      initInteractiveTaiwanMap();
+      renderHomeSections();
+      initDirectoryFilters();
+      updateWishlistBadges();
+      switchTab('home');
+    });
+  </script>
+</body>
+</html>
